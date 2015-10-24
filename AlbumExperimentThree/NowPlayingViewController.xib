@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NowPlayingViewController" customModule="AlbumExperimentThree" customModuleProvider="target">
+            <connections>
+                <outlet property="fullView" destination="lCo-GD-k1w" id="8Ty-zX-HPM"/>
+                <outlet property="miniView" destination="e3C-Oi-ChQ" id="Gc1-5A-AmI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3C-Oi-ChQ">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tia-oY-JTx">
+                            <rect key="frame" x="281" y="10" width="38" height="30"/>
+                            <animations/>
+                            <state key="normal" title="Open"/>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.73686917238947913" green="1" blue="0.41968562520249009" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Tia-oY-JTx" firstAttribute="centerX" secondItem="e3C-Oi-ChQ" secondAttribute="centerX" id="4dj-zt-0yI"/>
+                        <constraint firstItem="Tia-oY-JTx" firstAttribute="centerY" secondItem="e3C-Oi-ChQ" secondAttribute="centerY" id="OWa-T5-F5m"/>
+                        <constraint firstAttribute="height" constant="50" id="eOy-IO-HpJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-GD-k1w">
+                    <rect key="frame" x="0.0" y="50" width="600" height="550"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roo-O5-71J">
+                            <rect key="frame" x="284" y="57" width="32" height="30"/>
+                            <animations/>
+                            <state key="normal" title="Shut"/>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="roo-O5-71J" firstAttribute="centerX" secondItem="lCo-GD-k1w" secondAttribute="centerX" id="5Fu-p3-0rX"/>
+                        <constraint firstItem="roo-O5-71J" firstAttribute="top" secondItem="lCo-GD-k1w" secondAttribute="top" constant="57" id="haa-ia-XOl"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="lCo-GD-k1w" secondAttribute="bottom" id="9ca-zY-ECu"/>
+                <constraint firstAttribute="trailing" secondItem="lCo-GD-k1w" secondAttribute="trailing" id="LgV-Av-zOR"/>
+                <constraint firstAttribute="trailing" secondItem="e3C-Oi-ChQ" secondAttribute="trailing" id="PI4-X4-xoL"/>
+                <constraint firstItem="e3C-Oi-ChQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aX5-u0-OJO"/>
+                <constraint firstItem="lCo-GD-k1w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f72-fN-T3c"/>
+                <constraint firstItem="e3C-Oi-ChQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rio-Vs-5Ja"/>
+                <constraint firstItem="lCo-GD-k1w" firstAttribute="top" secondItem="e3C-Oi-ChQ" secondAttribute="bottom" id="tET-fG-STs"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

@@ -12,7 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let nowPlaying = NowPlayingViewController()
+        nowPlaying.originFull = -50 //Negative height of mini
+        nowPlaying.originMini = self.view.frame.height - 50 //Height of the mini player
+        
+        nowPlaying.view.frame = CGRect(x: 0, y: nowPlaying.originMini, width: self.view.frame.width, height: self.view.frame.height)
+        self.view.addSubview(nowPlaying.view)
+        addChildViewController(nowPlaying)
     }
 
     override func didReceiveMemoryWarning() {
