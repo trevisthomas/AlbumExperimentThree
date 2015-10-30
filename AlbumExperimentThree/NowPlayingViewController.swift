@@ -78,7 +78,7 @@ class NowPlayingViewController: UIViewController {
             
             if(draggingFromMini && translation.y > 0.0){
                 return //Rejected.  Dont let them drag the mini even lower!
-            } else if (translation.y < 0.0){
+            } else if (!draggingFromMini && translation.y < 0.0){
                 return //Rejected.  Dont let them drag the full player higher!
             } else {
                 //Good to go

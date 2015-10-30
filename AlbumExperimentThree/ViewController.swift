@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         nowPlaying.view.frame = CGRect(x: 0, y: nowPlaying.originMini, width: self.view.frame.width, height: self.view.frame.height)
         self.view.addSubview(nowPlaying.view)
         addChildViewController(nowPlaying)
+        
+        print("Width \(view.frame.width)")
     }
 
     override func didReceiveMemoryWarning() {

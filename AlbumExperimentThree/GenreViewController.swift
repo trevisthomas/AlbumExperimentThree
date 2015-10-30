@@ -2,84 +2,69 @@
 //  GenreViewController.swift
 //  AlbumExperimentThree
 //
-//  Created by Trevis Thomas on 10/23/15.
+//  Created by Trevis Thomas on 10/28/15.
 //  Copyright © 2015 Trevis Thomas. All rights reserved.
 //
 
 import UIKit
 
-class GenreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate{
-    private let genreCellIdentifier = "GenreCell"
-    @IBOutlet weak var heightConstraintForHistoryView: NSLayoutConstraint!
+class GenreViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
+
+    @IBOutlet weak var historyContainerView: UIView!
+    @IBOutlet weak var historyHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionView: UICollectionView!
+    private var genreData : [GenreData]!
+    private var originalY : CGFloat!
+    private var originalHeight : CGFloat!
     
-    @IBOutlet weak var tableView: UITableView!
-    var originalY : CGFloat!
-    var originalHeight : CGFloat!
-    let navBarHeight : CGFloat = 44.0
-    let heightOfHistoryView : CGFloat = 100.0
+    private var containerOriginalY : CGFloat!
+    private var containerOriginalHeight : CGFloat!
+    
+    private let navBarHeight : CGFloat = 44.0
+//    private let heightOfHistoryView : CGFloat
+    
+//    let computers = [
+//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
+//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
+//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
+//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
+//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()],
+//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
+//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
+//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
+//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
+//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()],
+//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
+//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
+//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
+//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
+//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()]        
+//            ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        genreData = MusicLibrary.instance.getGenreBundle()
+        originalY = collectionView.frame.origin.y //Stashing the original y position of the table frame
         
-        originalY = tableView.frame.origin.y //Stashing the original y position of the table frame
-//        originalHeight = tableView.frame.height
+        containerOriginalY = historyContainerView.frame.origin.y
+       
         
-//        tableView.del
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: genreCellIdentifier)
-        title = "I am bob."
+//        let debug = MusicLibrary.instance.mostRecientlyAddedAlbums()
         
-     //   containerViewNavigationController.navigationBar.topItem?.title = "Can you hear me now?"
-        
-//        let buttonItem = UIBarButtonItem(title: "Test", style: UIBarButtonItemStyle.Plain, target: self, action: "leftNavButtonPress")
-//        
-//        containerViewNavigationController.navigationBar.topItem?.leftBarButtonItem = buttonItem
+//        StretchingFocusLayoutConstants.Cell.featuredHeight = collectionView.frame.width
     }
     
     override func viewDidLayoutSubviews() {
-        originalHeight = tableView.bounds.height
+        //If i did this in viewDidLoad the size wasnt correct yet!
+        originalHeight = collectionView.bounds.height
+        containerOriginalHeight = historyContainerView.bounds.height
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(genreCellIdentifier, forIndexPath: indexPath)
-        cell.textLabel!.text = "Test \(indexPath.row)"
-        return cell
-    }
-    
-    //MARK: Trying to hide the history view when the table is scrolled
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        //I think that the nav bar is 44px
-        //TODO: Figure out how to get the height param out of heightConstraintForHistoryView.
-        
-        let yOffset = tableView.contentOffset.y
-        if(yOffset < 0){
-            tableView.frame.origin.y = originalY //144 //144 is the starting point
-            tableView.frame.size = CGSize(width: tableView.frame.width, height: originalHeight)
-        } else if yOffset < heightOfHistoryView  { //The 100.0 here is the height of the history view.  You should get this from the constraint
-            tableView.frame.origin.y = originalY - tableView.contentOffset.y
-            let newHeight = originalHeight + tableView.contentOffset.y
-            print(newHeight)
-            tableView.frame.size = CGSize(width: tableView.frame.width, height: newHeight)
-        } else {
-            tableView.frame.origin.y = navBarHeight
-            let newHeight = originalHeight + heightOfHistoryView
-            tableView.frame.size = CGSize(width: tableView.frame.width, height: newHeight)
-        }
-        print(tableView.frame)
-    }
+
     
 
     /*
@@ -91,5 +76,59 @@ class GenreViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
+extension GenreViewController{
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return genreData.count
+//        return computers.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GenreCell", forIndexPath: indexPath) as! GenreCollectionViewCell
+        
+//        cell.backgroundColor = computers[indexPath.row]["Color"] as? UIColor
+        
+        
+        cell.data = genreData[indexPath.row]
+        return cell
+    }
+    
+//    col
+}
+
+extension GenreViewController {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        adjustHistoryViewBecauseScrollChanged()
+    }
+    
+    func adjustHistoryViewBecauseScrollChanged(){
+        //I think that the nav bar is 44px
+        //TODO: Figure out how to get the height param out of heightConstraintForHistoryView.
+        
+        let yOffset = collectionView.contentOffset.y
+        if(yOffset < 0){
+            collectionView.frame.origin.y = originalY //144 //144 is the starting point
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: originalHeight)
+            historyContainerView.frame.origin.y = containerOriginalY
+//            historyContainerView.frame.origin.y = originalY - originalHeight
+        } else if yOffset < historyHeightConstraint.constant  {
+            collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
+            historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
+            let newHeight = originalHeight + collectionView.contentOffset.y
+            //            print(newHeight)
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
+        } else {
+            collectionView.frame.origin.y = navBarHeight
+            let newHeight = originalHeight + historyHeightConstraint.constant
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
+            historyContainerView.frame.origin.y = -containerOriginalHeight
+        }
+        //        print(collectionView.frame)
+    }
+}
+
