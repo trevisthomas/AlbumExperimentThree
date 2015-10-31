@@ -13,6 +13,7 @@
 		0F7054C01BE2C580003FA9F1 /* AlbumHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BF1BE2C580003FA9F1 /* AlbumHistoryViewController.swift */; };
 		0FBF6A2C1BE132D600B66AC0 /* GenreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */; };
 		0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */; };
+		0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC7E7E81BE5094E00C0CE79 /* CGFloat+Util.swift */; };
 		0FCD2E8F1BE158BD004F69F0 /* StretchingFocusLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCD2E8E1BE158BD004F69F0 /* StretchingFocusLayout.swift */; };
 		0FD309EE1BDA873D0064E4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */; };
 		0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD309EF1BDA873D0064E4F9 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 		0F7054BF1BE2C580003FA9F1 /* AlbumHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHistoryViewController.swift; sourceTree = "<group>"; };
 		0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreViewController.swift; sourceTree = "<group>"; };
 		0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FC7E7E81BE5094E00C0CE79 /* CGFloat+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Util.swift"; sourceTree = "<group>"; };
 		0FCD2E8E1BE158BD004F69F0 /* StretchingFocusLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchingFocusLayout.swift; sourceTree = "<group>"; };
 		0FD309EA1BDA873D0064E4F9 /* AlbumExperimentThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumExperimentThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */,
 				0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */,
 				0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */,
+				0FC7E7E81BE5094E00C0CE79 /* CGFloat+Util.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
 				0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */,
+				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,

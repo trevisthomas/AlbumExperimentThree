@@ -52,18 +52,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hX6-Cw-HoP">
-                                <rect key="frame" x="0.0" y="44" width="600" height="150"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="160"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="bVO-cb-toG"/>
+                                    <constraint firstAttribute="height" constant="160" id="bVO-cb-toG"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="m6E-s7-Ixi" kind="embed" id="at6-ws-cTx"/>
                                 </connections>
                             </containerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tI2-mk-mjI">
-                                <rect key="frame" x="0.0" y="194" width="600" height="336"/>
+                                <rect key="frame" x="0.0" y="204" width="600" height="326"/>
                                 <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Tf-1f-20C" customClass="StretchingFocusLayout" customModule="AlbumExperimentThree" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GenreCell" id="Aiq-z6-vps" customClass="GenreCollectionViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
@@ -77,7 +78,31 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="190"/>
                                                     <animations/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-qI-lLk">
+                                                <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KfX-80-usd">
+                                                    <rect key="frame" x="0.0" y="0.0" width="418" height="190"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zhR-ap-Ocd">
+                                                        <rect key="frame" x="0.0" y="0.0" width="418" height="190"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzn-cV-aCf">
+                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="Mrp-wQ-9Jl">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <animations/>
+                                                                </view>
+                                                                <animations/>
+                                                                <vibrancyEffect>
+                                                                    <blurEffect style="light"/>
+                                                                </vibrancyEffect>
+                                                            </visualEffectView>
+                                                        </subviews>
+                                                        <animations/>
+                                                    </view>
+                                                    <animations/>
+                                                    <blurEffect style="light"/>
+                                                </visualEffectView>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-qI-lLk">
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="190"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,14 +139,18 @@
                                         </view>
                                         <animations/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="KfX-80-usd" secondAttribute="bottom" id="0Yx-QP-DbG"/>
                                             <constraint firstAttribute="bottom" secondItem="kTa-Wi-ltX" secondAttribute="bottom" id="2jy-HA-Wld"/>
                                             <constraint firstItem="kTa-Wi-ltX" firstAttribute="leading" secondItem="Aiq-z6-vps" secondAttribute="leading" id="6TC-0Q-ryA"/>
                                             <constraint firstAttribute="trailing" secondItem="KxX-qI-lLk" secondAttribute="trailing" id="AYr-oD-EqX"/>
                                             <constraint firstAttribute="trailing" secondItem="kTa-Wi-ltX" secondAttribute="trailing" id="B6h-GG-3oB"/>
+                                            <constraint firstItem="KfX-80-usd" firstAttribute="top" secondItem="Aiq-z6-vps" secondAttribute="top" id="Cc5-Py-qIz"/>
                                             <constraint firstItem="kTa-Wi-ltX" firstAttribute="top" secondItem="Aiq-z6-vps" secondAttribute="top" id="HOx-ud-h4p"/>
+                                            <constraint firstItem="KfX-80-usd" firstAttribute="leading" secondItem="Aiq-z6-vps" secondAttribute="leading" id="HcY-AB-L5v"/>
                                             <constraint firstItem="KxX-qI-lLk" firstAttribute="leading" secondItem="Aiq-z6-vps" secondAttribute="leading" id="RK3-pt-qhq"/>
                                             <constraint firstItem="dhg-XU-GZO" firstAttribute="centerY" secondItem="Aiq-z6-vps" secondAttribute="centerY" id="RZ9-JS-rUC"/>
                                             <constraint firstAttribute="bottom" secondItem="KxX-qI-lLk" secondAttribute="bottom" id="Sot-oe-8DW"/>
+                                            <constraint firstAttribute="trailing" secondItem="KfX-80-usd" secondAttribute="trailing" id="ULU-Ul-BVS"/>
                                             <constraint firstItem="KxX-qI-lLk" firstAttribute="top" secondItem="Aiq-z6-vps" secondAttribute="top" id="VZf-I8-QDG"/>
                                             <constraint firstItem="dhg-XU-GZO" firstAttribute="leading" secondItem="Aiq-z6-vps" secondAttribute="leading" id="VaT-QI-t9s"/>
                                             <constraint firstAttribute="trailing" secondItem="dhg-XU-GZO" secondAttribute="trailing" id="mhn-xd-l1T"/>
@@ -129,6 +158,7 @@
                                         <size key="customSize" width="418" height="190"/>
                                         <connections>
                                             <outlet property="artworkImageView" destination="kTa-Wi-ltX" id="1Sn-Ww-jfA"/>
+                                            <outlet property="blurVisualEffectView" destination="KfX-80-usd" id="i7X-Ip-D38"/>
                                             <outlet property="genreDetailLabel" destination="caB-AB-8qR" id="VAS-RI-rC2"/>
                                             <outlet property="genreTitleLabel" destination="jQq-Pp-wmv" id="SeN-uT-WTp"/>
                                             <outlet property="tintView" destination="KxX-qI-lLk" id="PxX-5W-bZ6"/>
@@ -186,10 +216,10 @@
             <objects>
                 <viewController id="m6E-s7-Ixi" customClass="AlbumHistoryViewController" customModule="AlbumExperimentThree" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="K2N-LE-h5t">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mxb-F7-cDo">
                             <size key="itemSize" width="125" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -198,7 +228,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumHistoryCell" id="f3l-N5-jWW" customClass="AlbumHistoryViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="125" height="150"/>
+                                <rect key="frame" x="0.0" y="5" width="125" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="150"/>
@@ -221,14 +251,12 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="14"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="10"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-k8-Slo">
                                                             <rect key="frame" x="0.0" y="14" width="120" height="13"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="9"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -242,7 +270,7 @@
                                                 </stackView>
                                             </subviews>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="dDm-Cv-y2D" firstAttribute="top" secondItem="js7-a2-Ufi" secondAttribute="top" constant="4" id="2P4-8C-rQc"/>
                                                 <constraint firstItem="o62-T4-Pow" firstAttribute="top" secondItem="dDm-Cv-y2D" secondAttribute="bottom" id="6ph-x2-08g"/>

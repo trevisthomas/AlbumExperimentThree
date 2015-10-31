@@ -14,6 +14,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tintView: UIView!
     @IBOutlet weak var genreTitleLabel: UILabel!
     @IBOutlet weak var genreDetailLabel: UILabel!
+    @IBOutlet weak var blurVisualEffectView: UIVisualEffectView!
     private var colorCube = CCColorCube()
     
     var data : GenreData! {
@@ -23,10 +24,11 @@ class GenreCollectionViewCell: UICollectionViewCell {
             artworkImageView.image = data.artwork
             
             //TODO:  This is kind of taxing.  Should precalculate these and put them into the data class
-            let color = colorCube.extractColorsFromImage(data.artwork, flags: CCAvoidWhite.rawValue, count: 4)
+//            let color = colorCube.extractColorsFromImage(data.artwork, flags: CCAvoidWhite.rawValue | CCAvoidBlack.rawValue, count: 4)
 //            print(color)
-            tintView.backgroundColor = color[3] as? UIColor
-            genreTitleLabel.textColor = color[0] as? UIColor
+
+            tintView.backgroundColor = data.colorsInArtwork[3]
+         //   genreTitleLabel.textColor = data.colorsInArtwork[0]
         }
     }
     
@@ -44,16 +46,23 @@ class GenreCollectionViewCell: UICollectionViewCell {
         //3
 //        let minAlpha: CGFloat = 0.3
 //        let maxAlpha: CGFloat = 0.75
-        let minAlpha: CGFloat = 0.3
-        let maxAlpha: CGFloat = 0.95
+//        let minAlpha: CGFloat = 0.3
+//        let maxAlpha: CGFloat = 0.95
 
-        tintView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
+//        tintView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
+        
+        tintView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.35, maxAlpha: 0.50)
+        
+        blurVisualEffectView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.0, maxAlpha: 0.90)
         
         //Scaling the text
         let scale = max(delta, 0.5)
         genreTitleLabel.transform = CGAffineTransformMakeScale(scale, scale)
+
 //        genreTitleLabel.alpha = delta
         genreDetailLabel.alpha = delta
     }
+    
+    
     
 }

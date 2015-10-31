@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 extension UIImage {
+    private static let colorCube = CCColorCube()
+   
+    
     static func collageImage (rect:CGRect, maxImagesPerRow: Int, images:[UIImage]) -> UIImage {
         
         var maxSide : CGFloat = 0.0
@@ -89,5 +92,20 @@ extension UIImage {
         UIGraphicsEndImageContext()
         
         return newImage
+    }
+    
+    func extractColorsUsingColorCube(numberOfColorsToExtract count: UInt) -> [UIColor]{
+        var colors = UIImage.colorCube.extractColorsFromImage(self, flags: CCAvoidWhite.rawValue | CCAvoidBlack.rawValue, count: count) as! [UIColor]
+        
+        if colors.count < Int(count) {
+            colors = UIImage.colorCube.extractColorsFromImage(self, flags: CCAvoidBlack.rawValue, count: count) as! [UIColor]
+        }
+        
+        //I noticed that when telling the cube to avoid colors that it could return fewer colors than i was asking for below is a hack around that.  Should probably just call it again without the filters.
+        while colors.count < Int(count){
+            colors.append(UIColor.whiteColor())
+        }
+        
+        return colors
     }
 }

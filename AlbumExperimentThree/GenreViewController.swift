@@ -47,11 +47,20 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         originalY = collectionView.frame.origin.y //Stashing the original y position of the table frame
         
         containerOriginalY = historyContainerView.frame.origin.y
-       
+       title = "Album Experiment"
         
 //        let debug = MusicLibrary.instance.mostRecientlyAddedAlbums()
         
 //        StretchingFocusLayoutConstants.Cell.featuredHeight = collectionView.frame.width
+        
+//        navigationController?.navigationBar.alpha = 0.5
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.translucent = true
+        
+        
+//        collectionView.frame.insetInPlace(dx: 0, dy: 100)
+//        collectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
     }
     
     override func viewDidLayoutSubviews() {
@@ -103,7 +112,7 @@ extension GenreViewController{
 
 extension GenreViewController {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        adjustHistoryViewBecauseScrollChanged()
+        adjustHistoryViewBecauseScrollChangedAllTheWay()
     }
     
     func adjustHistoryViewBecauseScrollChanged(){
@@ -126,9 +135,48 @@ extension GenreViewController {
             collectionView.frame.origin.y = navBarHeight
             let newHeight = originalHeight + historyHeightConstraint.constant
             collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
-            historyContainerView.frame.origin.y = -containerOriginalHeight
+            historyContainerView.frame.origin.y = 44 + -containerOriginalHeight
         }
         //        print(collectionView.frame)
+        print(historyContainerView.frame.origin.y)
+    }
+    
+    func adjustHistoryViewBecauseScrollChangedAllTheWay(){
+        //I think that the nav bar is 44px
+        //TODO: Figure out how to get the height param out of heightConstraintForHistoryView.
+        
+        let yOffset = collectionView.contentOffset.y
+//        print("yOffset= \(yOffset)")
+        if(yOffset < 0){
+            collectionView.frame.origin.y = originalY //144 //144 is the starting point
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: originalHeight)
+            historyContainerView.frame.origin.y = containerOriginalY
+            
+            navigationController?.navigationBar.alpha = 1
+        } else if yOffset < historyHeightConstraint.constant + containerOriginalY {
+            collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
+            historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
+            let newHeight = originalHeight + collectionView.contentOffset.y
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
+            
+//            let delta = 1 - ((featuredHeight - CGRectGetHeight(frame)) / (featuredHeight - standardHeight))
+//            navigationController?.navigationBar.alpha.
+            
+        } else {
+            collectionView.frame.origin.y = 0
+            let newHeight = originalHeight + historyHeightConstraint.constant + navBarHeight
+            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
+            historyContainerView.frame.origin.y = -containerOriginalHeight
+            
+            navigationController?.navigationBar.alpha = 0
+        }
+//        print(historyContainerView.frame.origin.y)
     }
 }
+
+//extension GenreViewController : UICollectionViewDelegateFlowLayout {
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+//        return 10.0
+//    }
+//}
 

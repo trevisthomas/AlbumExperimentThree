@@ -69,7 +69,7 @@ extension AlbumHistoryViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 0.0
     }
-    
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
 //        return UIEdgeInsetsZero
         return UIEdgeInsetsMake (-44, 0, 0, 0) //This -44 is wiggity wack.  I have no idea why it's like this.
