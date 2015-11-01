@@ -64,7 +64,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tI2-mk-mjI">
                                 <rect key="frame" x="0.0" y="204" width="600" height="326"/>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Tf-1f-20C" customClass="StretchingFocusLayout" customModule="AlbumExperimentThree" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GenreCell" id="Aiq-z6-vps" customClass="GenreCollectionViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
@@ -102,7 +102,7 @@
                                                     <animations/>
                                                     <blurEffect style="light"/>
                                                 </visualEffectView>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-qI-lLk">
+                                                <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxX-qI-lLk">
                                                     <rect key="frame" x="0.0" y="0.0" width="418" height="190"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,14 +114,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="418" height="51"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="36"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caB-AB-8qR">
                                                             <rect key="frame" x="0.0" y="51" width="418" height="17"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="12"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -138,6 +138,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <animations/>
+                                        <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="KfX-80-usd" secondAttribute="bottom" id="0Yx-QP-DbG"/>
                                             <constraint firstAttribute="bottom" secondItem="kTa-Wi-ltX" secondAttribute="bottom" id="2jy-HA-Wld"/>
@@ -219,7 +220,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="mxb-F7-cDo">
                             <size key="itemSize" width="125" height="150"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -251,12 +252,14 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="120" height="14"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="10"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr7-k8-Slo">
                                                             <rect key="frame" x="0.0" y="14" width="120" height="13"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="9"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -270,7 +273,7 @@
                                                 </stackView>
                                             </subviews>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="dDm-Cv-y2D" firstAttribute="top" secondItem="js7-a2-Ufi" secondAttribute="top" constant="4" id="2P4-8C-rQc"/>
                                                 <constraint firstItem="o62-T4-Pow" firstAttribute="top" secondItem="dDm-Cv-y2D" secondAttribute="bottom" id="6ph-x2-08g"/>

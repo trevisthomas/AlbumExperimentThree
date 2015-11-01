@@ -22,7 +22,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
             genreTitleLabel.text = data.title
             genreDetailLabel.text = data.detail
             artworkImageView.image = data.artwork
-            
+//            artworkImageView.image = data.art.imageWithSize(CGSize(width: 500,height: 500))
             //TODO:  This is kind of taxing.  Should precalculate these and put them into the data class
 //            let color = colorCube.extractColorsFromImage(data.artwork, flags: CCAvoidWhite.rawValue | CCAvoidBlack.rawValue, count: 4)
 //            print(color)
@@ -52,6 +52,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
 //        tintView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
         
         tintView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.35, maxAlpha: 0.50)
+        //tintView.alpha = 0
         
         blurVisualEffectView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.0, maxAlpha: 0.90)
         
