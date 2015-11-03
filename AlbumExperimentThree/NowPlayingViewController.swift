@@ -30,6 +30,7 @@ class NowPlayingViewController: UIViewController {
         let miniViewTapRecognizer = UITapGestureRecognizer(target: self, action: "miniViewTapped:")
         miniView.gestureRecognizers = [miniViewTapRecognizer]
         
+        self.view.backgroundColor = UIColor.clearColor()
     }
     
     required init?(coder aDecoder: NSCoder) {

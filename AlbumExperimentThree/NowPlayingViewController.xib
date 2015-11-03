@@ -33,7 +33,7 @@
                         <constraint firstAttribute="height" constant="50" id="eOy-IO-HpJ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-GD-k1w">
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-GD-k1w">
                     <rect key="frame" x="0.0" y="50" width="600" height="550"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roo-O5-71J">
@@ -43,7 +43,7 @@
                         </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="roo-O5-71J" firstAttribute="centerX" secondItem="lCo-GD-k1w" secondAttribute="centerX" id="5Fu-p3-0rX"/>
                         <constraint firstItem="roo-O5-71J" firstAttribute="top" secondItem="lCo-GD-k1w" secondAttribute="top" constant="57" id="haa-ia-XOl"/>

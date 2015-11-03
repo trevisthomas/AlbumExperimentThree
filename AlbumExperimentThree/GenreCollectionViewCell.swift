@@ -51,7 +51,8 @@ class GenreCollectionViewCell: UICollectionViewCell {
 
 //        tintView.alpha = maxAlpha - (delta * (maxAlpha - minAlpha))
         
-        tintView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.35, maxAlpha: 0.50)
+//        tintView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.35, maxAlpha: 0.50)
+         tintView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.0, maxAlpha: 0.50)
         //tintView.alpha = 0
         
         blurVisualEffectView.alpha.scaleYourself(withDelta: delta, minAlpha: 0.0, maxAlpha: 0.90)

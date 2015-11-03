@@ -10,9 +10,8 @@ import UIKit
 
 class AlbumHistoryViewController: UIViewController {
     var albums : [AlbumData]!
-
-    @IBOutlet var collectionView: UICollectionView!
-    
+  
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         

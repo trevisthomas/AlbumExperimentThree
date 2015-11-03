@@ -27,7 +27,9 @@ class StretchingFocusLayout: UICollectionViewLayout {
     
     /* The amount the user needs to scroll before the featured cell changes */
 //    let dragOffset: CGFloat = 180.0 //Trevis, this controls the speed.
-    let dragOffset: CGFloat = 160+44 //Trevis, this controls the speed. (for some reason i had to increae this to get my first scroll to hide my entire header
+//    let dragOffset: CGFloat = 160+44 //Trevis, this controls the speed. (for some reason i had to increae this to get my first scroll to hide my entire header
+    
+    let dragOffset: CGFloat = 180+44
     
     var cache = [UICollectionViewLayoutAttributes]()
     
