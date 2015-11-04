@@ -22,36 +22,10 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     private let statusBarHeight : CGFloat = 20
     private let navBarHeight : CGFloat = 44.0
-//    private let heightOfHistoryView : CGFloat
-    
-//    let computers = [
-//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
-//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
-//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
-//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
-//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()],
-//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
-//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
-//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
-//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
-//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()],
-//                ["Name" : "MacBook Air", "Color" : UIColor.blueColor()],
-//                ["Name" : "MacBook Pro", "Color" : UIColor.purpleColor()],
-//                ["Name" : "iMac", "Color" : UIColor.yellowColor()],
-//                ["Name" : "Mac Mini", "Color" : UIColor.redColor()],
-//                ["Name" : "Mac Pro", "Color" : UIColor.greenColor()]        
-//            ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         genreData = MusicLibrary.instance.getGenreBundle()
-        
-//        UIApplication.sharedApplication().setStatusBarStyle = UIStatusBarStyle.LightContent
-//        originalY = collectionView.frame.origin.y //Stashing the original y position of the table frame
-//        
-//        containerOriginalY = historyContainerView.frame.origin.y
-        
-//        navigationController?.navigationBar.barStyle = .BlackTranslucent
         
        title = "Album Experiment"
         
@@ -69,9 +43,16 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
 //        collectionView.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
         
         
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-        navigationController?.navigationBar.barStyle = .BlackTranslucent
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+//        navigationController?.navigationBar.barStyle = .BlackTranslucent
         
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+//        navigationController?.navigationBar.barStyle = .BlackTranslucent
+        
+        originalHeight = collectionView.bounds.height
+        containerOriginalHeight = historyContainerView.bounds.height
+        
+        //After a lot of fussing.  I ended up setting the height of the collection view to be taller than the screen in interface builder (i bound the bottom to -204 so that i dont have to change the height of that view as the History hides
     }
     
 //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -80,8 +61,11 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLayoutSubviews() {
         //If i did this in viewDidLoad the size wasnt correct yet!
-        originalHeight = collectionView.bounds.height
-        containerOriginalHeight = historyContainerView.bounds.height
+       // var test =  view.frame.height
+       // print (test)
+//        originalHeight = collectionView.bounds.height
+        //originalHeight = view.frame.height
+//        containerOriginalHeight = historyContainerView.bounds.height
         
         originalY = 224
         containerOriginalY = 0
@@ -164,36 +148,22 @@ extension GenreViewController {
 //    }
     
     func adjustHistoryViewBecauseScrollChangedAllTheWay(){
-        //I think that the nav bar is 44px
-        //TODO: Figure out how to get the height param out of heightConstraintForHistoryView.
-        
         let yOffset = collectionView.contentOffset.y
-//        print("yOffset= \(yOffset)")
         if(yOffset < 0){
             collectionView.frame.origin.y = originalY //144 //144 is the starting point
-            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: originalHeight)
             historyContainerView.frame.origin.y = containerOriginalY
-            
             navigationController?.navigationBar.alpha = 1
         } else if yOffset < historyHeightConstraint.constant + containerOriginalY - statusBarHeight{
             collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
             historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
-            let newHeight = originalHeight + collectionView.contentOffset.y
-            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
-            
 //            let delta = 1 - ((featuredHeight - CGRectGetHeight(frame)) / (featuredHeight - standardHeight))
 //            navigationController?.navigationBar.alpha.
             
         } else {
-            //This is the position when the history CollectionView is closed
             collectionView.frame.origin.y = 0 + statusBarHeight
-            let newHeight = originalHeight + historyHeightConstraint.constant + navBarHeight
-            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
             historyContainerView.frame.origin.y = -containerOriginalHeight + statusBarHeight
-            
             navigationController?.navigationBar.alpha = 0
         }
-//        print(historyContainerView.frame.origin.y)
     }
 }
 

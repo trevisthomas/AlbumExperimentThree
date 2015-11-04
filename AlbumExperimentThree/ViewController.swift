@@ -22,8 +22,8 @@ class ViewController: UIViewController {
         nowPlaying.originMini = self.view.frame.height - 50 //Height of the mini player
         
         nowPlaying.view.frame = CGRect(x: 0, y: nowPlaying.originMini, width: self.view.frame.width, height: self.view.frame.height)
-        self.view.addSubview(nowPlaying.view)
-        addChildViewController(nowPlaying)
+//        self.view.addSubview(nowPlaying.view)
+//        addChildViewController(nowPlaying)
         
         print("Width \(view.frame.width)")
         

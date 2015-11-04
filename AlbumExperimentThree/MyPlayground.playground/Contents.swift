@@ -4,4 +4,5 @@ import UIKit
 
 var str = "Hello, playground"
 
-let list = map(1...10) {_ in arc4random_uniform(UInt32(100))}
+let radius = 60.0
+var bc = sqrt((pow(radius, 2.0)) / 2.0)
