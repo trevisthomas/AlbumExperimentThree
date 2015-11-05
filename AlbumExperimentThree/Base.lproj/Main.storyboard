@@ -364,6 +364,21 @@
                                                                 <constraint firstAttribute="trailing" secondItem="PsL-MZ-hMi" secondAttribute="trailing" id="by7-kL-OCA"/>
                                                             </constraints>
                                                         </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqf-1e-4vd" customClass="OverlayPlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                                            <rect key="frame" x="5" y="4" width="110" height="110"/>
+                                                            <animations/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                                    <real key="value" value="78"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                                    <real key="value" value="24"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="alphaOfTransparentArea">
+                                                                    <real key="value" value="0.29999999999999999"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
                                                     </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
@@ -372,10 +387,14 @@
                                                         <constraint firstAttribute="trailing" secondItem="Vic-SU-ZSU" secondAttribute="trailing" constant="5" id="7ng-jM-Z1I"/>
                                                         <constraint firstItem="Vic-SU-ZSU" firstAttribute="top" secondItem="JgA-YN-vQ5" secondAttribute="top" constant="4" id="F0V-Kr-GGv"/>
                                                         <constraint firstItem="ZcT-ay-XHe" firstAttribute="leading" secondItem="JgA-YN-vQ5" secondAttribute="leading" id="GM0-RC-hpq"/>
+                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="width" secondItem="Vic-SU-ZSU" secondAttribute="width" id="Ga3-eM-IzG"/>
+                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="centerY" secondItem="Vic-SU-ZSU" secondAttribute="centerY" id="LTe-17-xgS"/>
                                                         <constraint firstItem="ZcT-ay-XHe" firstAttribute="top" secondItem="Vic-SU-ZSU" secondAttribute="bottom" id="NRI-Mw-iSF"/>
                                                         <constraint firstAttribute="width" constant="120" id="Rp2-6g-cWM"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZcT-ay-XHe" secondAttribute="trailing" id="YHo-jB-IaC"/>
+                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="centerX" secondItem="Vic-SU-ZSU" secondAttribute="centerX" id="aFR-Uc-7cc"/>
                                                         <constraint firstAttribute="height" constant="144" id="s7o-rG-hYM"/>
+                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="height" secondItem="Vic-SU-ZSU" secondAttribute="height" id="z8m-U4-XLz"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

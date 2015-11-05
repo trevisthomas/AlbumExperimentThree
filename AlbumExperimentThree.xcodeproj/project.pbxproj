@@ -11,6 +11,8 @@
 		0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */; };
 		0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */; };
 		0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */; };
+		0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */; };
+		0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -39,6 +41,8 @@
 		0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreArrowView.swift; sourceTree = "<group>"; };
 		0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorCube.swift"; sourceTree = "<group>"; };
 		0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPlayPauseButton.swift; sourceTree = "<group>"; };
+		0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
+		0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextPreviousButton.swift; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */,
 				0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */,
 				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
+				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
+				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
+				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,
 				0FCD2E8F1BE158BD004F69F0 /* StretchingFocusLayout.swift in Sources */,
 				0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */,
@@ -294,6 +301,7 @@
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
 				0FE5644D1BE4284400E065E7 /* CCLocalMaximum.m in Sources */,
 				0FBF6A2C1BE132D600B66AC0 /* GenreViewController.swift in Sources */,
+				0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */,
 				0FD309EE1BDA873D0064E4F9 /* AppDelegate.swift in Sources */,
 				0F57C7CF1BEA58C000B32570 /* LineSeperatorView.swift in Sources */,
 				0F7054C01BE2C580003FA9F1 /* AlbumHistoryViewController.swift in Sources */,

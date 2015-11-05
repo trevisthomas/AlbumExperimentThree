@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class NowPlayingViewController: UIViewController {
     var originMini : CGFloat!
@@ -16,16 +17,20 @@ class NowPlayingViewController: UIViewController {
     
     @IBOutlet weak var fullView: UIView!
     @IBOutlet weak var miniView: UIView!
+    @IBOutlet weak var miniViewTitleLabel: UILabel!
+    @IBOutlet weak var miniViewDetailLabel: UILabel!
+    
+    @IBOutlet weak var miniViewHeightConstraint: NSLayoutConstraint!
+    
     private let dragTranslationThreshold : CGFloat = 100.0
     
+    var mediaPlayerController : MPMusicPlayerController!
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         let panRecognizer = UIPanGestureRecognizer(target: self, action: "detectPan:")
         self.view.gestureRecognizers = [panRecognizer]
-        
-//        UITapGestureRecognizer
         
         let miniViewTapRecognizer = UITapGestureRecognizer(target: self, action: "miniViewTapped:")
         miniView.gestureRecognizers = [miniViewTapRecognizer]
@@ -39,6 +44,36 @@ class NowPlayingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+        dragFromY = self.view.frame.origin.y// This saves me from a weird nil error.  
+        
+        let nowPlayingItem = mediaPlayerController.nowPlayingItem
+        loadMediaItemData(nowPlayingItem)
+        
+        //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
+        
+    }
+    
+    func loadMediaItemData(nowPlayingItem : MPMediaItem?){
+        if nowPlayingItem == nil{
+            miniViewTitleLabel.text = ""
+            miniViewDetailLabel.text = ""
+        } else {
+            miniViewTitleLabel.text = nowPlayingItem?.title
+            miniViewDetailLabel.text = nowPlayingItem?.artist
+        }
+        
+    }
+    
+    func adjustToFrame(parentFrame: CGRect){
+        let miniViewHeight = miniViewHeightConstraint.constant
+        
+        self.originFull = -miniViewHeight //Negative height of mini
+        self.originMini = parentFrame.height - miniViewHeight //Height of the mini player
+        
+        self.view.frame = CGRect(x: 0, y: self.originMini, width: parentFrame.width, height: parentFrame.height + miniViewHeight)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +118,7 @@ class NowPlayingViewController: UIViewController {
                 return //Rejected.  Dont let them drag the full player higher!
             } else {
                 //Good to go
+                //Trevis! this is where that crash was coming from.   Found on 11/4.  dragFromY was nil.  I was setting it in touches began which appearently hadn't been called yet.  Going to try to set it somewhere else.
                 self.view.frame.origin.y = dragFromY + translation.y
             }
         }

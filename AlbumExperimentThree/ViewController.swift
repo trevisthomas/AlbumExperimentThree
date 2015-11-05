@@ -18,12 +18,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let nowPlaying = NowPlayingViewController()
-        nowPlaying.originFull = -50 //Negative height of mini
-        nowPlaying.originMini = self.view.frame.height - 50 //Height of the mini player
         
-        nowPlaying.view.frame = CGRect(x: 0, y: nowPlaying.originMini, width: self.view.frame.width, height: self.view.frame.height)
-//        self.view.addSubview(nowPlaying.view)
-//        addChildViewController(nowPlaying)
+//        
+//        nowPlaying.originFull = -50 //Negative height of mini
+//        nowPlaying.originMini = self.view.frame.height - 50 //Height of the mini player
+//        
+//        nowPlaying.view.frame = CGRect(x: 0, y: nowPlaying.originMini, width: self.view.frame.width, height: self.view.frame.height + 50)
+        self.view.addSubview(nowPlaying.view)
+        addChildViewController(nowPlaying)
+        
+        
+        nowPlaying.adjustToFrame(self.view.frame)
         
         print("Width \(view.frame.width)")
         
