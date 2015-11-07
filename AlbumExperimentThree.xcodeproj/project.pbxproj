@@ -37,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSeperatorView.swift; sourceTree = "<group>"; };
 		0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreArrowView.swift; sourceTree = "<group>"; };
 		0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorCube.swift"; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 				0FBF6A291BE12F0F00B66AC0 /* Storyboards & Xibs */,
 				0FBF6A2A1BE12F4400B66AC0 /* Views */,
 				0F7054B61BE27321003FA9F1 /* MyPlayground.playground */,
+				0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */,
 			);
 			path = AlbumExperimentThree;
 			sourceTree = "<group>";

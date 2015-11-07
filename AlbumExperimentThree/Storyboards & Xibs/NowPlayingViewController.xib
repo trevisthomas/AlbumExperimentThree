@@ -88,8 +88,6 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                     <real key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="stroked" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
                                                     <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
