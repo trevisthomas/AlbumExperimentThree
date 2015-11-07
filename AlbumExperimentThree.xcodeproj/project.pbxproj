@@ -66,10 +66,10 @@
 		0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		0FD30A2D1BDD816A0064E4F9 /* GenreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreData.swift; sourceTree = "<group>"; };
 		0FE564471BE4284300E065E7 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
-		0FE564481BE4284400E065E7 /* CCColorCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCColorCube.h; path = "3rd Party/ColorCube/CCColorCube.h"; sourceTree = "<group>"; };
-		0FE564491BE4284400E065E7 /* CCColorCube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCColorCube.m; path = "3rd Party/ColorCube/CCColorCube.m"; sourceTree = "<group>"; };
-		0FE5644A1BE4284400E065E7 /* CCLocalMaximum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCLocalMaximum.h; path = "3rd Party/ColorCube/CCLocalMaximum.h"; sourceTree = "<group>"; };
-		0FE5644B1BE4284400E065E7 /* CCLocalMaximum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCLocalMaximum.m; path = "3rd Party/ColorCube/CCLocalMaximum.m"; sourceTree = "<group>"; };
+		0FE564481BE4284400E065E7 /* CCColorCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCColorCube.h; sourceTree = "<group>"; };
+		0FE564491BE4284400E065E7 /* CCColorCube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCColorCube.m; sourceTree = "<group>"; };
+		0FE5644A1BE4284400E065E7 /* CCLocalMaximum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLocalMaximum.h; sourceTree = "<group>"; };
+		0FE5644B1BE4284400E065E7 /* CCLocalMaximum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLocalMaximum.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,45 +86,45 @@
 		0FBF6A251BE12E7B00B66AC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0FD309F91BDA873D0064E4F9 /* Info.plist */,
 				0FD309F41BDA873D0064E4F9 /* Assets.xcassets */,
+				0FD309F91BDA873D0064E4F9 /* Info.plist */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		0FBF6A261BE12EB100B66AC0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */,
-				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
-				0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */,
-				0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */,
 				0F7054BF1BE2C580003FA9F1 /* AlbumHistoryViewController.swift */,
+				0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */,
+				0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */,
+				0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */,
+				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
 			);
 			indentWidth = 4;
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		0FBF6A271BE12ECA00B66AC0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */,
-				0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */,
-				0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */,
 				0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */,
 				0FC7E7E81BE5094E00C0CE79 /* CGFloat+Util.swift */,
+				0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */,
+				0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */,
+				0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0FBF6A281BE12EEC00B66AC0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0FD30A291BDD7F4D0064E4F9 /* AlbumData.swift */,
 				0FD30A2D1BDD816A0064E4F9 /* GenreData.swift */,
 				0FD30A271BDD7EF50064E4F9 /* MusicLibrary.swift */,
-				0FD30A291BDD7F4D0064E4F9 /* AlbumData.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0FBF6A291BE12F0F00B66AC0 /* Storyboards & Xibs */ = {
@@ -134,21 +134,21 @@
 				0FD309F11BDA873D0064E4F9 /* Main.storyboard */,
 				0FD30A021BDA915A0064E4F9 /* NowPlayingViewController.xib */,
 			);
-			name = "Storyboards & Xibs";
+			path = "Storyboards & Xibs";
 			sourceTree = "<group>";
 		};
 		0FBF6A2A1BE12F4400B66AC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */,
 				0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */,
+				0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */,
 				0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */,
 				0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */,
+				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
 				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
 				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
-				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		0FCD2E901BE16247004F69F0 /* Layouts */ = {
@@ -156,7 +156,7 @@
 			children = (
 				0FCD2E8E1BE158BD004F69F0 /* StretchingFocusLayout.swift */,
 			);
-			name = Layouts;
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 		0FD309E11BDA873D0064E4F9 = {
@@ -179,13 +179,13 @@
 			isa = PBXGroup;
 			children = (
 				0FE5644E1BE4285E00E065E7 /* 3rd Party */,
-				0FBF6A281BE12EEC00B66AC0 /* Models */,
 				0FBF6A261BE12EB100B66AC0 /* Controllers */,
-				0FBF6A291BE12F0F00B66AC0 /* Storyboards & Xibs */,
-				0FBF6A251BE12E7B00B66AC0 /* Resources */,
 				0FBF6A271BE12ECA00B66AC0 /* Extensions */,
-				0FBF6A2A1BE12F4400B66AC0 /* Views */,
 				0FCD2E901BE16247004F69F0 /* Layouts */,
+				0FBF6A281BE12EEC00B66AC0 /* Models */,
+				0FBF6A251BE12E7B00B66AC0 /* Resources */,
+				0FBF6A291BE12F0F00B66AC0 /* Storyboards & Xibs */,
+				0FBF6A2A1BE12F4400B66AC0 /* Views */,
 				0F7054B61BE27321003FA9F1 /* MyPlayground.playground */,
 			);
 			path = AlbumExperimentThree;
@@ -196,19 +196,19 @@
 			children = (
 				0FE5644F1BE4287500E065E7 /* ColorCube */,
 			);
-			name = "3rd Party";
+			path = "3rd Party";
 			sourceTree = "<group>";
 		};
 		0FE5644F1BE4287500E065E7 /* ColorCube */ = {
 			isa = PBXGroup;
 			children = (
+				0FE564471BE4284300E065E7 /* AlbumExperimentThree-Bridging-Header.h */,
 				0FE564481BE4284400E065E7 /* CCColorCube.h */,
 				0FE564491BE4284400E065E7 /* CCColorCube.m */,
 				0FE5644A1BE4284400E065E7 /* CCLocalMaximum.h */,
 				0FE5644B1BE4284400E065E7 /* CCLocalMaximum.m */,
-				0FE564471BE4284300E065E7 /* AlbumExperimentThree-Bridging-Header.h */,
 			);
-			name = ColorCube;
+			path = ColorCube;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +319,7 @@
 				0FD309F21BDA873D0064E4F9 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		0FD309F61BDA873D0064E4F9 /* LaunchScreen.storyboard */ = {
@@ -327,6 +328,7 @@
 				0FD309F71BDA873D0064E4F9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -420,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = AlbumExperimentThree/Info.plist;
+				INFOPLIST_FILE = AlbumExperimentThree/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.AlbumExperimentThree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,7 +436,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = AlbumExperimentThree/Info.plist;
+				INFOPLIST_FILE = AlbumExperimentThree/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.AlbumExperimentThree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
