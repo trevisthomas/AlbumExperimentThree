@@ -14,9 +14,18 @@ class NextPreviousButton: UIButton {
     @IBInspectable var inset : CGFloat = 0
     @IBInspectable var isPrevious : Bool = false //Show as a previous track button
     @IBInspectable var color : UIColor = UIColor.orangeColor()
-    
+    @IBInspectable var strokeColor : UIColor = UIColor.greenColor()
+    @IBInspectable var lineWidth : CGFloat = 0.5
+    @IBInspectable var outlineColor : UIColor = UIColor.blackColor()
+        @IBInspectable var outlineInset : CGFloat = 2.0
     
     override func drawRect(rect: CGRect) {
+        //Outline
+        let outlineInset : CGFloat = 2.0
+        let outlinePath = UIBezierPath(roundedRect: CGRect(x: rect.origin.x + outlineInset, y: rect.origin.y + outlineInset, width: rect.width - 2 * outlineInset, height: rect.height - 2 * outlineInset), cornerRadius: rect.height * 0.25)
+        outlinePath.lineWidth = lineWidth
+        outlineColor.setStroke()
+        outlinePath.stroke()
         
         let edge = min(rect.width, rect.height) - inset
        
@@ -32,7 +41,7 @@ class NextPreviousButton: UIButton {
         triPath.addLineToPoint(CGPoint(x: shortEdge - thickness, y: 0))
         triPath.addLineToPoint(CGPoint(x: -shortEdge, y: shortEdge))
         triPath.closePath()
-        color.setFill()
+//        color.setFill()
 
         let context = UIGraphicsGetCurrentContext()
         if(isPrevious){
@@ -43,10 +52,30 @@ class NextPreviousButton: UIButton {
         } else {
             CGContextTranslateCTM(context, inset/2 + edge/2,  inset/2 + edge/2)
         }
+//        conditionalFillAndStroke()
+        
+        color.setFill()
+        strokeColor.setStroke()
+        
         triPath.fill()
         verticalBarPath.fill()
+        triPath.stroke()
+        verticalBarPath.stroke()
         
     }
 
+//    func conditionalFillAndStroke(){
+//        if filled {
+//            color.setFill()
+//        } else {
+//            UIColor.clearColor().setFill()
+//        }
+//        
+//        if stroked {
+//            strokeColor.setStroke()
+//        } else {
+//            UIColor.clearColor().setStroke()
+//        }
+//    }
 
 }
