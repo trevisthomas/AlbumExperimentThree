@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */; };
+		0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */; };
+		0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */; };
+		0F51DC421BEE67620073B635 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC411BEE67620073B635 /* AlbumViewController.swift */; };
+		0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC441BEE67A50073B635 /* BDKCollectionIndexView.m */; };
 		0F57C7CF1BEA58C000B32570 /* LineSeperatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */; };
 		0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */; };
 		0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */; };
@@ -38,6 +43,13 @@
 
 /* Begin PBXFileReference section */
 		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
+		0F51DC371BEE66450073B635 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
+		0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
+		0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTitleCell.swift; sourceTree = "<group>"; };
+		0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
+		0F51DC411BEE67620073B635 /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		0F51DC431BEE67A50073B635 /* BDKCollectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKCollectionIndexView.h; path = BDKCollectionViewIndex/BDKCollectionIndexView.h; sourceTree = "<group>"; };
+		0F51DC441BEE67A50073B635 /* BDKCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKCollectionIndexView.m; path = BDKCollectionViewIndex/BDKCollectionIndexView.m; sourceTree = "<group>"; };
 		0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSeperatorView.swift; sourceTree = "<group>"; };
 		0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreArrowView.swift; sourceTree = "<group>"; };
 		0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorCube.swift"; sourceTree = "<group>"; };
@@ -84,6 +96,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F51DC3A1BEE665D0073B635 /* CollectionViewLeftAllignedLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0F51DC371BEE66450073B635 /* UICollectionViewLeftAlignedLayout.h */,
+				0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */,
+			);
+			name = CollectionViewLeftAllignedLayout;
+			sourceTree = "<group>";
+		};
+		0F51DC461BEE67AC0073B635 /* BDKCollectionViewIndex */ = {
+			isa = PBXGroup;
+			children = (
+				0F51DC431BEE67A50073B635 /* BDKCollectionIndexView.h */,
+				0F51DC441BEE67A50073B635 /* BDKCollectionIndexView.m */,
+			);
+			name = BDKCollectionViewIndex;
+			sourceTree = "<group>";
+		};
 		0FBF6A251BE12E7B00B66AC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +126,7 @@
 		0FBF6A261BE12EB100B66AC0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F51DC411BEE67620073B635 /* AlbumViewController.swift */,
 				0F7054BF1BE2C580003FA9F1 /* AlbumHistoryViewController.swift */,
 				0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */,
 				0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */,
@@ -141,6 +172,8 @@
 		0FBF6A2A1BE12F4400B66AC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */,
+				0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */,
 				0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */,
 				0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */,
 				0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */,
@@ -196,6 +229,8 @@
 		0FE5644E1BE4285E00E065E7 /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0F51DC461BEE67AC0073B635 /* BDKCollectionViewIndex */,
+				0F51DC3A1BEE665D0073B635 /* CollectionViewLeftAllignedLayout */,
 				0FE5644F1BE4287500E065E7 /* ColorCube */,
 			);
 			path = "3rd Party";
@@ -289,6 +324,8 @@
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
+				0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */,
+				0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
 				0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */,
 				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
@@ -297,11 +334,14 @@
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
 				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,
+				0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */,
 				0FCD2E8F1BE158BD004F69F0 /* StretchingFocusLayout.swift in Sources */,
 				0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */,
 				0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */,
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
 				0FE5644D1BE4284400E065E7 /* CCLocalMaximum.m in Sources */,
+				0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				0F51DC421BEE67620073B635 /* AlbumViewController.swift in Sources */,
 				0FBF6A2C1BE132D600B66AC0 /* GenreViewController.swift in Sources */,
 				0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */,
 				0FD309EE1BDA873D0064E4F9 /* AppDelegate.swift in Sources */,

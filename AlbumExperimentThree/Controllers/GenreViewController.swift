@@ -55,24 +55,10 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         //After a lot of fussing.  I ended up setting the height of the collection view to be taller than the screen in interface builder (i bound the bottom to -204 so that i dont have to change the height of that view as the History hides
     }
     
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return UIStatusBarStyle.LightContent
-//    }
-    
     override func viewDidLayoutSubviews() {
-        //If i did this in viewDidLoad the size wasnt correct yet!
-       // var test =  view.frame.height
-       // print (test)
-//        originalHeight = collectionView.bounds.height
-        //originalHeight = view.frame.height
-//        containerOriginalHeight = historyContainerView.bounds.height
-        
+        //These may not have to be here.  Older versions got them dynamically
         originalY = 224
         containerOriginalY = 0
-        
-//        originalY = collectionView.frame.origin.y //Stashing the original y position of the table frame
-//        
-//        containerOriginalY = historyContainerView.frame.origin.y
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,15 +68,31 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if sender is UICollectionViewCell {
+            let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
+            let data = genreData![indexPath.row]
+            
+            if data.isPodcast{
+        // Incomplete
+        //            let viewController = segue.destinationViewController as! PodcastListViewController
+        //            //Acually, there's nothing to set.
+        //            viewController.title = bundle.title
+            } else {
+                let albumViewController = segue.destinationViewController as! AlbumViewController
+                albumViewController.genreData = data
+            }
+        } else {
+            
+            //Something else.  I noticed that this method gets called when this view controller is loaded too.
+        }
     }
-    */
+
+
 }
 
 extension GenreViewController{
@@ -100,52 +102,20 @@ extension GenreViewController{
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return genreData.count
-//        return computers.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GenreCell", forIndexPath: indexPath) as! GenreCollectionViewCell
         
-//        cell.backgroundColor = computers[indexPath.row]["Color"] as? UIColor
-        
-        
         cell.data = genreData[indexPath.row]
         return cell
     }
-    
-//    col
 }
 
 extension GenreViewController {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         adjustHistoryViewBecauseScrollChangedAllTheWay()
     }
-    
-//    func adjustHistoryViewBecauseScrollChanged(){
-//        //I think that the nav bar is 44px
-//        //TODO: Figure out how to get the height param out of heightConstraintForHistoryView.
-//        
-//        let yOffset = collectionView.contentOffset.y
-//        if(yOffset < 0){
-//            collectionView.frame.origin.y = originalY //144 //144 is the starting point
-//            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: originalHeight)
-//            historyContainerView.frame.origin.y = containerOriginalY
-////            historyContainerView.frame.origin.y = originalY - originalHeight
-//        } else if yOffset < historyHeightConstraint.constant  {
-//            collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
-//            historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
-//            let newHeight = originalHeight + collectionView.contentOffset.y
-//            //            print(newHeight)
-//            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
-//        } else {
-//            collectionView.frame.origin.y = navBarHeight
-//            let newHeight = originalHeight + historyHeightConstraint.constant
-//            collectionView.frame.size = CGSize(width: collectionView.frame.width, height: newHeight)
-//            historyContainerView.frame.origin.y = 44 + -containerOriginalHeight
-//        }
-//        //        print(collectionView.frame)
-//        print(historyContainerView.frame.origin.y)
-//    }
     
     func adjustHistoryViewBecauseScrollChangedAllTheWay(){
         let yOffset = collectionView.contentOffset.y
@@ -166,10 +136,4 @@ extension GenreViewController {
         }
     }
 }
-
-//extension GenreViewController : UICollectionViewDelegateFlowLayout {
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 10.0
-//    }
-//}
 
