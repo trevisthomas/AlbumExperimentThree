@@ -51,14 +51,20 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         originalHeight = collectionView.bounds.height
         containerOriginalHeight = historyContainerView.bounds.height
+        originalY = 224
+        containerOriginalY = 0
+
         
         //After a lot of fussing.  I ended up setting the height of the collection view to be taller than the screen in interface builder (i bound the bottom to -204 so that i dont have to change the height of that view as the History hides
     }
     
     override func viewDidLayoutSubviews() {
-        //These may not have to be here.  Older versions got them dynamically
-        originalY = 224
-        containerOriginalY = 0
+//        //These may not have to be here.  Older versions got them dynamically
+//        originalY = 224
+//        containerOriginalY = 0
+        
+        //Calling this here for when the view is restored from segue.  If i didnt do this, the nowPlaying guy would be expanded no matter where the scrollbar was!
+        adjustHistoryViewBecauseScrollChangedAllTheWay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +72,9 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Dispose of any resources that can be recreated.
     }
 
-    
-
+    override func viewDidAppear(animated: Bool) {
+        
+    }
     
     // MARK: - Navigation
 
@@ -122,7 +129,7 @@ extension GenreViewController {
         if(yOffset < 0){
             collectionView.frame.origin.y = originalY //144 //144 is the starting point
             historyContainerView.frame.origin.y = containerOriginalY
-            navigationController?.navigationBar.alpha = 1
+//            navigationController?.navigationBar.alpha = 1
         } else if yOffset < historyHeightConstraint.constant + containerOriginalY - statusBarHeight{
             collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
             historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
@@ -132,7 +139,7 @@ extension GenreViewController {
         } else {
             collectionView.frame.origin.y = 0 + statusBarHeight
             historyContainerView.frame.origin.y = -containerOriginalHeight + statusBarHeight
-            navigationController?.navigationBar.alpha = 0
+//            navigationController?.navigationBar.alpha = 0
         }
     }
 }

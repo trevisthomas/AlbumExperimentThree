@@ -289,10 +289,16 @@
                         <animations/>
                     </navigationBar>
                     <connections>
+                        <outlet property="delegate" destination="elh-3x-RA4" id="hr0-Jk-6fL"/>
                         <segue destination="1Ac-ub-a1P" kind="relationship" relationship="rootViewController" id="1ht-Fn-Y7v"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ylr-KN-TOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="elh-3x-RA4" customClass="NavigationControllerDelegate" customModule="AlbumExperimentThree" customModuleProvider="target">
+                    <connections>
+                        <outlet property="navigationController" destination="cMI-xd-X8k" id="Cfj-Bf-yVt"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1129" y="288"/>
         </scene>
@@ -436,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ndj-Jt-oPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1883" y="779"/>
+            <point key="canvasLocation" x="1883" y="923"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="m76-al-7Sj">
@@ -610,7 +616,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqj-YT-uR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562" y="288"/>
+            <point key="canvasLocation" x="2678" y="288"/>
         </scene>
     </scenes>
 </document>

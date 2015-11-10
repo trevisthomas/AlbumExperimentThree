@@ -12,6 +12,8 @@
 		0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */; };
 		0F51DC421BEE67620073B635 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC411BEE67620073B635 /* AlbumViewController.swift */; };
 		0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC441BEE67A50073B635 /* BDKCollectionIndexView.m */; };
+		0F51DC501BF122500073B635 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */; };
+		0F51DC541BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC531BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift */; };
 		0F57C7CF1BEA58C000B32570 /* LineSeperatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */; };
 		0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */; };
 		0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */; };
@@ -50,6 +52,8 @@
 		0F51DC411BEE67620073B635 /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		0F51DC431BEE67A50073B635 /* BDKCollectionIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDKCollectionIndexView.h; path = BDKCollectionViewIndex/BDKCollectionIndexView.h; sourceTree = "<group>"; };
 		0F51DC441BEE67A50073B635 /* BDKCollectionIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDKCollectionIndexView.m; path = BDKCollectionViewIndex/BDKCollectionIndexView.m; sourceTree = "<group>"; };
+		0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		0F51DC531BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenreToAlbumAnimatedTransitioning.swift; path = AlbumExperimentThree/GenreToAlbumAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSeperatorView.swift; sourceTree = "<group>"; };
 		0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreArrowView.swift; sourceTree = "<group>"; };
 		0F57C7D21BEA7D9400B32570 /* UIImage+ColorCube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ColorCube.swift"; sourceTree = "<group>"; };
@@ -114,6 +118,15 @@
 			name = BDKCollectionViewIndex;
 			sourceTree = "<group>";
 		};
+		0F51DC551BF1BD060073B635 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				0F51DC531BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift */,
+			);
+			name = Animations;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		0FBF6A251BE12E7B00B66AC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +145,7 @@
 				0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */,
 				0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */,
 				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
+				0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */,
 			);
 			indentWidth = 4;
 			path = Controllers;
@@ -220,6 +234,7 @@
 				0FBF6A251BE12E7B00B66AC0 /* Resources */,
 				0FBF6A291BE12F0F00B66AC0 /* Storyboards & Xibs */,
 				0FBF6A2A1BE12F4400B66AC0 /* Views */,
+				0F51DC551BF1BD060073B635 /* Animations */,
 				0F7054B61BE27321003FA9F1 /* MyPlayground.playground */,
 				0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */,
 			);
@@ -324,6 +339,7 @@
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
+				0F51DC541BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift in Sources */,
 				0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */,
 				0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
@@ -341,6 +357,7 @@
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
 				0FE5644D1BE4284400E065E7 /* CCLocalMaximum.m in Sources */,
 				0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				0F51DC501BF122500073B635 /* NavigationControllerDelegate.swift in Sources */,
 				0F51DC421BEE67620073B635 /* AlbumViewController.swift in Sources */,
 				0FBF6A2C1BE132D600B66AC0 /* GenreViewController.swift in Sources */,
 				0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */,
