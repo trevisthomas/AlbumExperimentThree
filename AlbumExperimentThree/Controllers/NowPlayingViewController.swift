@@ -53,6 +53,38 @@ class NowPlayingViewController: UIViewController {
         
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
         
+        
+        //Blur
+
+//        let blurEffect = UIBlurEffect(style: .Light)
+//        let blurView = UIVisualEffectView(effect: blurEffect)
+//        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        view.insertSubview(blurView, atIndex: 0)
+        
+//        constraints.append(NSLayoutConstraint(item: blurView,
+//            attribute: .Height, relatedBy: .Equal, toItem: view,
+//            attribute: .Height, multiplier: 1, constant: 0))
+//        constraints.append(NSLayoutConstraint(item: blurView,
+//            attribute: .Width, relatedBy: .Equal, toItem: view,
+//            attribute: .Width, multiplier: 1, constant: 0))
+//        
+//        var constraints = [NSLayoutConstraint]()
+//        
+//        constraints.append(NSLayoutConstraint(item: view, attribute: .CenterX, relatedBy: .Equal,
+//            toItem: optionsView, attribute: .CenterX, multiplier: 1, constant: 0))
+//        
+//        constraints.append(NSLayoutConstraint(item: view, attribute: .CenterY, relatedBy: .Equal,
+//            toItem: optionsView, attribute: .CenterY, multiplier: 1, constant: 0))
+//        
+//        constraints.append(NSLayoutConstraint(item: blurView,
+//            attribute: .Height, relatedBy: .Equal, toItem: view,
+//            attribute: .Height, multiplier: 1, constant: 0))
+//        constraints.append(NSLayoutConstraint(item: blurView,
+//            attribute: .Width, relatedBy: .Equal, toItem: view,
+//            attribute: .Width, multiplier: 1, constant: 0))
+
+//        blurView.frame = fullView.frame
+        
     }
     
     func loadMediaItemData(nowPlayingItem : MPMediaItem?){

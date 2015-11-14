@@ -61,7 +61,16 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
         indexView.indexTitles = sections
         view.addSubview(indexView) //This wasnt in the demo
         
-//        collectionView.
+        //Trevis, i'm not sure where to put this code.  
+        let navBackgroundRect = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 64)
+        let blurEffect = UIBlurEffect(style: .Light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = navBackgroundRect
+        view.addSubview(blurEffectView)
+        
+        let navigationPlusStatusBackgroundView = UIView(frame: navBackgroundRect)
+        navigationPlusStatusBackgroundView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        view.addSubview(navigationPlusStatusBackgroundView)
         
     }
     

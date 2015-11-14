@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NowPlayingViewController" customModule="AlbumExperimentThree" customModuleProvider="target">
             <connections>
-                <outlet property="fullView" destination="lCo-GD-k1w" id="8Ty-zX-HPM"/>
                 <outlet property="miniView" destination="e3C-Oi-ChQ" id="Gc1-5A-AmI"/>
                 <outlet property="miniViewDetailLabel" destination="3tW-Et-yjd" id="89e-8x-lYw"/>
                 <outlet property="miniViewHeightConstraint" destination="eOy-IO-HpJ" id="FgC-jS-Mn3"/>
@@ -20,6 +19,23 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmz-GA-MXq">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="npi-Lp-xsp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roo-O5-71J">
+                                <rect key="frame" x="284" y="253" width="32" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Shut"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                    <animations/>
+                    <blurEffect style="light"/>
+                </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3C-Oi-ChQ">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                     <subviews>
@@ -122,14 +138,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="436" height="24"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tW-Et-yjd">
                                             <rect key="frame" x="0.0" y="24" width="436" height="24"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -145,7 +161,7 @@
                         </stackView>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="lQL-Zr-22P" firstAttribute="leading" secondItem="e3C-Oi-ChQ" secondAttribute="leadingMargin" id="1Pg-vC-YEE"/>
                         <constraint firstItem="lQL-Zr-22P" firstAttribute="centerX" secondItem="THJ-IZ-b0L" secondAttribute="centerX" id="WLe-h1-WcN"/>
@@ -156,33 +172,17 @@
                         <constraint firstAttribute="trailing" secondItem="THJ-IZ-b0L" secondAttribute="trailing" id="rfY-Vp-WzS"/>
                     </constraints>
                 </view>
-                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-GD-k1w">
-                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="roo-O5-71J">
-                            <rect key="frame" x="284" y="57" width="32" height="30"/>
-                            <animations/>
-                            <state key="normal" title="Shut"/>
-                        </button>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="roo-O5-71J" firstAttribute="centerX" secondItem="lCo-GD-k1w" secondAttribute="centerX" id="5Fu-p3-0rX"/>
-                        <constraint firstItem="roo-O5-71J" firstAttribute="top" secondItem="lCo-GD-k1w" secondAttribute="top" constant="57" id="haa-ia-XOl"/>
-                    </constraints>
-                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="lCo-GD-k1w" secondAttribute="bottom" id="9ca-zY-ECu"/>
-                <constraint firstAttribute="trailing" secondItem="lCo-GD-k1w" secondAttribute="trailing" id="LgV-Av-zOR"/>
+                <constraint firstItem="mmz-GA-MXq" firstAttribute="top" secondItem="e3C-Oi-ChQ" secondAttribute="top" id="6XH-kS-t9K"/>
+                <constraint firstItem="mmz-GA-MXq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I33-wR-5Z0"/>
                 <constraint firstAttribute="trailing" secondItem="e3C-Oi-ChQ" secondAttribute="trailing" id="PI4-X4-xoL"/>
+                <constraint firstAttribute="bottom" secondItem="mmz-GA-MXq" secondAttribute="bottom" id="Rbh-TE-pVp"/>
                 <constraint firstItem="e3C-Oi-ChQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aX5-u0-OJO"/>
-                <constraint firstItem="lCo-GD-k1w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f72-fN-T3c"/>
                 <constraint firstItem="e3C-Oi-ChQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rio-Vs-5Ja"/>
-                <constraint firstItem="lCo-GD-k1w" firstAttribute="top" secondItem="e3C-Oi-ChQ" secondAttribute="bottom" id="tET-fG-STs"/>
+                <constraint firstAttribute="trailing" secondItem="mmz-GA-MXq" secondAttribute="trailing" id="zxZ-c0-2Kr"/>
             </constraints>
         </view>
     </objects>

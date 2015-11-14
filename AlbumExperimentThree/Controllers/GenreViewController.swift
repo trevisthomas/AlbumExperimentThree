@@ -20,7 +20,7 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
     private var containerOriginalY : CGFloat!
     private var containerOriginalHeight : CGFloat!
     
-    private let statusBarHeight : CGFloat = 20
+    private let statusBarHeight : CGFloat = 20 + 44
     private let navBarHeight : CGFloat = 44.0
     private var albumHistoryViewController : AlbumHistoryViewController!
 
@@ -137,7 +137,10 @@ extension GenreViewController {
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
 //        print ("Will begin scroll")
-        albumHistoryViewController.willBlur()
+        
+        
+        //The willBlur method causes the aera to flash
+//        albumHistoryViewController.willBlur()
     }
     
     func adjustHistoryViewBecauseScrollChangedAllTheWay(){
@@ -184,6 +187,8 @@ extension GenreViewController {
 //            let delta = 1 - ((featuredHeight - CGRectGetHeight(frame)) / (featuredHeight - standardHeight))
 //            navigationController?.navigationBar.alpha.
             
+ 
+            
         } else {
             collectionView.frame.origin.y = 0 + statusBarHeight
             historyContainerView.frame.origin.y = -containerOriginalHeight + statusBarHeight
@@ -196,24 +201,17 @@ extension GenreViewController {
     
     private func applyBlur(){
         let yOffset = collectionView.contentOffset.y
-       // print(yOffset)
         if(yOffset <= 0){
             //View is fully extended
-//            print ("its opened")
-            albumHistoryViewController.endBlur()
+            albumHistoryViewController.endBlur(true)
         } else if yOffset < historyHeightConstraint.constant + containerOriginalY {
             //view is partially shown
             let delta = (yOffset / (containerOriginalHeight))
-            print(delta)
             albumHistoryViewController.applyBlur(delta.exponentialDelta() * 100, alpha: delta)
-       //     print(delta)
-            
         } else {
             //history view is closed
-//            print("it's closed")
-            albumHistoryViewController.endBlur()
+            albumHistoryViewController.endBlur(false)
         }
-
     }
 }
 

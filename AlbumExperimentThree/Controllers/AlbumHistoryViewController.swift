@@ -31,6 +31,7 @@ class AlbumHistoryViewController: UIViewController {
     
     func willBlur(){
         overlayImageView.hidden = true //Just make sure that it's hidden first.  This seemed to make things better.  
+        overlayTint.hidden = true //Just like the above
         snapshot = view.getSnapshot()
         overlayImageView.hidden = false
         overlayTint.hidden = false
@@ -39,7 +40,8 @@ class AlbumHistoryViewController: UIViewController {
     
     func applyBlur(radius : CGFloat, alpha :CGFloat){
         if snapshot == nil {
-            return // Cant do it
+//            return // Cant do it
+            willBlur()
         }
         overlayTint.hidden = false
         overlayTint.alpha = alpha
@@ -47,11 +49,11 @@ class AlbumHistoryViewController: UIViewController {
         overlayImageView.image = snapshot!.pr_boxBlurredImageWithRadius(radius)
     }
 
-    func endBlur(){
-        overlayImageView.hidden = true
-        overlayTint.hidden = true
+    func endBlur(endBlurWithOverlayVisible : Bool){
+        overlayImageView.hidden = endBlurWithOverlayVisible
+        overlayTint.hidden = endBlurWithOverlayVisible
         overlayTint.alpha = 1
-//        snapshot = nil
+        snapshot = nil
     }
     
     /*

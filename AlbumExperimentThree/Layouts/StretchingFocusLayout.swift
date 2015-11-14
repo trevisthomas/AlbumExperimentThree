@@ -100,6 +100,8 @@ class StretchingFocusLayout: UICollectionViewLayout {
                 let yOffset = standardHeight * nextItemPercentageOffset
                 y = collectionView!.contentOffset.y - yOffset
                 height = featuredHeight
+                //Below, i an reducing the alpha as the featured item is scrolled off of the screen!!
+                attributes.alpha = 1 - nextItemPercentageOffset //MADNESS
             } else if indexPath.item == (featuredItemIndex + 1) && indexPath.item != numberOfItems{
                 //5
                 let maxY = y + standardHeight
