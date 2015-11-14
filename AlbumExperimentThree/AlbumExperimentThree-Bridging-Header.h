@@ -6,3 +6,5 @@
 #import "CCLocalMaximum.h"
 #import "UICollectionViewLeftAlignedLayout.h"
 #import "BDKCollectionIndexView.h"
+#import "UIImage+PRBoxBlur.h"
+#import "UIView+Snapshot.h"

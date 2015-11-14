@@ -426,18 +426,39 @@
                                     <outlet property="delegate" destination="m6E-s7-Ixi" id="VAR-Pj-Z4u"/>
                                 </connections>
                             </collectionView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7r-2U-Ev3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="224"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="224" id="Xf8-C4-Mj9"/>
+                                </constraints>
+                            </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5i8-ym-P3i" userLabel="TintOverlay">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="224"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="CID-Mc-V31" firstAttribute="leading" secondItem="S6s-xd-yaJ" secondAttribute="leading" id="5t8-rA-37F"/>
+                            <constraint firstAttribute="trailing" secondItem="c7r-2U-Ev3" secondAttribute="trailing" id="ARA-iq-gBK"/>
                             <constraint firstAttribute="trailing" secondItem="CID-Mc-V31" secondAttribute="trailing" id="Hl3-87-h9G"/>
+                            <constraint firstItem="5i8-ym-P3i" firstAttribute="width" secondItem="c7r-2U-Ev3" secondAttribute="width" id="Jts-5U-HaE"/>
                             <constraint firstItem="2Dr-6m-49o" firstAttribute="top" secondItem="CID-Mc-V31" secondAttribute="bottom" constant="20" id="RUQ-Zj-x4Z"/>
+                            <constraint firstItem="5i8-ym-P3i" firstAttribute="top" secondItem="c7r-2U-Ev3" secondAttribute="top" id="au7-c5-hqe"/>
+                            <constraint firstItem="5i8-ym-P3i" firstAttribute="height" secondItem="c7r-2U-Ev3" secondAttribute="height" id="fhf-j9-Fxs"/>
+                            <constraint firstItem="c7r-2U-Ev3" firstAttribute="leading" secondItem="S6s-xd-yaJ" secondAttribute="leading" id="gEL-ZS-bKe"/>
+                            <constraint firstItem="2Dr-6m-49o" firstAttribute="top" secondItem="c7r-2U-Ev3" secondAttribute="bottom" id="q1S-WC-LGT"/>
+                            <constraint firstItem="5i8-ym-P3i" firstAttribute="leading" secondItem="c7r-2U-Ev3" secondAttribute="leading" id="xuf-Fq-YA4"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="600" height="200"/>
                     <connections>
                         <outlet property="collectionView" destination="CID-Mc-V31" id="FPK-c2-e0z"/>
+                        <outlet property="overlayImageView" destination="c7r-2U-Ev3" id="LnY-y3-GOU"/>
+                        <outlet property="overlayTint" destination="5i8-ym-P3i" id="GfU-3D-Lqe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ndj-Jt-oPF" userLabel="First Responder" sceneMemberID="firstResponder"/>

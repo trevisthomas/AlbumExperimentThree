@@ -11,7 +11,13 @@ import UIKit
 class AlbumHistoryViewController: UIViewController {
     var albums : [AlbumData]!
   
+    @IBOutlet weak var overlayImageView: UIImageView!
+    @IBOutlet weak var overlayTint: UIView!
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var snapshot : UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +29,31 @@ class AlbumHistoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func willBlur(){
+        overlayImageView.hidden = true //Just make sure that it's hidden first.  This seemed to make things better.  
+        snapshot = view.getSnapshot()
+        overlayImageView.hidden = false
+        overlayTint.hidden = false
+        overlayTint.alpha = 0
+    }
+    
+    func applyBlur(radius : CGFloat, alpha :CGFloat){
+        if snapshot == nil {
+            return // Cant do it
+        }
+        overlayTint.hidden = false
+        overlayTint.alpha = alpha
+        overlayImageView.hidden = false
+        overlayImageView.image = snapshot!.pr_boxBlurredImageWithRadius(radius)
+    }
 
+    func endBlur(){
+        overlayImageView.hidden = true
+        overlayTint.hidden = true
+        overlayTint.alpha = 1
+//        snapshot = nil
+    }
+    
     /*
     // MARK: - Navigation
 

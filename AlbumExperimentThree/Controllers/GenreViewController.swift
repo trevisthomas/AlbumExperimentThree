@@ -22,6 +22,7 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     private let statusBarHeight : CGFloat = 20
     private let navBarHeight : CGFloat = 44.0
+    private var albumHistoryViewController : AlbumHistoryViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +50,18 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
 //        navigationController?.navigationBar.barStyle = .BlackTranslucent
         
+
+        
         originalHeight = collectionView.bounds.height
         containerOriginalHeight = historyContainerView.bounds.height
         originalY = 224
         containerOriginalY = 0
 
+        for vc in self.childViewControllers {
+            if let _ = vc as? AlbumHistoryViewController{
+                albumHistoryViewController = vc as! AlbumHistoryViewController
+            }
+        }
         
         //After a lot of fussing.  I ended up setting the height of the collection view to be taller than the screen in interface builder (i bound the bottom to -204 so that i dont have to change the height of that view as the History hides
     }
@@ -94,7 +102,7 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
                 albumViewController.genreData = data
             }
         } else {
-            
+            print(sender)
             //Something else.  I noticed that this method gets called when this view controller is loaded too.
         }
     }
@@ -120,27 +128,92 @@ extension GenreViewController{
 }
 
 extension GenreViewController {
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
+//                print ("Began")
         adjustHistoryViewBecauseScrollChangedAllTheWay()
+        applyBlur()
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+//        print ("Will begin scroll")
+        albumHistoryViewController.willBlur()
     }
     
     func adjustHistoryViewBecauseScrollChangedAllTheWay(){
         let yOffset = collectionView.contentOffset.y
-        if(yOffset < 0){
+//        let navBarY = -yOffset + statusBarHeight
+//        print("NavY \(navBarY)")
+//        if(navBarY <= statusBarHeight){
+//            navigationController?.navigationBar.frame.origin.y = navBarY
+//        } else {
+//            navigationController?.navigationBar.frame.origin.y = statusBarHeight
+//        }
+        
+        if(yOffset <= 0){
+
             collectionView.frame.origin.y = originalY //144 //144 is the starting point
             historyContainerView.frame.origin.y = containerOriginalY
+            
+//            albumHistoryViewController.endBlur()
+//                        albumHistoryViewController.overlayImageView.hidden = true
 //            navigationController?.navigationBar.alpha = 1
         } else if yOffset < historyHeightConstraint.constant + containerOriginalY - statusBarHeight{
             collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
             historyContainerView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
+            
+//            let delta = yOffset / (containerOriginalHeight - statusBarHeight)
+////            print ()
+//            
+//            albumHistoryViewController.applyBlur(delta * 20)
+            
+//            let image = albumHistoryViewController.view.getSnapshot()
+//            let blured = image.pr_boxBlurredImageWithRadius(10)
+//            albumHistoryViewController.overlayImageView.hidden = false
+//            albumHistoryViewController.overlayImageView.image = blured
+//            
+            
+//            UICont
+//            let views = historyContainerView.
+//            historyContainerView.overlayImageView.hidden = false
+            
+            
+//            let imageView = UIImageView(image: blured)
+//            historyContainerView.addSubview(imageView)
+            
 //            let delta = 1 - ((featuredHeight - CGRectGetHeight(frame)) / (featuredHeight - standardHeight))
 //            navigationController?.navigationBar.alpha.
             
         } else {
             collectionView.frame.origin.y = 0 + statusBarHeight
             historyContainerView.frame.origin.y = -containerOriginalHeight + statusBarHeight
+            
+//            albumHistoryViewController.endBlur()
+//            albumHistoryViewController.overlayImageView.hidden = true
 //            navigationController?.navigationBar.alpha = 0
         }
+    }
+    
+    private func applyBlur(){
+        let yOffset = collectionView.contentOffset.y
+       // print(yOffset)
+        if(yOffset <= 0){
+            //View is fully extended
+//            print ("its opened")
+            albumHistoryViewController.endBlur()
+        } else if yOffset < historyHeightConstraint.constant + containerOriginalY {
+            //view is partially shown
+            let delta = (yOffset / (containerOriginalHeight))
+            print(delta)
+            albumHistoryViewController.applyBlur(delta.exponentialDelta() * 100, alpha: delta)
+       //     print(delta)
+            
+        } else {
+            //history view is closed
+//            print("it's closed")
+            albumHistoryViewController.endBlur()
+        }
+
     }
 }
 

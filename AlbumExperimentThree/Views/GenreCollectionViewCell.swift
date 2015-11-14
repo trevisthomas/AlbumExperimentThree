@@ -28,6 +28,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
             genreDetailLabel.text = data.detail
             artworkImageView.image = data.artwork
             
+            
             genreDetailStandard.text = data.detail
             genreTitleStandard.text = data.title
 //            artworkImageView.image = data.art.imageWithSize(CGSize(width: 500,height: 500))
