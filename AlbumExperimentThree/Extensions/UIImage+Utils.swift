@@ -64,15 +64,18 @@ extension UIImage {
         UIGraphicsEndImageContext();
         
         //Apply the mask Mask
-        let maskedImage = applyImageMaskToImage(rect, mask: mask, sourceImage: outputImage)
+        let maskedImage = outputImage.applyImageMaskToImage(rect, mask: mask)
         
         return maskedImage
     }
     
-    private static func applyImageMaskToImage(rect : CGRect, mask : UIImage, sourceImage : UIImage) -> UIImage{
+    
+    /* Real utility?
+     */
+    func applyImageMaskToImage(rect : CGRect, mask : UIImage) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
         CGContextClipToMask(UIGraphicsGetCurrentContext(), rect, mask.CGImage)
-        sourceImage.drawAtPoint(CGPointZero)
+        self.drawAtPoint(CGPointZero)
         
         let maskedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

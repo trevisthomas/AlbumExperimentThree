@@ -560,11 +560,15 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvd-nL-cZN" customClass="OverlayPlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="4" width="110" height="110"/>
+                                                    <rect key="frame" x="10" y="82" width="28" height="28"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="H8f-9R-4w7"/>
+                                                        <constraint firstAttribute="width" constant="28" id="r8j-Yh-MmI"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                                                            <real key="value" value="78"/>
+                                                            <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                                             <real key="value" value="24"/>
@@ -572,27 +576,25 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="alphaOfTransparentArea">
                                                             <real key="value" value="0.29999999999999999"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <segue destination="40u-Eh-4PS" kind="show" id="rEj-Zs-4Ie"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="lgo-lL-5dG" firstAttribute="leading" secondItem="cSr-JG-JNp" secondAttribute="leading" id="3tC-DX-j0u"/>
+                                                <constraint firstItem="bvd-nL-cZN" firstAttribute="leading" secondItem="cSr-JG-JNp" secondAttribute="leading" constant="10" id="8Km-IC-3MF"/>
+                                                <constraint firstItem="lgo-lL-5dG" firstAttribute="top" secondItem="bvd-nL-cZN" secondAttribute="bottom" constant="4" id="MTb-fg-yGa"/>
                                                 <constraint firstItem="lgo-lL-5dG" firstAttribute="top" secondItem="EML-Lg-9CR" secondAttribute="bottom" id="NdP-HW-hUM"/>
                                                 <constraint firstItem="EML-Lg-9CR" firstAttribute="leading" secondItem="cSr-JG-JNp" secondAttribute="leading" constant="5" id="PgP-ux-IUd"/>
-                                                <constraint firstItem="bvd-nL-cZN" firstAttribute="centerX" secondItem="EML-Lg-9CR" secondAttribute="centerX" id="SQQ-Hr-KEK"/>
                                                 <constraint firstAttribute="trailing" secondItem="EML-Lg-9CR" secondAttribute="trailing" constant="5" id="b15-Xe-bpw"/>
                                                 <constraint firstAttribute="height" constant="144" id="boY-w2-GQn"/>
                                                 <constraint firstAttribute="width" constant="120" id="gLL-zL-GwY"/>
-                                                <constraint firstItem="bvd-nL-cZN" firstAttribute="centerY" secondItem="EML-Lg-9CR" secondAttribute="centerY" id="gWw-95-k1v"/>
                                                 <constraint firstItem="EML-Lg-9CR" firstAttribute="top" secondItem="cSr-JG-JNp" secondAttribute="top" constant="4" id="kcw-DP-DPc"/>
                                                 <constraint firstAttribute="trailing" secondItem="lgo-lL-5dG" secondAttribute="trailing" id="kth-zB-nMt"/>
-                                                <constraint firstItem="bvd-nL-cZN" firstAttribute="width" secondItem="EML-Lg-9CR" secondAttribute="width" id="lfW-Oh-UWH"/>
-                                                <constraint firstItem="bvd-nL-cZN" firstAttribute="height" secondItem="EML-Lg-9CR" secondAttribute="height" id="p9z-B7-dn4"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -609,6 +611,7 @@
                                     <outlet property="albumTitleLabel" destination="qgR-Aa-2fe" id="H1X-b7-vQ5"/>
                                     <outlet property="artistNameLabel" destination="ILy-RM-hxV" id="L7f-fr-BXf"/>
                                     <outlet property="artworkImageView" destination="EML-Lg-9CR" id="1Sn-qB-BBd"/>
+                                    <segue destination="40u-Eh-4PS" kind="show" id="JfF-0S-Xhv"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -655,7 +658,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-B3-7jY">
-                                <rect key="frame" x="0.0" y="324" width="600" height="276"/>
+                                <rect key="frame" x="0.0" y="328" width="600" height="272"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -671,19 +674,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iu1-fy-HjO" userLabel="Album Art View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="324"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iu1-fy-HjO" userLabel="Album Art View">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="348"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-YU-ofz">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="324"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                         <animations/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUe-e2-LC7">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="324"/>
-                                        <animations/>
+                                        <color key="backgroundColor" red="1" green="0.2620179708" blue="0.24856587729999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4BF-Rr-Mre">
-                                        <rect key="frame" x="172" y="56" width="256" height="256"/>
+                                        <rect key="frame" x="172" y="64" width="256" height="256"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="256" id="7Dw-m5-bSs"/>
@@ -692,20 +692,16 @@
                                     </imageView>
                                 </subviews>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="4BF-Rr-Mre" firstAttribute="centerY" secondItem="Iu1-fy-HjO" secondAttribute="centerY" id="19Q-3a-xdM"/>
-                                    <constraint firstItem="4BF-Rr-Mre" firstAttribute="top" secondItem="Iu1-fy-HjO" secondAttribute="top" constant="56" id="7jB-VO-rUA"/>
-                                    <constraint firstItem="jUe-e2-LC7" firstAttribute="top" secondItem="Iu1-fy-HjO" secondAttribute="top" id="8nE-eh-VaT"/>
-                                    <constraint firstItem="jUe-e2-LC7" firstAttribute="leading" secondItem="Iu1-fy-HjO" secondAttribute="leading" id="ChX-Nq-XSU"/>
+                                    <constraint firstItem="4BF-Rr-Mre" firstAttribute="top" secondItem="Iu1-fy-HjO" secondAttribute="top" constant="64" id="7jB-VO-rUA"/>
                                     <constraint firstItem="nFS-YU-ofz" firstAttribute="top" secondItem="Iu1-fy-HjO" secondAttribute="top" id="HRi-QG-xTP"/>
                                     <constraint firstItem="nFS-YU-ofz" firstAttribute="height" secondItem="Iu1-fy-HjO" secondAttribute="height" id="L8i-Mv-RCA"/>
                                     <constraint firstItem="4BF-Rr-Mre" firstAttribute="centerX" secondItem="Iu1-fy-HjO" secondAttribute="centerX" id="OtO-TU-J3x"/>
                                     <constraint firstItem="nFS-YU-ofz" firstAttribute="leading" secondItem="Iu1-fy-HjO" secondAttribute="leading" id="WM7-Pv-PxM"/>
-                                    <constraint firstItem="jUe-e2-LC7" firstAttribute="height" secondItem="Iu1-fy-HjO" secondAttribute="height" id="gQL-8Y-DKf"/>
-                                    <constraint firstAttribute="height" constant="324" id="m1a-04-j9A"/>
+                                    <constraint firstAttribute="height" constant="348" id="m1a-04-j9A"/>
                                     <constraint firstItem="nFS-YU-ofz" firstAttribute="width" secondItem="Iu1-fy-HjO" secondAttribute="width" id="yLz-TK-MJo"/>
-                                    <constraint firstItem="jUe-e2-LC7" firstAttribute="width" secondItem="Iu1-fy-HjO" secondAttribute="width" id="ybe-Po-Xdr"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -715,7 +711,7 @@
                             </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="N3X-B3-7jY" firstAttribute="leading" secondItem="KL1-aV-8mE" secondAttribute="leading" id="06T-0L-QT7"/>
                             <constraint firstAttribute="trailing" secondItem="N3X-B3-7jY" secondAttribute="trailing" id="22o-Db-Ns6"/>
@@ -723,13 +719,12 @@
                             <constraint firstItem="Iu1-fy-HjO" firstAttribute="leading" secondItem="KL1-aV-8mE" secondAttribute="leading" id="PFO-o1-q2Q"/>
                             <constraint firstItem="lyP-r4-vwD" firstAttribute="top" secondItem="N3X-B3-7jY" secondAttribute="bottom" id="ThL-PU-jBL"/>
                             <constraint firstItem="N3X-B3-7jY" firstAttribute="top" secondItem="Iu1-fy-HjO" secondAttribute="bottom" id="tV9-t0-hlT"/>
-                            <constraint firstItem="Iu1-fy-HjO" firstAttribute="top" secondItem="OeD-O7-xD8" secondAttribute="bottom" constant="-44" id="xEE-Rm-BQy"/>
+                            <constraint firstItem="Iu1-fy-HjO" firstAttribute="top" secondItem="OeD-O7-xD8" secondAttribute="bottom" constant="-64" id="xEE-Rm-BQy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="albumCover" destination="4BF-Rr-Mre" id="f5s-KB-vVk"/>
                         <outlet property="blurredCover" destination="nFS-YU-ofz" id="Koa-2v-JTp"/>
-                        <outlet property="blurredCoverMask" destination="jUe-e2-LC7" id="fbh-4F-qfA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wX-Pk-xZs" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -17,13 +17,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
         didSet{
             albumTitleLabel.text = albumData.title
             artistNameLabel.text = albumData.artist
-            
-            if albumData.art == nil {
-                artworkImageView.image = UIImage(named: "album-placeholder")
-            } else {
-                artworkImageView.image = albumData.art.imageWithSize(artworkImageView.bounds.size)
-            }
-            
+            artworkImageView.image = albumData.albumArtWithSize(artworkImageView.bounds.size)
         }
     }
     

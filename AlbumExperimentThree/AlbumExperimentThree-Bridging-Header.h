@@ -8,3 +8,6 @@
 #import "BDKCollectionIndexView.h"
 #import "UIImage+PRBoxBlur.h"
 #import "UIView+Snapshot.h"
+#import "UIImage+ImageEffects.h"
+#import "UIImage+Mask.h"
+#import "UIImage+Color.h""

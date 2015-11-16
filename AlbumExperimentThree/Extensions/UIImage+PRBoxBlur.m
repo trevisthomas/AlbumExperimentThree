@@ -12,6 +12,7 @@
 
 @implementation UIImage (PRBoxBlur)
 
+
 - (UIImage *)pr_boxBlurredImageWithRadius:(CGFloat)radius
 {
     radius *= [UIScreen mainScreen].scale;

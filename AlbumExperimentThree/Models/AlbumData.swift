@@ -42,4 +42,12 @@ class AlbumData : CustomStringConvertible{
     var description: String {
         return title
     }
+    
+    func albumArtWithSize(size : CGSize) -> UIImage {
+        if self.art == nil {
+            return UIImage(named: "album-placeholder")!
+        } else {
+            return self.art.imageWithSize(size)!
+        }
+    }
 }

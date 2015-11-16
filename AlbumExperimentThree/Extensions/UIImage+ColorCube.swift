@@ -26,4 +26,9 @@ extension UIImage {
         
         return colors
     }
+    
+    func extractColorsUsingColorCubeSimple(numberOfColorsToExtract count: UInt) -> [UIColor]{
+        let colors = UIImage.colorCube.extractColorsFromImage(self, flags: CCAvoidBlack.rawValue, count: count) as! [UIColor]
+        return colors
+    }
 }

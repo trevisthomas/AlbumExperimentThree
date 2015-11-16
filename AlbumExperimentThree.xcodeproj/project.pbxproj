@@ -22,6 +22,13 @@
 		0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */; };
 		0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */; };
 		0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */; };
+		0F60BFF81BF8DE9400C4166F /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60BFF71BF8DE9400C4166F /* SongViewController.swift */; };
+		0F60BFFA1BF8DEBD00C4166F /* SongTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60BFF91BF8DEBD00C4166F /* SongTableCellTableViewCell.swift */; };
+		0F60BFFE1BF911F100C4166F /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60BFFD1BF911F100C4166F /* UIImage+ImageEffects.m */; };
+		0F60C0001BF9178500C4166F /* UIImage+VignetteMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60BFFF1BF9178500C4166F /* UIImage+VignetteMask.swift */; };
+		0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0011BF99D3300C4166F /* UIImage+Mask.m */; };
+		0F60C0071BF9A47700C4166F /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0061BF9A47700C4166F /* UIImage+Color.m */; };
+		0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -66,6 +73,16 @@
 		0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPlayPauseButton.swift; sourceTree = "<group>"; };
 		0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
 		0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextPreviousButton.swift; sourceTree = "<group>"; };
+		0F60BFF71BF8DE9400C4166F /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
+		0F60BFF91BF8DEBD00C4166F /* SongTableCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		0F60BFFC1BF911F100C4166F /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		0F60BFFD1BF911F100C4166F /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		0F60BFFF1BF9178500C4166F /* UIImage+VignetteMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+VignetteMask.swift"; sourceTree = "<group>"; };
+		0F60C0011BF99D3300C4166F /* UIImage+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mask.m"; sourceTree = "<group>"; };
+		0F60C0041BF99E0600C4166F /* UIImage+Mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
+		0F60C0051BF9A47700C4166F /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		0F60C0061BF9A47700C4166F /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColorPalette.swift; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -133,6 +150,18 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		0F60BFFB1BF8E28800C4166F /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */,
+				0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */,
+				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
+				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
+				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
+			);
+			name = CoreGraphics;
+			sourceTree = "<group>";
+		};
 		0FBF6A251BE12E7B00B66AC0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +181,7 @@
 				0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */,
 				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
 				0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */,
+				0F60BFF71BF8DE9400C4166F /* SongViewController.swift */,
 			);
 			indentWidth = 4;
 			path = Controllers;
@@ -160,6 +190,10 @@
 		0FBF6A271BE12ECA00B66AC0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0F60C0051BF9A47700C4166F /* UIImage+Color.h */,
+				0F60C0061BF9A47700C4166F /* UIImage+Color.m */,
+				0F60BFFC1BF911F100C4166F /* UIImage+ImageEffects.h */,
+				0F60BFFD1BF911F100C4166F /* UIImage+ImageEffects.m */,
 				0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */,
 				0FC7E7E81BE5094E00C0CE79 /* CGFloat+Util.swift */,
 				0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */,
@@ -169,6 +203,9 @@
 				0F51DC571BF29E4B0073B635 /* UIImage+PRBoxBlur.m */,
 				0F51DC591BF2A72C0073B635 /* UIView+Snapshot.h */,
 				0F51DC5A1BF2A74B0073B635 /* UIView+Snapshot.m */,
+				0F60BFFF1BF9178500C4166F /* UIImage+VignetteMask.swift */,
+				0F60C0011BF99D3300C4166F /* UIImage+Mask.m */,
+				0F60C0041BF99E0600C4166F /* UIImage+Mask.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -179,6 +216,7 @@
 				0FD30A291BDD7F4D0064E4F9 /* AlbumData.swift */,
 				0FD30A2D1BDD816A0064E4F9 /* GenreData.swift */,
 				0FD30A271BDD7EF50064E4F9 /* MusicLibrary.swift */,
+				0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,15 +234,12 @@
 		0FBF6A2A1BE12F4400B66AC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F60BFFB1BF8E28800C4166F /* CoreGraphics */,
 				0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */,
 				0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */,
 				0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */,
 				0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */,
-				0F57C7CE1BEA58C000B32570 /* LineSeperatorView.swift */,
-				0F57C7D01BEA75D400B32570 /* MoreArrowView.swift */,
-				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
-				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
-				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
+				0F60BFF91BF8DEBD00C4166F /* SongTableCellTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,24 +388,31 @@
 				0F51DC541BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift in Sources */,
 				0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */,
 				0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */,
+				0F60C0001BF9178500C4166F /* UIImage+VignetteMask.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
 				0F51DC581BF29E4B0073B635 /* UIImage+PRBoxBlur.m in Sources */,
 				0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */,
+				0F60C0071BF9A47700C4166F /* UIImage+Color.m in Sources */,
 				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
+				0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */,
 				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,
+				0F60BFFE1BF911F100C4166F /* UIImage+ImageEffects.m in Sources */,
 				0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */,
 				0FCD2E8F1BE158BD004F69F0 /* StretchingFocusLayout.swift in Sources */,
 				0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */,
+				0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */,
 				0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */,
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
+				0F60BFF81BF8DE9400C4166F /* SongViewController.swift in Sources */,
 				0FE5644D1BE4284400E065E7 /* CCLocalMaximum.m in Sources */,
 				0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				0F51DC501BF122500073B635 /* NavigationControllerDelegate.swift in Sources */,
 				0F51DC421BEE67620073B635 /* AlbumViewController.swift in Sources */,
+				0F60BFFA1BF8DEBD00C4166F /* SongTableCellTableViewCell.swift in Sources */,
 				0FBF6A2C1BE132D600B66AC0 /* GenreViewController.swift in Sources */,
 				0F57C7D71BEACA7500B32570 /* PlayPauseButton.swift in Sources */,
 				0FD309EE1BDA873D0064E4F9 /* AppDelegate.swift in Sources */,
