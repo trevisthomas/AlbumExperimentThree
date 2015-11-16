@@ -14,10 +14,12 @@ class ImageColorPalette {
     let backgroundColor : UIColor
     let primaryTextColor : UIColor
     let secondaryTextColor : UIColor
+    let headerTextColor : UIColor
     
     init (fromImage image : UIImage) {
         backgroundColor = image.footerAverageColor()
         primaryTextColor = image.primaryColorFromBackgroundColor(backgroundColor)
         secondaryTextColor = image.secondaryColorFromBackgroundColor(backgroundColor, primaryColor: primaryTextColor)
+        headerTextColor = image.primaryColorFromBackgroundColor(image.headerAverageColor())
     }
 }

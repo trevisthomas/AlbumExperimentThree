@@ -268,7 +268,9 @@
                             <constraint firstItem="hX6-Cw-HoP" firstAttribute="leading" secondItem="Lep-72-l3G" secondAttribute="leading" id="dvs-Ti-erh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5dz-Ju-35A"/>
+                    <navigationItem key="navigationItem" id="5dz-Ju-35A">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VU0-jO-RMj"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="tI2-mk-mjI" id="95p-4R-Jo5"/>
                         <outlet property="historyContainerView" destination="hX6-Cw-HoP" id="yF7-7u-XTA"/>
@@ -640,6 +642,9 @@
                             <outlet property="delegate" destination="ijD-wu-Vtl" id="hfY-Cm-ivw"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="WYg-hG-K1j">
+                        <barButtonItem key="backBarButtonItem" title=" " id="JZN-W4-Ss2"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqj-YT-uR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

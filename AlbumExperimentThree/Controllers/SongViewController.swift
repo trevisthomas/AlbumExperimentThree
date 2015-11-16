@@ -50,6 +50,24 @@ class SongViewController: UIViewController {
         let maskImage = UIImage.generateAlbumCoverVignette(blurredCover.frame)
         //Assign the blurred image
         blurredCover.image = blurredImage.maskImageWithMask(maskImage)
+        
+        
+        let navBackgroundRect = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 64)
+//        let blurEffect = UIBlurEffect(style: .Light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = navBackgroundRect
+//        view.addSubview(blurEffectView)
+        
+        let customNavigationTitleView = DoubleNavigationTitleView(frame: navBackgroundRect)
+//        customNavigationTitleView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        customNavigationTitleView.backgroundColor = UIColor.clearColor()
+        customNavigationTitleView.title = albumData.title
+        customNavigationTitleView.subTitle = albumData.artist
+        customNavigationTitleView.textColor = colorPalette.headerTextColor
+        view.addSubview(customNavigationTitleView)
+        
+        self.navigationController!.navigationBar.tintColor = colorPalette.secondaryTextColor
+        
     }
 
     override func didReceiveMemoryWarning() {

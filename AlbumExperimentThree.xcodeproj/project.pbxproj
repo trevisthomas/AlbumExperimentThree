@@ -29,6 +29,8 @@
 		0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0011BF99D3300C4166F /* UIImage+Mask.m */; };
 		0F60C0071BF9A47700C4166F /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0061BF9A47700C4166F /* UIImage+Color.m */; };
 		0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */; };
+		0F60C00B1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */; };
+		0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -83,6 +85,8 @@
 		0F60C0051BF9A47700C4166F /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		0F60C0061BF9A47700C4166F /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColorPalette.swift; sourceTree = "<group>"; };
+		0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoubleNavigationTitleView.xib; path = ../Views/DoubleNavigationTitleView.xib; sourceTree = "<group>"; };
+		0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleNavigationTitleView.swift; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				0FD309F61BDA873D0064E4F9 /* LaunchScreen.storyboard */,
 				0FD309F11BDA873D0064E4F9 /* Main.storyboard */,
 				0FD30A021BDA915A0064E4F9 /* NowPlayingViewController.xib */,
+				0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */,
 			);
 			path = "Storyboards & Xibs";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */,
 				0FBF6A2D1BE1348D00B66AC0 /* GenreCollectionViewCell.swift */,
 				0F60BFF91BF8DEBD00C4166F /* SongTableCellTableViewCell.swift */,
+				0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				0FD30A041BDA915A0064E4F9 /* NowPlayingViewController.xib in Resources */,
 				0FD309F81BDA873D0064E4F9 /* LaunchScreen.storyboard in Resources */,
 				0FD309F51BDA873D0064E4F9 /* Assets.xcassets in Resources */,
+				0F60C00B1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib in Resources */,
 				0FD309F31BDA873D0064E4F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +390,7 @@
 			files = (
 				0F51DC5B1BF2A74B0073B635 /* UIView+Snapshot.m in Sources */,
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
+				0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */,
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
 				0F51DC541BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift in Sources */,

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DoubleNavigationTitleView" customModule="AlbumExperimentThree" customModuleProvider="target">
+            <connections>
+                <outlet property="subTitleLabel" destination="WYN-cI-VcT" id="i8Y-lR-T8O"/>
+                <outlet property="titleLabel" destination="WlF-km-DZF" id="v4W-xQ-Xtg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iq5-GZ-ZGI">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlF-km-DZF">
+                            <rect key="frame" x="40" y="19" width="520" height="24"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYN-cI-VcT">
+                            <rect key="frame" x="40" y="43" width="520" height="20"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="WlF-km-DZF" firstAttribute="top" secondItem="iq5-GZ-ZGI" secondAttribute="top" constant="19" id="9GR-2L-Ro2"/>
+                        <constraint firstAttribute="trailing" secondItem="WlF-km-DZF" secondAttribute="trailing" constant="40" id="O0a-WT-LNf"/>
+                        <constraint firstItem="WYN-cI-VcT" firstAttribute="width" secondItem="WlF-km-DZF" secondAttribute="width" id="Q0G-MZ-QMO"/>
+                        <constraint firstItem="WlF-km-DZF" firstAttribute="centerX" secondItem="iq5-GZ-ZGI" secondAttribute="centerX" id="XeV-1v-ta4"/>
+                        <constraint firstItem="WYN-cI-VcT" firstAttribute="top" secondItem="WlF-km-DZF" secondAttribute="bottom" id="YEK-nh-qNg"/>
+                        <constraint firstItem="WYN-cI-VcT" firstAttribute="centerX" secondItem="iq5-GZ-ZGI" secondAttribute="centerX" id="qC9-oI-fIZ"/>
+                        <constraint firstItem="WlF-km-DZF" firstAttribute="leading" secondItem="iq5-GZ-ZGI" secondAttribute="leading" constant="40" id="rif-bM-r05"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iq5-GZ-ZGI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6tB-5j-NNu"/>
+                <constraint firstItem="iq5-GZ-ZGI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Q9A-J8-7vj"/>
+                <constraint firstAttribute="bottom" secondItem="iq5-GZ-ZGI" secondAttribute="bottom" id="dI3-Jc-fCy"/>
+                <constraint firstAttribute="trailing" secondItem="iq5-GZ-ZGI" secondAttribute="trailing" id="vpH-aF-VLl"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
