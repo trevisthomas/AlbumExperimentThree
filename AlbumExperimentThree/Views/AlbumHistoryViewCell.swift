@@ -12,6 +12,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var artworkImageView: UIImageView!
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
+    @IBOutlet weak var outerBoxView: UIView!
     
     var albumData : AlbumData! {
         didSet{

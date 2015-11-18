@@ -139,16 +139,31 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
         // Pass the selected object to the new view controller.
         
         if sender is AlbumHistoryViewCell {
+            let cell = sender as! AlbumHistoryViewCell
+
             let indexPath = collectionView!.indexPathForCell(sender as! AlbumHistoryViewCell)!
             let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
 
             let songViewController = segue.destinationViewController as! SongViewController
             songViewController.albumData = albumData
+            
+            
+            songViewController.sourceAlbumBoxRect = cell.outerBoxView.boundsOnScreen()
+            songViewController.sourceAlbumCoverRect = cell.artworkImageView.boundsOnScreen()
+
         } else {
             print(sender)
             //Something else.  I noticed that this method gets called when this view controller is loaded too.
         }
     }
+    
+    
+//    //TODO, maybe move this to an extention?
+//    private func convertToScreenRect( sourceView : UIView) -> CGRect{
+//        let origin = sourceView.convertPoint(sourceView.bounds.origin, toView: nil)
+//        let newRect = CGRect(origin: origin, size: sourceView.bounds.size)
+//        return newRect
+//    }
 
 
     // MARK: UICollectionViewDataSource

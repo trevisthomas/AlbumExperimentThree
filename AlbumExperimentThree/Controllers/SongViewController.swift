@@ -12,13 +12,17 @@ class SongViewController: UIViewController {
 
     @IBOutlet weak var albumCover: UIImageView!
     @IBOutlet weak var blurredCover: UIImageView!
-    var colorPalette : ImageColorPalette!
+//    var colorPalette : ImageColorPalette!
     
     var albumData : AlbumData! {
         didSet {
             
         }
     }
+    
+    //These rects are for the transition animation.  
+    var sourceAlbumCoverRect : CGRect!
+    var sourceAlbumBoxRect : CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +39,9 @@ class SongViewController: UIViewController {
 //        view.backgroundColor = colors![0]
 //        blurredCover.backgroundColor = colors![0]
         
-        colorPalette = ImageColorPalette(fromImage: albumCover.image!)
+//        colorPalette = ImageColorPalette(fromImage: albumCover.image!)
         
+        var colorPalette = albumData.colorPalette
         view.backgroundColor = colorPalette.backgroundColor
         blurredCover.backgroundColor = colorPalette.backgroundColor
 

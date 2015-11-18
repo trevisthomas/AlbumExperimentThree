@@ -613,6 +613,7 @@
                                     <outlet property="albumTitleLabel" destination="qgR-Aa-2fe" id="H1X-b7-vQ5"/>
                                     <outlet property="artistNameLabel" destination="ILy-RM-hxV" id="L7f-fr-BXf"/>
                                     <outlet property="artworkImageView" destination="EML-Lg-9CR" id="1Sn-qB-BBd"/>
+                                    <outlet property="outerBoxView" destination="cSr-JG-JNp" id="6KI-jw-KWy"/>
                                     <segue destination="40u-Eh-4PS" kind="show" id="JfF-0S-Xhv"/>
                                 </connections>
                             </collectionViewCell>

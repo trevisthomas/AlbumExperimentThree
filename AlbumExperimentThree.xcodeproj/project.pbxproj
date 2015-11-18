@@ -31,6 +31,8 @@
 		0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */; };
 		0F60C00B1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */; };
 		0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */; };
+		0F60C00F1BFBECDB00C4166F /* AlbumToSongAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C00E1BFBECDB00C4166F /* AlbumToSongAnimator.swift */; };
+		0F60C0111BFBFEB400C4166F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -87,6 +89,8 @@
 		0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColorPalette.swift; sourceTree = "<group>"; };
 		0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoubleNavigationTitleView.xib; path = ../Views/DoubleNavigationTitleView.xib; sourceTree = "<group>"; };
 		0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleNavigationTitleView.swift; sourceTree = "<group>"; };
+		0F60C00E1BFBECDB00C4166F /* AlbumToSongAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToSongAnimator.swift; sourceTree = "<group>"; };
+		0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				0F51DC531BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift */,
+				0F60C00E1BFBECDB00C4166F /* AlbumToSongAnimator.swift */,
 			);
 			name = Animations;
 			path = ..;
@@ -210,6 +215,7 @@
 				0F60BFFF1BF9178500C4166F /* UIImage+VignetteMask.swift */,
 				0F60C0011BF99D3300C4166F /* UIImage+Mask.m */,
 				0F60C0041BF99E0600C4166F /* UIImage+Mask.h */,
+				0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
+				0F60C0111BFBFEB400C4166F /* UIView+Utils.swift in Sources */,
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
 				0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */,
 				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
@@ -416,6 +423,7 @@
 				0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */,
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
 				0F60BFF81BF8DE9400C4166F /* SongViewController.swift in Sources */,
+				0F60C00F1BFBECDB00C4166F /* AlbumToSongAnimator.swift in Sources */,
 				0FE5644D1BE4284400E065E7 /* CCLocalMaximum.m in Sources */,
 				0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				0F51DC501BF122500073B635 /* NavigationControllerDelegate.swift in Sources */,

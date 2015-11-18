@@ -43,6 +43,11 @@ class AlbumData : CustomStringConvertible{
         return title
     }
     
+    lazy var colorPalette : ImageColorPalette = {
+        var tempPalette = ImageColorPalette(fromImage: self.albumArtWithSize(CGSize(width: 64, height: 64)))
+        return tempPalette
+    }()
+    
     func albumArtWithSize(size : CGSize) -> UIImage {
         if self.art == nil {
             return UIImage(named: "album-placeholder")!
@@ -50,4 +55,6 @@ class AlbumData : CustomStringConvertible{
             return self.art.imageWithSize(size)!
         }
     }
+    
+    
 }

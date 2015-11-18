@@ -12,8 +12,16 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
     @IBOutlet weak var navigationController: UINavigationController?
     
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return GenreToAlbumAnimatedTransitioning()
+        if toVC is SongViewController {
+            return AlbumToSongAnimator()
+        } else {
+            return GenreToAlbumAnimatedTransitioning()
+        }
+        
+//        return GenreToAlbumAnimatedTransitioning()
 //        return nil
     }
+    
+
 
 }
