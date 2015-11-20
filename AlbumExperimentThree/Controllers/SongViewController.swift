@@ -41,7 +41,7 @@ class SongViewController: UIViewController {
         
 //        colorPalette = ImageColorPalette(fromImage: albumCover.image!)
         
-        var colorPalette = albumData.colorPalette
+        let colorPalette = albumData.colorPalette
         view.backgroundColor = colorPalette.backgroundColor
         blurredCover.backgroundColor = colorPalette.backgroundColor
 
@@ -72,6 +72,7 @@ class SongViewController: UIViewController {
         view.addSubview(customNavigationTitleView)
         
         self.navigationController!.navigationBar.tintColor = colorPalette.secondaryTextColor
+        navigationController?.navigationBar.setStatusBarColor(colorPalette.secondaryTextColor)
         
     }
 

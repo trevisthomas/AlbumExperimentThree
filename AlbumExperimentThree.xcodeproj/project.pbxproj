@@ -33,6 +33,8 @@
 		0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */; };
 		0F60C00F1BFBECDB00C4166F /* AlbumToSongAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C00E1BFBECDB00C4166F /* AlbumToSongAnimator.swift */; };
 		0F60C0111BFBFEB400C4166F /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */; };
+		0F60C0171BFEAEA400C4166F /* UINavigationBar+StatusColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0161BFEAEA400C4166F /* UINavigationBar+StatusColor.m */; };
+		0F60C01A1BFEF05C00C4166F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -91,6 +93,10 @@
 		0F60C00C1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleNavigationTitleView.swift; sourceTree = "<group>"; };
 		0F60C00E1BFBECDB00C4166F /* AlbumToSongAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumToSongAnimator.swift; sourceTree = "<group>"; };
 		0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		0F60C0151BFEAEA400C4166F /* UINavigationBar+StatusColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+StatusColor.h"; sourceTree = "<group>"; };
+		0F60C0161BFEAEA400C4166F /* UINavigationBar+StatusColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+StatusColor.m"; sourceTree = "<group>"; };
+		0F60C0181BFEF05C00C4166F /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
+		0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -216,6 +222,10 @@
 				0F60C0011BF99D3300C4166F /* UIImage+Mask.m */,
 				0F60C0041BF99E0600C4166F /* UIImage+Mask.h */,
 				0F60C0101BFBFEB300C4166F /* UIView+Utils.swift */,
+				0F60C0151BFEAEA400C4166F /* UINavigationBar+StatusColor.h */,
+				0F60C0161BFEAEA400C4166F /* UINavigationBar+StatusColor.m */,
+				0F60C0181BFEF05C00C4166F /* UIColor+Utils.h */,
+				0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -394,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F60C0171BFEAEA400C4166F /* UINavigationBar+StatusColor.m in Sources */,
 				0F51DC5B1BF2A74B0073B635 /* UIView+Snapshot.m in Sources */,
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
 				0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */,
@@ -412,6 +423,7 @@
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
 				0F60C0111BFBFEB400C4166F /* UIView+Utils.swift in Sources */,
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
+				0F60C01A1BFEF05C00C4166F /* UIColor+Utils.m in Sources */,
 				0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */,
 				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,

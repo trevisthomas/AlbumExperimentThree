@@ -50,6 +50,8 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
 //        navigationController?.navigationBar.barStyle = .BlackTranslucent
         
+        self.navigationController!.navigationBar.tintColor = UIColor.blackColor()
+        navigationController?.navigationBar.setStatusBarColor(UIColor.blackColor())
 
         
         originalHeight = collectionView.bounds.height

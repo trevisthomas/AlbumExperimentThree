@@ -13,7 +13,6 @@
 
 //Masking came from : http://stackoverflow.com/questions/5757386/how-to-mask-an-uiimageview
 
-//- (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
 - (UIImage*) maskImageWithMask: (UIImage *)maskImage {
 
     CGImageRef maskRef = maskImage.CGImage;

@@ -15,7 +15,7 @@ extension UIImage {
    
     static func collageImage (rect:CGRect, maxImagesPerRow: Int, images:[UIImage]) -> UIImage {
         //Create the mask
-        let mask = createImageMaskForImages(rect, maxImagesPerRow : maxImagesPerRow, imageCount: images.count)
+//        let mask = createImageMaskForImages(rect, maxImagesPerRow : maxImagesPerRow, imageCount: images.count)
 
         UIGraphicsEndImageContext();
         
@@ -63,10 +63,11 @@ extension UIImage {
         
         UIGraphicsEndImageContext();
         
+        return outputImage
         //Apply the mask Mask
-        let maskedImage = outputImage.applyImageMaskToImage(rect, mask: mask)
-        
-        return maskedImage
+//        let maskedImage = outputImage.applyImageMaskToImage(rect, mask: mask)
+//        
+//        return maskedImage
     }
     
     

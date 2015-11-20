@@ -19,6 +19,9 @@ class AlbumHistoryViewCell: UICollectionViewCell {
             albumTitleLabel.text = albumData.title
             artistNameLabel.text = albumData.artist
             artworkImageView.image = albumData.albumArtWithSize(artworkImageView.bounds.size)
+            outerBoxView.backgroundColor = albumData.colorPalette.backgroundColor.lighterColor()
+            albumTitleLabel.textColor = albumData.colorPalette.primaryTextColor
+            artistNameLabel.textColor = albumData.colorPalette.primaryTextColor
         }
     }
     

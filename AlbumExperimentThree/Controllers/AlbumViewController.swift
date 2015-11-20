@@ -72,8 +72,14 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
         navigationPlusStatusBackgroundView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
         view.addSubview(navigationPlusStatusBackgroundView)
         
+        //This was a quick change to remove section headers.
         collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "EmptySection")
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.navigationBar.tintColor = UIColor.blackColor()
+        navigationController?.navigationBar.setStatusBarColor(UIColor.blackColor())
     }
     
     private func calculateShortSide() ->CGFloat{
