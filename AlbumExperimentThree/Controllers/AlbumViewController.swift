@@ -72,6 +72,8 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
         navigationPlusStatusBackgroundView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
         view.addSubview(navigationPlusStatusBackgroundView)
         
+        collectionView?.registerClass(UICollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "EmptySection")
+        
     }
     
     private func calculateShortSide() ->CGFloat{
@@ -196,9 +198,11 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         if (kind == UICollectionElementKindSectionHeader) {
-            let cell =
-            collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeaderCell", forIndexPath: indexPath) as! SectionHeaderCell
-            cell.title = sections[indexPath.section]
+//            let cell =
+//            collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeaderCell", forIndexPath: indexPath) as! SectionHeaderCell
+//            cell.title = sections[indexPath.section]
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmptySection" , forIndexPath:  indexPath)
+
             return cell
         }
         abort()
@@ -241,7 +245,8 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
 //    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 100) //An attempt to space the section header's out. Seems to work.
+//        return CGSize(width: 100, height: 100) //An attempt to space the section header's out. Seems to work.
+        return CGSize(width: 100, height: 10)
     }
     
     

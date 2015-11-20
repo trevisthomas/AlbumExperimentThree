@@ -10,7 +10,13 @@ import UIKit
 
 class AlbumToSongAnimator : NSObject, UIViewControllerAnimatedTransitioning {
     let duration : NSTimeInterval = 0.6
+    let reverse : Bool
     weak var transitionContext: UIViewControllerContextTransitioning?
+    
+    init(reverse : Bool = false) {
+        self.reverse = reverse
+        super.init()
+    }
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
@@ -20,28 +26,49 @@ class AlbumToSongAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         self.transitionContext = transitionContext
         
         let containerView = transitionContext.containerView()!
-//        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! //as! GenreViewController
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!  as! SongViewController
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! //as! GenreViewController
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        
+        let songViewController = reverse ? fromViewController as! SongViewController : toViewController  as! SongViewController
+        
+        //The songViewController's view hasnt been drawn yet, you need to apply autolayout before using it's rect!!
+        songViewController.view.layoutIfNeeded()
+        
+        
+        let sourceRect = reverse ? songViewController.albumCover.frame : songViewController.sourceAlbumCoverRect
+        let destRect = reverse ? songViewController.sourceAlbumCoverRect : songViewController.albumCover.frame
+        let bgColor = songViewController.albumData.colorPalette.backgroundColor
+        
+        
         
         let solidColor = UIView()
-        solidColor.frame = toViewController.view.frame
-        solidColor.backgroundColor = toViewController.albumData.colorPalette.backgroundColor
+        solidColor.frame = songViewController.view.frame
+        solidColor.backgroundColor = bgColor
         solidColor.alpha = 0
+        
+        
+        //The following adds the blurred cover to the solid color layer.  I think that this looks better.
+        let blurredCoverView = UIImageView()
+        blurredCoverView.image = songViewController.blurredCover.image
+        blurredCoverView.frame = songViewController.blurredCover.frame
+        solidColor.addSubview(blurredCoverView)
+
         
         let albumArtAnimationLayerView = UIView()
         albumArtAnimationLayerView.backgroundColor = UIColor.clearColor()
-        albumArtAnimationLayerView.frame = toViewController.view.frame
+        albumArtAnimationLayerView.frame = songViewController.view.frame
         
-        //The toViewController's view hasnt been drawn yet, you need to apply autolayout before using it's rect!!
-        toViewController.view.layoutIfNeeded()
         //Hide the cover on the destination view so that you can be moving the new cover into place
-        toViewController.albumCover.hidden = true
+        
+        if !reverse {
+            songViewController.albumCover.hidden = true// !reverse // true
+        }
 
         //Create, setup and populate the albumArtImageView for animation
         let albumArtImageView = UIImageView()
         albumArtImageView.alpha = 0
-        albumArtImageView.frame = toViewController.sourceAlbumCoverRect
-        albumArtImageView.image = toViewController.albumCover.image
+        albumArtImageView.frame = sourceRect
+        albumArtImageView.image = songViewController.albumCover.image
         albumArtAnimationLayerView.addSubview(albumArtImageView)
         
         //Load the two views that get animated
@@ -55,6 +82,9 @@ class AlbumToSongAnimator : NSObject, UIViewControllerAnimatedTransitioning {
                 options: [.CurveEaseInOut, .AllowUserInteraction],
                 animations: {
                     solidColor.alpha = 0
+//                    if !self.reverse {
+//                       albumArtImageView.alpha = 0
+//                    }
                 },
                 completion: {finished in
                     //Clean up and shut down
@@ -76,6 +106,10 @@ class AlbumToSongAnimator : NSObject, UIViewControllerAnimatedTransitioning {
                 containerView.addSubview(solidColor)
                 containerView.addSubview(albumArtAnimationLayerView)
                 
+                if self.reverse {
+                    songViewController.albumCover.hidden = true// !reverse // true
+                }
+                
                 fadeOutSolidColor()
         }
         
@@ -83,11 +117,16 @@ class AlbumToSongAnimator : NSObject, UIViewControllerAnimatedTransitioning {
             delay: 0.0,
             options: [.CurveEaseInOut, .AllowUserInteraction],
             animations: {
-                albumArtImageView.frame = toViewController.albumCover.frame
+                albumArtImageView.frame = destRect
+                if self.reverse {
+                    albumArtImageView.alpha = 0
+                }
             },
             completion: {finished in
                 //Un hide the cover underneath when the cover animation is complete
-                toViewController.albumCover.hidden = false
+                songViewController.albumCover.hidden = false
+                
+                
                 
         })
         

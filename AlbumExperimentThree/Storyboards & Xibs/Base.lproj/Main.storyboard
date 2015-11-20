@@ -330,34 +330,34 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumHistoryCell" id="ICi-dw-Ly0" customClass="AlbumHistoryViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumCell" id="q4l-bK-WTf" customClass="AlbumHistoryViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="5" width="125" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgA-YN-vQ5">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg4-J9-M8u">
                                                     <rect key="frame" x="3" y="3" width="120" height="144"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-SU-ZSU">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AB1-At-36S">
                                                             <rect key="frame" x="5" y="4" width="110" height="110"/>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Vic-SU-ZSU" secondAttribute="height" multiplier="1:1" id="n3M-uB-le6"/>
+                                                                <constraint firstAttribute="width" secondItem="AB1-At-36S" secondAttribute="height" multiplier="1:1" id="WZd-WY-TP3"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-ay-XHe">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d1l-yF-vBt">
                                                             <rect key="frame" x="0.0" y="114" width="120" height="27"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlbumTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsL-MZ-hMi">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AlbumTitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwn-rJ-sLD">
                                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="14"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="10"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3k-cU-6tK">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ArtistName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oK7-NQ-yJ4">
                                                                     <rect key="frame" x="0.0" y="14" width="120" height="13"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="9"/>
@@ -367,18 +367,22 @@
                                                             </subviews>
                                                             <animations/>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="PsL-MZ-hMi" secondAttribute="trailing" id="ATa-3J-vhr"/>
-                                                                <constraint firstItem="PsL-MZ-hMi" firstAttribute="leading" secondItem="ZcT-ay-XHe" secondAttribute="leading" id="Dxy-Pw-wSa"/>
-                                                                <constraint firstItem="B3k-cU-6tK" firstAttribute="top" secondItem="PsL-MZ-hMi" secondAttribute="bottom" id="KKL-mw-NhQ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="PsL-MZ-hMi" secondAttribute="trailing" id="by7-kL-OCA"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dwn-rJ-sLD" secondAttribute="trailing" id="7Bc-Nx-5JH"/>
+                                                                <constraint firstAttribute="trailing" secondItem="dwn-rJ-sLD" secondAttribute="trailing" id="9MC-db-Taj"/>
+                                                                <constraint firstItem="oK7-NQ-yJ4" firstAttribute="top" secondItem="dwn-rJ-sLD" secondAttribute="bottom" id="bMO-8s-x8e"/>
+                                                                <constraint firstItem="dwn-rJ-sLD" firstAttribute="leading" secondItem="d1l-yF-vBt" secondAttribute="leading" id="beA-OB-7wP"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqf-1e-4vd" customClass="OverlayPlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
-                                                            <rect key="frame" x="5" y="4" width="110" height="110"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSI-fj-YZp" customClass="OverlayPlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                                            <rect key="frame" x="10" y="82" width="28" height="28"/>
                                                             <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="28" id="3MR-kc-MFv"/>
+                                                                <constraint firstAttribute="width" constant="28" id="inC-m0-rU6"/>
+                                                            </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                                                                    <real key="value" value="78"/>
+                                                                    <real key="value" value="1"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                                                     <real key="value" value="24"/>
@@ -386,24 +390,25 @@
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="alphaOfTransparentArea">
                                                                     <real key="value" value="0.29999999999999999"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                                    <real key="value" value="2"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
                                                     </subviews>
                                                     <animations/>
-                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="Vic-SU-ZSU" firstAttribute="leading" secondItem="JgA-YN-vQ5" secondAttribute="leading" constant="5" id="5pA-mm-zdT"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Vic-SU-ZSU" secondAttribute="trailing" constant="5" id="7ng-jM-Z1I"/>
-                                                        <constraint firstItem="Vic-SU-ZSU" firstAttribute="top" secondItem="JgA-YN-vQ5" secondAttribute="top" constant="4" id="F0V-Kr-GGv"/>
-                                                        <constraint firstItem="ZcT-ay-XHe" firstAttribute="leading" secondItem="JgA-YN-vQ5" secondAttribute="leading" id="GM0-RC-hpq"/>
-                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="width" secondItem="Vic-SU-ZSU" secondAttribute="width" id="Ga3-eM-IzG"/>
-                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="centerY" secondItem="Vic-SU-ZSU" secondAttribute="centerY" id="LTe-17-xgS"/>
-                                                        <constraint firstItem="ZcT-ay-XHe" firstAttribute="top" secondItem="Vic-SU-ZSU" secondAttribute="bottom" id="NRI-Mw-iSF"/>
-                                                        <constraint firstAttribute="width" constant="120" id="Rp2-6g-cWM"/>
-                                                        <constraint firstAttribute="trailing" secondItem="ZcT-ay-XHe" secondAttribute="trailing" id="YHo-jB-IaC"/>
-                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="centerX" secondItem="Vic-SU-ZSU" secondAttribute="centerX" id="aFR-Uc-7cc"/>
-                                                        <constraint firstAttribute="height" constant="144" id="s7o-rG-hYM"/>
-                                                        <constraint firstItem="cqf-1e-4vd" firstAttribute="height" secondItem="Vic-SU-ZSU" secondAttribute="height" id="z8m-U4-XLz"/>
+                                                        <constraint firstItem="d1l-yF-vBt" firstAttribute="top" secondItem="RSI-fj-YZp" secondAttribute="bottom" constant="4" id="1Tw-Fg-Y1d"/>
+                                                        <constraint firstAttribute="width" constant="120" id="QX7-an-osw"/>
+                                                        <constraint firstAttribute="trailing" secondItem="AB1-At-36S" secondAttribute="trailing" constant="5" id="TVG-vy-j5o"/>
+                                                        <constraint firstItem="d1l-yF-vBt" firstAttribute="leading" secondItem="Vg4-J9-M8u" secondAttribute="leading" id="TkS-9I-nLH"/>
+                                                        <constraint firstAttribute="height" constant="144" id="YxF-Wu-1qm"/>
+                                                        <constraint firstItem="RSI-fj-YZp" firstAttribute="leading" secondItem="Vg4-J9-M8u" secondAttribute="leading" constant="10" id="aZM-CN-nof"/>
+                                                        <constraint firstItem="AB1-At-36S" firstAttribute="leading" secondItem="Vg4-J9-M8u" secondAttribute="leading" constant="5" id="bkI-5q-eBG"/>
+                                                        <constraint firstItem="AB1-At-36S" firstAttribute="top" secondItem="Vg4-J9-M8u" secondAttribute="top" constant="4" id="gL1-zu-d6L"/>
+                                                        <constraint firstAttribute="trailing" secondItem="d1l-yF-vBt" secondAttribute="trailing" id="h0u-cO-PLc"/>
+                                                        <constraint firstItem="d1l-yF-vBt" firstAttribute="top" secondItem="AB1-At-36S" secondAttribute="bottom" id="s6F-zP-JCc"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -412,14 +417,16 @@
                                         </view>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstItem="JgA-YN-vQ5" firstAttribute="centerY" secondItem="ICi-dw-Ly0" secondAttribute="centerY" id="Ubm-nr-z8K"/>
-                                            <constraint firstItem="JgA-YN-vQ5" firstAttribute="centerX" secondItem="ICi-dw-Ly0" secondAttribute="centerX" id="sa0-6p-sES"/>
+                                            <constraint firstItem="Vg4-J9-M8u" firstAttribute="centerY" secondItem="q4l-bK-WTf" secondAttribute="centerY" id="P00-zp-UHM"/>
+                                            <constraint firstItem="Vg4-J9-M8u" firstAttribute="centerX" secondItem="q4l-bK-WTf" secondAttribute="centerX" id="U2a-NS-xmk"/>
                                         </constraints>
                                         <size key="customSize" width="125" height="150"/>
                                         <connections>
-                                            <outlet property="albumTitleLabel" destination="PsL-MZ-hMi" id="DAz-7m-arv"/>
-                                            <outlet property="artistNameLabel" destination="B3k-cU-6tK" id="iwf-z2-Cmx"/>
-                                            <outlet property="artworkImageView" destination="Vic-SU-ZSU" id="iHD-qO-qSK"/>
+                                            <outlet property="albumTitleLabel" destination="dwn-rJ-sLD" id="GsF-30-npE"/>
+                                            <outlet property="artistNameLabel" destination="oK7-NQ-yJ4" id="N50-zg-yxu"/>
+                                            <outlet property="artworkImageView" destination="AB1-At-36S" id="iY1-rI-mIE"/>
+                                            <outlet property="outerBoxView" destination="Vg4-J9-M8u" id="OXq-sD-FQa"/>
+                                            <segue destination="40u-Eh-4PS" kind="show" id="977-sS-o2u"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -738,4 +745,7 @@
             <point key="canvasLocation" x="3111" y="1021"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="JfF-0S-Xhv"/>
+    </inferredMetricsTieBreakers>
 </document>

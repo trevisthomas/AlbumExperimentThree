@@ -17,5 +17,8 @@ class SectionHeaderCell: UICollectionViewCell {
         }
     }
     
-    
+//    override func prepareForReuse(){
+//        headerLabel.hidden = true
+//        frame.size.height = 0
+//    }
 }

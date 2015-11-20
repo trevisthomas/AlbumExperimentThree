@@ -56,16 +56,31 @@ class AlbumHistoryViewController: UIViewController {
         snapshot = nil
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        
+        if sender is AlbumHistoryViewCell {
+            let cell = sender as! AlbumHistoryViewCell
+            
+            let indexPath = collectionView!.indexPathForCell(sender as! AlbumHistoryViewCell)!
+            let albumData = albums[indexPath.row] //(indexedArtistData[sections[indexPath.section]])![indexPath.row]
+            
+            let songViewController = segue.destinationViewController as! SongViewController
+            songViewController.albumData = albumData
+            
+            
+            songViewController.sourceAlbumBoxRect = cell.outerBoxView.boundsOnScreen()
+            songViewController.sourceAlbumCoverRect = cell.artworkImageView.boundsOnScreen()
+            
+        } else {
+            print(sender)
+            //Something else.  I noticed that this method gets called when this view controller is loaded too.
+        }
+    }
     
 }
 
@@ -76,7 +91,7 @@ extension AlbumHistoryViewController : UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumHistoryCell", forIndexPath: indexPath) as! AlbumHistoryViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath) as! AlbumHistoryViewCell
         
         cell.albumData = albums[indexPath.row]
         return cell

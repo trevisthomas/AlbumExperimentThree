@@ -14,6 +14,8 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if toVC is SongViewController {
             return AlbumToSongAnimator()
+        } else if fromVC is SongViewController {
+            return AlbumToSongAnimator(reverse: true)
         } else {
             return GenreToAlbumAnimatedTransitioning()
         }
