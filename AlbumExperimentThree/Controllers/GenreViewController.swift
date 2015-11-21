@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
+class GenreViewController: UIViewController, UICollectionViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var historyContainerView: UIView!
     @IBOutlet weak var historyHeightConstraint: NSLayoutConstraint!
@@ -108,11 +108,36 @@ class GenreViewController: UIViewController, UICollectionViewDataSource, UIColle
             //Something else.  I noticed that this method gets called when this view controller is loaded too.
         }
     }
-
+    
+//    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+//        if sender is UICollectionViewCell {
+//            let indexPath = collectionView.indexPathForCell(sender as! UICollectionViewCell)!
+//            
+//            let layout = collectionView.collectionViewLayout as! StretchingFocusLayout
+//            print("IP \(indexPath.item)")
+//            let offset = layout.dragOffset * CGFloat(indexPath.row)
+//            if collectionView.contentOffset.y != offset {
+//                collectionView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+//                return false;
+//            } else {
+//                //            performSegueWithIdentifier(<#T##identifier: String##String#>, sender: <#T##AnyObject?#>)
+////                navigationController?.pushViewController(AlbumViewController(), animated: true)
+//                return true;
+//            }
+//            
+//            var test = genreData[indexPath.row]
+//            print(test.title)
+//        }
+//        
+//        else {
+//            return true
+//        }
+//    }
+//    
 
 }
 
-extension GenreViewController{
+extension GenreViewController : UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -127,7 +152,17 @@ extension GenreViewController{
         cell.data = genreData[indexPath.row]
         return cell
     }
+    
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let layout = collectionView.collectionViewLayout as! StretchingFocusLayout
+        let offset = layout.dragOffset * CGFloat(indexPath.row)
+        if collectionView.contentOffset.y != offset {
+            collectionView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+        }
+    }
 }
+
 
 extension GenreViewController {
     
@@ -215,5 +250,7 @@ extension GenreViewController {
             albumHistoryViewController.endBlur(false)
         }
     }
+    
+    
 }
 
