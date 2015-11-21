@@ -91,6 +91,43 @@ class MusicLibrary {
 //        return albumCollection
 //    }
     
+    func getSongsFromAlbum(albumId : String) ->[SongData]{
+//        let albumId = albumIdString as MPMediaItemPropertyAlbumPersistentID
+        let query = MPMediaQuery.genresQuery()
+//        return []
+        let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
+        query.filterPredicates = Set(arrayLiteral: predicate)
+        query.groupingType = .AlbumArtist
+        
+        var songs : [SongData] = []
+        
+        for albumCollection in query.collections!{ //There should only be one
+            for item in albumCollection.items {
+                let song = SongData()
+                song.title = item.valueForProperty(MPMediaItemPropertyTitle) as! String
+                song.trackNumber = item.valueForProperty(MPMediaItemPropertyAlbumTrackNumber) as! Int
+                let duration = item.valueForProperty(MPMediaItemPropertyPlaybackDuration) as! Float
+                
+                song.duration = formatDuration(duration)
+//                cell.detailTextLabel?.text = "\(formatDuration(duration))"
+
+                
+                songs.append(song)
+            }
+        }
+        
+        return songs
+    }
+    
+    //TODO: Move this function somewhere.
+    private func formatDuration(duration : Float) ->String{
+        let minutes = Int(floor(duration / 60));
+        let secondsFloat = duration - Float(minutes * 60)
+        let seconds = String(format: "%02d", Int(round(secondsFloat)))
+        
+        return "\(minutes):\(seconds)"
+    }
+    
     func getGenreBundle() ->[GenreData]{
         let query = MPMediaQuery.genresQuery()
         var result = [GenreData]()
@@ -271,6 +308,9 @@ class MusicLibrary {
                 db.art = obj as! MPMediaItemArtwork
             case MPMediaItemPropertyReleaseDate:
                 db.releaseDate = obj as! NSDate
+                
+            case MPMediaItemPropertyAlbumPersistentID:
+                db.albumId = obj as! String
             default:
                 break
                 

@@ -670,12 +670,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-B3-7jY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-B3-7jY">
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Iu1-fy-HjO" userLabel="Album Art View">
-                                    <rect key="frame" x="0.0" y="44" width="600" height="348"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-YU-ofz">
@@ -711,12 +711,44 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="QvK-Et-cHE">
-                                        <rect key="frame" x="0.0" y="420" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="376" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QvK-Et-cHE" id="h3y-Vx-5xI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Iv-oI-he4">
+                                                    <rect key="frame" x="5" y="12" width="9" height="20"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyP-TA-h49">
+                                                    <rect key="frame" x="18" y="11" width="516" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIE-Uk-bKt">
+                                                    <rect key="frame" x="531" y="11" width="61" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="7Iv-oI-he4" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="4De-xp-iMR"/>
+                                                <constraint firstItem="zyP-TA-h49" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="GPA-D3-Xft"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jIE-Uk-bKt" secondAttribute="trailing" id="Umj-pW-EEU"/>
+                                                <constraint firstItem="jIE-Uk-bKt" firstAttribute="leading" secondItem="zyP-TA-h49" secondAttribute="trailing" constant="8" id="cGD-Oi-9RR"/>
+                                                <constraint firstItem="jIE-Uk-bKt" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="ddr-yK-eUX"/>
+                                                <constraint firstItem="7Iv-oI-he4" firstAttribute="trailing" secondItem="zyP-TA-h49" secondAttribute="leading" constant="-4" id="fb6-wS-ZUH"/>
+                                                <constraint firstItem="zyP-TA-h49" firstAttribute="leading" secondItem="h3y-Vx-5xI" secondAttribute="leadingMargin" constant="10" id="zJb-1J-Pjr"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -737,6 +769,8 @@
                             <constraint firstItem="N3X-B3-7jY" firstAttribute="leading" secondItem="KL1-aV-8mE" secondAttribute="leading" id="n4E-Wv-jI1"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="albumCover" destination="4BF-Rr-Mre" id="f5s-KB-vVk"/>
                         <outlet property="blurredCover" destination="nFS-YU-ofz" id="Koa-2v-JTp"/>
@@ -750,6 +784,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JfF-0S-Xhv"/>
+        <segue reference="977-sS-o2u"/>
     </inferredMetricsTieBreakers>
 </document>
