@@ -43,7 +43,7 @@ class AlbumData : CustomStringConvertible{
         return title
     }
     
-    var albumId: String!
+    var albumId: NSNumber!
     
     lazy var colorPalette : ImageColorPalette = {
         var tempPalette = ImageColorPalette(fromImage: self.albumArtWithSize(CGSize(width: 64, height: 64)))

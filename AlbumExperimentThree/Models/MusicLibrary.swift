@@ -91,7 +91,7 @@ class MusicLibrary {
 //        return albumCollection
 //    }
     
-    func getSongsFromAlbum(albumId : String) ->[SongData]{
+    func getSongsFromAlbum(albumId : NSNumber) ->[SongData]{
 //        let albumId = albumIdString as MPMediaItemPropertyAlbumPersistentID
         let query = MPMediaQuery.genresQuery()
 //        return []
@@ -280,7 +280,7 @@ class MusicLibrary {
     
     private func loadAlbumData(fromAlbum album : MPMediaItemCollection) -> AlbumData{
         let db = AlbumData()
-        let props : Set<String> = [MPMediaItemPropertyAlbumTitle ,MPMediaItemPropertyPodcastTitle, MPMediaItemPropertyAlbumArtist, MPMediaItemPropertyArtwork, MPMediaItemPropertyReleaseDate]
+        let props : Set<String> = [MPMediaItemPropertyAlbumTitle ,MPMediaItemPropertyPodcastTitle, MPMediaItemPropertyAlbumArtist, MPMediaItemPropertyArtwork, MPMediaItemPropertyReleaseDate, MPMediaItemPropertyAlbumPersistentID]
         
         let item = album.representativeItem!
         db.trackCount = album.count
@@ -310,7 +310,7 @@ class MusicLibrary {
                 db.releaseDate = obj as! NSDate
                 
             case MPMediaItemPropertyAlbumPersistentID:
-                db.albumId = obj as! String
+                db.albumId = obj as! NSNumber
             default:
                 break
                 

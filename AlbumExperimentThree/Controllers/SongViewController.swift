@@ -14,7 +14,8 @@ class SongViewController: UIViewController {
     @IBOutlet weak var blurredCover: UIImageView!
     @IBOutlet weak var songTableView: UITableView!
     @IBOutlet weak var headerAlbumArtView: UIView!
-    
+
+    var songs : [SongData]!
     var headerBlurOverlay : UIImageView!
 //    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
 //    var colorPalette : ImageColorPalette!
@@ -32,7 +33,7 @@ class SongViewController: UIViewController {
     
     var albumData : AlbumData! {
         didSet {
-            
+            songs = MusicLibrary.instance.getSongsFromAlbum(albumData.albumId)
         }
     }
     
@@ -44,8 +45,10 @@ class SongViewController: UIViewController {
         super.viewDidLoad()
         initViewComponents()
 
+
         // Do any additional setup after loading the view.
     }
+    
     
     private func initViewComponents(){
         
@@ -61,6 +64,7 @@ class SongViewController: UIViewController {
         view.backgroundColor = colorPalette.backgroundColor
         blurredCover.backgroundColor = colorPalette.backgroundColor
 
+        songTableView.separatorColor = colorPalette.secondaryTextColor
         
         //Blur
         //Create a small image so that the blur is fast
@@ -105,7 +109,7 @@ class SongViewController: UIViewController {
         songTableView.tableHeaderView = nil
         songTableView.addSubview(headerAlbumArtView)
         
-        songTableView.contentInset = UIEdgeInsets(top: -64 + headerAlbumArtViewHeight, left: 0, bottom: 0, right: 0)
+        songTableView.contentInset = UIEdgeInsets(top: -64 + headerAlbumArtViewHeight, left: 0, bottom: songTableView.frame.size.height, right: 0)
         songTableView.contentOffset = CGPoint(x: 0, y: -headerAlbumArtViewHeight)
         
         updateHeaderView()
@@ -131,12 +135,15 @@ class SongViewController: UIViewController {
 
 extension SongViewController : UITableViewDataSource{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       // albumData.
-        return 100
+        return songs.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath) as! SongTableViewCell
+        
+        let songData = songs[indexPath.row]
+        cell.songData = songData
+        cell.albumData = albumData
         return cell
     }
 }

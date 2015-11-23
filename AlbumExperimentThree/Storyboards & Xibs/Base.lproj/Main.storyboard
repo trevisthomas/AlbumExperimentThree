@@ -710,7 +710,7 @@
                                     </variation>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="QvK-Et-cHE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="QvK-Et-cHE" customClass="SongTableViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="376" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QvK-Et-cHE" id="h3y-Vx-5xI">
@@ -718,21 +718,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Iv-oI-he4">
-                                                    <rect key="frame" x="5" y="12" width="9" height="20"/>
+                                                    <rect key="frame" x="11" y="12" width="9" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyP-TA-h49">
-                                                    <rect key="frame" x="18" y="11" width="516" height="21"/>
+                                                    <rect key="frame" x="26" y="11" width="504" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIE-Uk-bKt">
-                                                    <rect key="frame" x="531" y="11" width="61" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIE-Uk-bKt">
+                                                    <rect key="frame" x="538" y="12" width="50" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="PingFangHK-Light" family="PingFang HK" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -743,15 +743,20 @@
                                             <constraints>
                                                 <constraint firstItem="7Iv-oI-he4" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="4De-xp-iMR"/>
                                                 <constraint firstItem="zyP-TA-h49" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="GPA-D3-Xft"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jIE-Uk-bKt" secondAttribute="trailing" id="Umj-pW-EEU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jIE-Uk-bKt" secondAttribute="trailing" constant="4" id="Umj-pW-EEU"/>
                                                 <constraint firstItem="jIE-Uk-bKt" firstAttribute="leading" secondItem="zyP-TA-h49" secondAttribute="trailing" constant="8" id="cGD-Oi-9RR"/>
                                                 <constraint firstItem="jIE-Uk-bKt" firstAttribute="centerY" secondItem="h3y-Vx-5xI" secondAttribute="centerY" id="ddr-yK-eUX"/>
-                                                <constraint firstItem="7Iv-oI-he4" firstAttribute="trailing" secondItem="zyP-TA-h49" secondAttribute="leading" constant="-4" id="fb6-wS-ZUH"/>
-                                                <constraint firstItem="zyP-TA-h49" firstAttribute="leading" secondItem="h3y-Vx-5xI" secondAttribute="leadingMargin" constant="10" id="zJb-1J-Pjr"/>
+                                                <constraint firstItem="7Iv-oI-he4" firstAttribute="trailing" secondItem="zyP-TA-h49" secondAttribute="leading" constant="-6" id="fb6-wS-ZUH"/>
+                                                <constraint firstItem="zyP-TA-h49" firstAttribute="leading" secondItem="h3y-Vx-5xI" secondAttribute="leadingMargin" constant="18" id="zJb-1J-Pjr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="duration" destination="jIE-Uk-bKt" id="ggq-GZ-JZW"/>
+                                            <outlet property="trackNumber" destination="7Iv-oI-he4" id="Ve9-QG-j5S"/>
+                                            <outlet property="trackTitle" destination="zyP-TA-h49" id="sAG-y2-i5Z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
