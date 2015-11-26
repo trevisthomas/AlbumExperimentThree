@@ -19,4 +19,14 @@ extension Array{
         }
         return elements
     }
+    
+    func find(includedElement: Element -> Bool) -> Int? {
+        for (idx, element) in enumerate() {
+            if includedElement(element) {
+                return idx
+            }
+        }
+        return nil
+    }
+  
 }

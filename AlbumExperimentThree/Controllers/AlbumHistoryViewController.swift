@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class AlbumHistoryViewController: UIViewController {
     var albums : [AlbumData]!
@@ -15,13 +16,18 @@ class AlbumHistoryViewController: UIViewController {
     @IBOutlet weak var overlayTint: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    var mediaPlayerController : MPMusicPlayerController!
     
     var snapshot : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
+        mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+        
+        registerMediaPlayerNotifications()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +88,19 @@ class AlbumHistoryViewController: UIViewController {
         }
     }
     
+    func registerMediaPlayerNotifications() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+        
+        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+        
+        
+        //Trevis, you may want to unregister at some point?
+        mediaPlayerController.beginGeneratingPlaybackNotifications()
+        
+    }
+
+    
 }
 
 extension AlbumHistoryViewController : UICollectionViewDataSource {
@@ -126,4 +145,40 @@ extension AlbumHistoryViewController : UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
        // print("Offset \(scrollView.contentOffset.y)")
     }
+}
+
+extension AlbumHistoryViewController {
+    func handleNowPlaingItemChanged(notification: NSNotification){
+//        print("handleNowPlaingItemChanged")
+        let mediaItem =  mediaPlayerController.nowPlayingItem
+        
+        let albumId = mediaItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
+        
+        let album = MusicLibrary.instance.queryAlbumByPersistenceID(albumId)
+        
+        removeAlbumIfExists(album)
+        
+        if albums.first?.albumId != album.albumId {
+            //The first album needs to be changed.
+            albums.insert(album, atIndex: 0)
+            collectionView.reloadData()
+        }
+        
+        print("\(album)")
+    }
+    
+    func removeAlbumIfExists(albumToRemove : AlbumData){
+        let ndx = albums.find {
+            $0.albumId == albumToRemove.albumId
+        }
+        
+        if ndx != nil && ndx > 0{
+            albums.removeAtIndex(ndx!)
+        }
+    }
+    
+    func handlePlaybackStateChanged(notification: NSNotification){
+        print("handlePlaybackStateChanged")
+    }
+    
 }

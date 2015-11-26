@@ -349,6 +349,12 @@ class MusicLibrary {
         return queryAlbumsByPersistenceIDs(albumIds)
     }
     
+    //This hack was added initally for AlbumHistoryView
+    func queryAlbumByPersistenceID(albumId : NSNumber) -> AlbumData {
+        return queryAlbumsByPersistenceIDs([albumId]) [0]
+    }
+    
+    
     private func queryAlbumsByPersistenceIDs(albumIds: [NSNumber]) ->[AlbumData] {
         var albums : [AlbumData] = []
         let query = MPMediaQuery.genresQuery()

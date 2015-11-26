@@ -24,6 +24,8 @@ class NowPlayingViewController: UIViewController {
     
     private let dragTranslationThreshold : CGFloat = 100.0
     
+//    var audioPlayer : AVAudioPlayer
+    
     var mediaPlayerController : MPMusicPlayerController!
     
     
@@ -46,12 +48,17 @@ class NowPlayingViewController: UIViewController {
         super.viewDidLoad()
         
         mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+        
+        registerMediaPlayerNotifications()
+        
         dragFromY = self.view.frame.origin.y// This saves me from a weird nil error.  
         
         let nowPlayingItem = mediaPlayerController.nowPlayingItem
         loadMediaItemData(nowPlayingItem)
         
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
+        
+        
         
         
         //Blur
@@ -86,6 +93,10 @@ class NowPlayingViewController: UIViewController {
 //        blurView.frame = fullView.frame
         
     }
+    
+//    override func viewDidUnload() {
+//        unregisterMediaPlayerNotifications()
+//    }
     
     func loadMediaItemData(nowPlayingItem : MPMediaItem?){
         if nowPlayingItem == nil{
@@ -182,5 +193,42 @@ class NowPlayingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func registerMediaPlayerNotifications() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+        
+        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+        
+        notificationCenter.addObserver(self, selector: "handleVolumeChanged:", name: MPMusicPlayerControllerVolumeDidChangeNotification, object: mediaPlayerController)
+        
+        //Trevis, you may want to unregister at some point?
+        mediaPlayerController.beginGeneratingPlaybackNotifications()
+        
+    }
 
+    
+    //Trevis, when to call this?
+    func unregisterMediaPlayerNotifications(){
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        
+        mediaPlayerController.endGeneratingPlaybackNotifications()
+        notificationCenter.removeObserver(self)
+        
+
+    }
+}
+
+extension NowPlayingViewController {
+    func handleNowPlaingItemChanged(notification: NSNotification){
+        let nowPlayingItem = mediaPlayerController.nowPlayingItem
+        loadMediaItemData(nowPlayingItem)
+        
+    }
+    func handlePlaybackStateChanged(notification: NSNotification){
+        print("handlePlaybackStateChanged")
+    }
+    func handleVolumeChanged(notification: NSNotification){
+        print("handleVolumeChanged")
+    }
 }
