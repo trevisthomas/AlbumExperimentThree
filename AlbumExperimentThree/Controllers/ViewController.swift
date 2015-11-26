@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         
         nowPlaying.adjustToFrame(self.view.frame)
         
-        print("Width \(view.frame.width)")
+//        print("Width \(view.frame.width)")
         
         
 //I was playing with that blur tutorial but you cant put a scrollview over a collection view and expect to interact with it.

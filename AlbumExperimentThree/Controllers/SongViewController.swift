@@ -14,9 +14,19 @@ class SongViewController: UIViewController {
     @IBOutlet weak var blurredCover: UIImageView!
     @IBOutlet weak var songTableView: UITableView!
     @IBOutlet weak var headerAlbumArtView: UIView!
+    @IBOutlet weak var tableFooterView: UIView!
 
+    @IBOutlet weak var innerFooterView: UIView!
+    @IBOutlet weak var innerFooterHeightConstraint: NSLayoutConstraint!
+    
     var songs : [SongData]!
     var headerBlurOverlay : UIImageView!
+    
+    
+    let nowPlayingMiniViewHeight : CGFloat = 64 //It'd be nice to be able to share this value, but it's defined in a IB constraint on the NowPlayingVC's nib.
+//    var footerHeight : CGFloat!
+
+    
 //    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
 //    var colorPalette : ImageColorPalette!
     
@@ -105,14 +115,33 @@ class SongViewController: UIViewController {
         //Not sure why i couldnt set this inset in IB, it would work there.
 //        songTableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0)
         
+        
+        
+        determineFooterHeight() // This must be done before removing and re-adding that header or it doesnt work right!
+        
         //This remove readd hack is for stretching
         songTableView.tableHeaderView = nil
         songTableView.addSubview(headerAlbumArtView)
         
-        songTableView.contentInset = UIEdgeInsets(top: -64 + headerAlbumArtViewHeight, left: 0, bottom: songTableView.frame.size.height, right: 0)
+    
+        songTableView.contentInset = UIEdgeInsets(top: -64 + headerAlbumArtViewHeight, left: 0, bottom: 0, right: 0)
         songTableView.contentOffset = CGPoint(x: 0, y: -headerAlbumArtViewHeight)
         
         updateHeaderView()
+    }
+    
+    private func determineFooterHeight(){
+        let tableCellHeight = 44 //This is a bit of a magic number.  Kind of the default height, i'm not actually controlling it at this point.
+        
+        let tableHeight : CGFloat = songTableView.frame.height
+        
+        let totallHeightAllCells = CGFloat(songs.count * tableCellHeight)
+        
+        var footerHeight : CGFloat = nowPlayingMiniViewHeight
+        if  totallHeightAllCells < tableHeight {
+            footerHeight = (tableHeight - totallHeightAllCells) + nowPlayingMiniViewHeight
+        }
+        tableFooterView.frame.size.height = footerHeight + 44 // This bonus 44px is so that it scroll 44 more pix up to compensate for the height of the title bar which hasnt finished it's animation until it goes this extra 44px off screnen.
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,7 +164,10 @@ class SongViewController: UIViewController {
 
 extension SongViewController : UITableViewDataSource{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return songs.count
+        
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -146,13 +178,24 @@ extension SongViewController : UITableViewDataSource{
         cell.albumData = albumData
         return cell
     }
+    
+//    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        
+//        if footerHeight == nil {
+//            determineFooterHeight()
+//        }
+//        return footerHeight
+//    }
 }
 
 extension SongViewController : UITableViewDelegate {
+
     
 }
 
 extension SongViewController : UIScrollViewDelegate {
+    
+    
 //    func scrollViewDidScroll(scrollView: UIScrollView) {
 //        
 //        let yOffset = songTableView.contentOffset.y
@@ -219,11 +262,11 @@ extension SongViewController : UIScrollViewDelegate {
     func updateHeaderView(){
         var headerRect = CGRect(x: 0, y: -headerAlbumArtViewHeight, width: songTableView.bounds.width, height: headerAlbumArtViewHeight)
         
-        print("offset \(songTableView.contentOffset.y) compare \(-headerAlbumArtViewHeight)")
+//        print("offset \(songTableView.contentOffset.y) compare \(-headerAlbumArtViewHeight)")
         if songTableView.contentOffset.y < -headerAlbumArtViewHeight {
             headerRect.origin.y = songTableView.contentOffset.y
             headerRect.size.height = -songTableView.contentOffset.y
-            print(headerRect)
+//            print(headerRect)
         }
         headerAlbumArtView.frame = headerRect
         

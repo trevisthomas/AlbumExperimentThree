@@ -709,6 +709,12 @@
                                         </mask>
                                     </variation>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="jWL-Z4-76d">
+                                    <rect key="frame" x="0.0" y="420" width="600" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="QvK-Et-cHE" customClass="SongTableViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="376" width="600" height="44"/>
@@ -781,6 +787,7 @@
                         <outlet property="blurredCover" destination="nFS-YU-ofz" id="Koa-2v-JTp"/>
                         <outlet property="headerAlbumArtView" destination="Iu1-fy-HjO" id="hFO-6T-z9i"/>
                         <outlet property="songTableView" destination="N3X-B3-7jY" id="zcy-OK-w8E"/>
+                        <outlet property="tableFooterView" destination="jWL-Z4-76d" id="Abj-1a-AsK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wX-Pk-xZs" userLabel="First Responder" sceneMemberID="firstResponder"/>
