@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class AlbumHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var artworkImageView: UIImageView!
@@ -25,5 +26,13 @@ class AlbumHistoryViewCell: UICollectionViewCell {
         }
     }
     
+    @IBAction func playPauseAction(sender: OverlayPlayPauseButton) {
+//        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+//        
+//        let collection = MusicLibrary.instance.getMediaItemCollectionForAlbum(albumData.albumId)
+//        mediaPlayerController.setQueueWithItemCollection(<#T##itemCollection: MPMediaItemCollection##MPMediaItemCollection#>)
+        
+        MusicLibrary.instance.playAlbum(albumData.albumId)
+    }
     
 }

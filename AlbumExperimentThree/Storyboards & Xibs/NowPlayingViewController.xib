@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="miniNextButton" destination="oVh-fB-CEW" id="VQe-Bl-oct"/>
                 <outlet property="miniPlayPauseButton" destination="XKr-4J-zuf" id="Brj-y3-hd1"/>
-                <outlet property="miniPreviousButton" destination="4V6-z6-bct" id="hcV-aC-W12"/>
+                <outlet property="miniPreviousButton" destination="4V6-z6-bct" id="kbW-Vm-jBw"/>
                 <outlet property="miniView" destination="e3C-Oi-ChQ" id="Gc1-5A-AmI"/>
                 <outlet property="miniViewDetailLabel" destination="3tW-Et-yjd" id="89e-8x-lYw"/>
                 <outlet property="miniViewHeightConstraint" destination="eOy-IO-HpJ" id="FgC-jS-Mn3"/>
@@ -76,6 +76,9 @@
                                                     <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="previousButtonAction:" destination="-1" eventType="touchUpInside" id="u9I-Ci-DAf"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKr-4J-zuf" customClass="PlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
                                             <rect key="frame" x="48" y="0.0" width="48" height="48"/>
@@ -96,6 +99,9 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="playPauseButtonAction:" destination="-1" eventType="touchUpInside" id="R4D-QC-HR5"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVh-fB-CEW" customClass="NextPreviousButton" customModule="AlbumExperimentThree" customModuleProvider="target">
                                             <rect key="frame" x="96" y="0.0" width="48" height="48"/>
@@ -115,6 +121,9 @@
                                                     <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="nextButtonAction:" destination="-1" eventType="touchUpInside" id="D1a-if-Xih"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <animations/>

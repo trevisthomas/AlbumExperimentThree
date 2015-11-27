@@ -102,12 +102,12 @@ class NowPlayingViewController: UIViewController {
     func detectPan(recognizer : UIPanGestureRecognizer){
         let translation = recognizer.translationInView(self.view.superview)
         
-        print(translation.y)
+//        print(translation.y)
         
         if recognizer.state == UIGestureRecognizerState.Began {
 //            print("Begin: \(self.view.frame.origin.y)")
             draggingFromMini = originMini == self.view.frame.origin.y
-            print("Dragging from mini \(draggingFromMini)")
+//            print("Dragging from mini \(draggingFromMini)")
         }
         
         if recognizer.state == UIGestureRecognizerState.Ended {
@@ -201,6 +201,33 @@ class NowPlayingViewController: UIViewController {
         print(String.convertSecondsToHHMMSS(currentPlaybackTime))
         
         progresBarView.progress = currentPlaybackTime
+    }
+    
+    
+    @IBAction func nextButtonAction(sender: UIButton) {
+        mediaPlayerController.skipToNextItem()
+    }
+    
+    @IBAction func playPauseButtonAction(sender: UIButton) {
+//        if sender is PlayPauseButton {
+//            let isPlaying = (sender as! PlayPauseButton).isPlaying
+//            
+//            if isPlaying {
+//                mediaPlayerController.pause()
+//            } else {
+//                mediaPlayerController.play()
+//            }
+//        }
+        
+        if mediaPlayerController.playbackState == .Playing {
+            mediaPlayerController.pause()
+        } else {
+            mediaPlayerController.play()
+        }
+    }
+    
+    @IBAction func previousButtonAction(sender: UIButton) {
+        mediaPlayerController.skipToPreviousItem()
     }
 }
 

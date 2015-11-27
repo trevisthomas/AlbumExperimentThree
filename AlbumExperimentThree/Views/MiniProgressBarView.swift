@@ -18,7 +18,7 @@ class MiniProgressBarView: UIView {
     @IBInspectable var barHeight : CGFloat = 1.5
     
     private var position : CGFloat = 0
-    var multiplier : CGFloat!
+    var multiplier : CGFloat = 0
     
     var duration : Double! {
         didSet{

@@ -371,6 +371,30 @@ class MusicLibrary {
         return albums
     }
     
+//    func getMediaItemCollectionForAlbum(albumId : NSNumber) -> MPMediaItemCollection{
+//        let query = MPMediaQuery.genresQuery()
+//        query.groupingType = .Album
+//        
+//        let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
+//        query.filterPredicates = Set(arrayLiteral: predicate)
+//        return query.collections![0]
+//    }
+
+    
+    func playAlbum(albumId : NSNumber) {
+        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+        
+        let query = MPMediaQuery.genresQuery()
+        query.groupingType = .Album
+        
+        let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
+        query.filterPredicates = Set(arrayLiteral: predicate)
+        
+        mediaPlayerController.setQueueWithQuery(query)
+        mediaPlayerController.play()
+
+    }
+    
     //Cool debug method for printing out the timing of a method. Found on stack over flow, modified to wrap method with return value
     static func printTimeElapsedWhenRunningCode(title:String, operation:()->(AnyObject))->AnyObject {
         let startTime = CFAbsoluteTimeGetCurrent()
