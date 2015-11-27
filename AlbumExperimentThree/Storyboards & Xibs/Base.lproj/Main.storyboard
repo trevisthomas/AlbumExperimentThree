@@ -429,6 +429,7 @@
                                             <outlet property="artistNameLabel" destination="oK7-NQ-yJ4" id="N50-zg-yxu"/>
                                             <outlet property="artworkImageView" destination="AB1-At-36S" id="iY1-rI-mIE"/>
                                             <outlet property="outerBoxView" destination="Vg4-J9-M8u" id="OXq-sD-FQa"/>
+                                            <outlet property="playPauseButton" destination="RSI-fj-YZp" id="5Eo-Bs-K98"/>
                                             <segue destination="40u-Eh-4PS" kind="show" id="977-sS-o2u"/>
                                         </connections>
                                     </collectionViewCell>
@@ -591,6 +592,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="playPauseAction:" destination="phy-zk-qi4" eventType="touchUpInside" id="IfY-po-Wgd"/>
@@ -627,6 +629,7 @@
                                     <outlet property="artistNameLabel" destination="ILy-RM-hxV" id="L7f-fr-BXf"/>
                                     <outlet property="artworkImageView" destination="EML-Lg-9CR" id="1Sn-qB-BBd"/>
                                     <outlet property="outerBoxView" destination="cSr-JG-JNp" id="6KI-jw-KWy"/>
+                                    <outlet property="playPauseButton" destination="bvd-nL-cZN" id="Pv4-GL-4xh"/>
                                     <segue destination="40u-Eh-4PS" kind="show" id="JfF-0S-Xhv"/>
                                 </connections>
                             </collectionViewCell>
@@ -676,12 +679,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-B3-7jY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N3X-B3-7jY">
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Iu1-fy-HjO" userLabel="Album Art View">
-                                    <rect key="frame" x="0.0" y="44" width="600" height="348"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="348"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFS-YU-ofz">
@@ -716,14 +719,14 @@
                                     </variation>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="jWL-Z4-76d">
-                                    <rect key="frame" x="0.0" y="464" width="600" height="10"/>
+                                    <rect key="frame" x="0.0" y="420" width="600" height="10"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongCell" id="QvK-Et-cHE" customClass="SongTableViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="420" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="376" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QvK-Et-cHE" id="h3y-Vx-5xI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -802,6 +805,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JfF-0S-Xhv"/>
+        <segue reference="977-sS-o2u"/>
     </inferredMetricsTieBreakers>
 </document>

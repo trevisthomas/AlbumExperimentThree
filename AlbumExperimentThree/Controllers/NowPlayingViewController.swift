@@ -198,7 +198,7 @@ class NowPlayingViewController: UIViewController {
     func onTimer( timer : NSTimer) {
         let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
         
-        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
+//        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
         
         progresBarView.progress = currentPlaybackTime
     }
@@ -209,16 +209,6 @@ class NowPlayingViewController: UIViewController {
     }
     
     @IBAction func playPauseButtonAction(sender: UIButton) {
-//        if sender is PlayPauseButton {
-//            let isPlaying = (sender as! PlayPauseButton).isPlaying
-//            
-//            if isPlaying {
-//                mediaPlayerController.pause()
-//            } else {
-//                mediaPlayerController.play()
-//            }
-//        }
-        
         if mediaPlayerController.playbackState == .Playing {
             mediaPlayerController.pause()
         } else {

@@ -17,6 +17,11 @@ class OverlayPlayPauseButton: UIButton {
     @IBInspectable var color : UIColor = UIColor.whiteColor()
     @IBInspectable var alphaOfTransparentArea : CGFloat = 0.6
     @IBInspectable var innerPadding : CGFloat = 4 //This inner padding is to make the triangle smaller than the inside of the circle.  Be careful chaning this.  If it's smaller than half of the radius bad things will happen
+    @IBInspectable var isPlaying : Bool = false {
+        didSet{
+            setNeedsDisplay()
+        }
+    }
     
     override func drawRect(rect: CGRect) {
         // Drawing code
@@ -47,20 +52,36 @@ class OverlayPlayPauseButton: UIButton {
         //Save the context again so that it is restorable
         CGContextSaveGState(context)
         
+        if isPlaying {
+            let barWidth = lineWidth
+            let insetInterior = topInset + 0.25 * radius
+            
+            let leftRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) - 2 * barWidth , y: insetInterior, width: barWidth, height: rect.height - (2 * insetInterior)))
+            
+            let rightRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) + barWidth, y: insetInterior, width: barWidth, height: rect.height - (2 * insetInterior)))
+            
+            color.setFill()
+            leftRectPath.fill()
+            rightRectPath.fill()
+            
+        } else {
         //Triangle
-        let triPath = UIBezierPath()
-        //Calculate the edge of the largest square that fits inside of the inner circle
-        let innerRadius = (radius - 2 * lineWidth) - innerPadding
-        let edge = sqrt((pow(innerRadius, 2.0)) / 2.0)
-        triPath.moveToPoint(CGPoint(x: -edge/2, y: -edge/2))
-        triPath.addLineToPoint(CGPoint(x: edge/2, y: 0))
-        triPath.addLineToPoint(CGPoint(x: -edge/2, y: edge/2))
-        triPath.closePath()
-        color.setFill()
+            let triPath = UIBezierPath()
+            //Calculate the edge of the largest square that fits inside of the inner circle
+            let innerRadius = (radius - 2 * lineWidth) - innerPadding
+            let edge = sqrt((pow(innerRadius, 2.0)) / 2.0)
+            triPath.moveToPoint(CGPoint(x: -edge/2, y: -edge/2))
+            triPath.addLineToPoint(CGPoint(x: edge/2, y: 0))
+            triPath.addLineToPoint(CGPoint(x: -edge/2, y: edge/2))
+            triPath.closePath()
+            color.setFill()
+            
+            //Move it into position
+            CGContextTranslateCTM(context, leftInset + ((radius+lineWidth)/2), topInset + ((radius+lineWidth)/2))
+            triPath.fill()
+        }
         
-        //Move it into position
-        CGContextTranslateCTM(context, leftInset + ((radius+lineWidth)/2), topInset + ((radius+lineWidth)/2))
-        triPath.fill()
+        
         CGContextRestoreGState(context)
 
     }
