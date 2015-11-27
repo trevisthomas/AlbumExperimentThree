@@ -33,7 +33,17 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     }
     
     @IBAction func playPauseAction(sender: OverlayPlayPauseButton) {
-        MusicLibrary.instance.playAlbum(albumData.albumId)
+        if isMyAlbumPlaying() {
+            if mediaPlayerController.playbackState == .Playing{
+                mediaPlayerController.pause()
+            } else {
+                mediaPlayerController.play()
+            }
+        } else {
+            MusicLibrary.instance.playAlbum(albumData.albumId)
+        }
+        
+        
     }
     
     override init(frame: CGRect) {
@@ -46,7 +56,6 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     }
     
     func registerMediaPlayerNotifications() {
-//        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
         
@@ -56,6 +65,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
         
         //Trevis, you may want to unregister at some point?
         mediaPlayerController.beginGeneratingPlaybackNotifications()
+        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
     }
     
     
@@ -70,54 +80,25 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     }
     
     func onTimer( timer : NSTimer) {
-        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
-        let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
-        
-        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
-        
-
+        if isMyAlbumPlaying() {
+            let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
+            
+            print(String.convertSecondsToHHMMSS(currentPlaybackTime))
+        }
     }
     
 }
 
 extension AlbumHistoryViewCell {
     func handleNowPlaingItemChanged(notification: NSNotification){
-//        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
-//        let nowPlayingItem = mediaPlayerController.nowPlayingItem
-//        
-//        //Am I playing!?
-//        if let nowPlayingAlbumId = nowPlayingItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber{
-//            if albumData.albumId == nowPlayingAlbumId {
-//                playPauseButton.isPlaying = true
-//            } else {
-//                playPauseButton.isPlaying = false
-//            }
-//        } else {
-//            playPauseButton.isPlaying = false
-//        }
-//        
-//        if playPauseButton.isPlaying {
-//            //I am playing, set the timer!
-//        }
-        
-        if playPauseButton == nil {
-            return
-        }
-        
         if isMyAlbumPlaying() {
             playPauseButton.isPlaying = true
-//            currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
         } else {
             playPauseButton.isPlaying = false
-//            currentTimer.invalidate()
-//            currentTimer = nil
         }
-
     }
     func handlePlaybackStateChanged(notification: NSNotification){
         updatePlayState()
-        
-
     }
     
     func isMyAlbumPlaying() -> Bool{
@@ -133,10 +114,6 @@ extension AlbumHistoryViewCell {
     }
     
     func updatePlayState(){
-        if playPauseButton == nil {
-            return
-        }
-        
         if isMyAlbumPlaying() {
             playPauseButton.isPlaying = true
             
@@ -155,7 +132,6 @@ extension AlbumHistoryViewCell {
             
         } else {
             playPauseButton.isPlaying = false
-            //destroy the timer
         }
     }
 }
