@@ -36,4 +36,11 @@ extension String {
         }
         return str
     }
+    
+    static func convertSecondsToHHMMSS( timeInSeconds : Double) -> String{
+        let currentHours = Int(timeInSeconds / 3600);
+        let currentMinutes = Int((timeInSeconds / 60) - Double(currentHours)*60);
+        let currentSeconds = Int(timeInSeconds % 60);
+        return String(format:"%i:%02d:%02d", currentHours, currentMinutes, currentSeconds)
+    }
 }

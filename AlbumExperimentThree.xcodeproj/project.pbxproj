@@ -36,6 +36,7 @@
 		0F60C01A1BFEF05C00C4166F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */; };
 		0F60C01C1C01185200C4166F /* SongData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C01B1C01185200C4166F /* SongData.swift */; };
 		0F60C01E1C026B6500C4166F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C01D1C026B6500C4166F /* SongTableViewCell.swift */; };
+		0F60C0221C07D44400C4166F /* MiniProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F60C0211C07D44400C4166F /* MiniProgressBarView.swift */; };
 		0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */; };
 		0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */; };
 		0F7054BE1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7054BD1BE2C1B8003FA9F1 /* AlbumHistoryViewCell.swift */; };
@@ -99,6 +100,7 @@
 		0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		0F60C01B1C01185200C4166F /* SongData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongData.swift; sourceTree = "<group>"; };
 		0F60C01D1C026B6500C4166F /* SongTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		0F60C0211C07D44400C4166F /* MiniProgressBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniProgressBarView.swift; sourceTree = "<group>"; };
 		0F7054B41BE26A61003FA9F1 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		0F7054B61BE27321003FA9F1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		0F7054B71BE27A27003FA9F1 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				0F57C7D81BEAD1F200B32570 /* NextPreviousButton.swift */,
 				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
 				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
+				0F60C0211C07D44400C4166F /* MiniProgressBarView.swift */,
 			);
 			name = CoreGraphics;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */,
 				0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */,
 				0F60C0001BF9178500C4166F /* UIImage+VignetteMask.swift in Sources */,
+				0F60C0221C07D44400C4166F /* MiniProgressBarView.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
 				0F51DC581BF29E4B0073B635 /* UIImage+PRBoxBlur.m in Sources */,
 				0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */,

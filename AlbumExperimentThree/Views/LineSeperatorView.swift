@@ -15,15 +15,24 @@ class LineSeperatorView: UIView {
     @IBInspectable var startInset : CGFloat = 5
     @IBInspectable var endInset : CGFloat = 5
     @IBInspectable var strokeThickness : CGFloat = 0.5
-    @IBInspectable var bottomInset : CGFloat = 5.0
+    @IBInspectable var topBottomInset : CGFloat = 5.0
+    @IBInspectable var topEdge : Bool = false
     
 
     override func drawRect(rect: CGRect) {
         if startInset + endInset >= rect.width {
             return
         }
-
-        let linePath = UIBezierPath(rect: CGRect(x: startInset, y: rect.height - bottomInset - strokeThickness, width: rect.width - startInset - endInset, height: strokeThickness))
+        
+        var y : CGFloat!
+        
+        if topEdge {
+            y = topBottomInset
+        } else {
+            y = rect.height - topBottomInset - strokeThickness
+        }
+        
+        let linePath = UIBezierPath(rect: CGRect(x: startInset, y: y, width: rect.width - startInset - endInset, height: strokeThickness))
         lineColor.setFill()
         linePath.fill()
     }

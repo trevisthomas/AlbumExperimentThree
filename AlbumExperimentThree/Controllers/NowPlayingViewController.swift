@@ -15,14 +15,19 @@ class NowPlayingViewController: UIViewController {
     var dragFromY : CGFloat!
     var draggingFromMini = true
     
+    @IBOutlet weak var progresBarView: MiniProgressBarView!
     @IBOutlet weak var fullView: UIView!
     @IBOutlet weak var miniView: UIView!
     @IBOutlet weak var miniViewTitleLabel: UILabel!
     @IBOutlet weak var miniViewDetailLabel: UILabel!
+    @IBOutlet weak var miniPlayPauseButton: PlayPauseButton!
+    @IBOutlet weak var miniNextButton: NextPreviousButton!
+    @IBOutlet weak var miniPreviousButton: NextPreviousButton!
     
     @IBOutlet weak var miniViewHeightConstraint: NSLayoutConstraint!
     
     private let dragTranslationThreshold : CGFloat = 100.0
+    private var currentTimer : NSTimer!
     
 //    var audioPlayer : AVAudioPlayer
     
@@ -58,39 +63,9 @@ class NowPlayingViewController: UIViewController {
         
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
         
+     
         
-        
-        
-        //Blur
-
-//        let blurEffect = UIBlurEffect(style: .Light)
-//        let blurView = UIVisualEffectView(effect: blurEffect)
-//        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        view.insertSubview(blurView, atIndex: 0)
-        
-//        constraints.append(NSLayoutConstraint(item: blurView,
-//            attribute: .Height, relatedBy: .Equal, toItem: view,
-//            attribute: .Height, multiplier: 1, constant: 0))
-//        constraints.append(NSLayoutConstraint(item: blurView,
-//            attribute: .Width, relatedBy: .Equal, toItem: view,
-//            attribute: .Width, multiplier: 1, constant: 0))
-//        
-//        var constraints = [NSLayoutConstraint]()
-//        
-//        constraints.append(NSLayoutConstraint(item: view, attribute: .CenterX, relatedBy: .Equal,
-//            toItem: optionsView, attribute: .CenterX, multiplier: 1, constant: 0))
-//        
-//        constraints.append(NSLayoutConstraint(item: view, attribute: .CenterY, relatedBy: .Equal,
-//            toItem: optionsView, attribute: .CenterY, multiplier: 1, constant: 0))
-//        
-//        constraints.append(NSLayoutConstraint(item: blurView,
-//            attribute: .Height, relatedBy: .Equal, toItem: view,
-//            attribute: .Height, multiplier: 1, constant: 0))
-//        constraints.append(NSLayoutConstraint(item: blurView,
-//            attribute: .Width, relatedBy: .Equal, toItem: view,
-//            attribute: .Width, multiplier: 1, constant: 0))
-
-//        blurView.frame = fullView.frame
+     
         
     }
     
@@ -205,6 +180,10 @@ class NowPlayingViewController: UIViewController {
         //Trevis, you may want to unregister at some point?
         mediaPlayerController.beginGeneratingPlaybackNotifications()
         
+        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
+        
+
+        
     }
 
     
@@ -214,8 +193,14 @@ class NowPlayingViewController: UIViewController {
         
         mediaPlayerController.endGeneratingPlaybackNotifications()
         notificationCenter.removeObserver(self)
+    }
+    
+    func onTimer( timer : NSTimer) {
+        let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
         
-
+        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
+        
+        progresBarView.progress = currentPlaybackTime
     }
 }
 
@@ -224,9 +209,29 @@ extension NowPlayingViewController {
         let nowPlayingItem = mediaPlayerController.nowPlayingItem
         loadMediaItemData(nowPlayingItem)
         
+        progresBarView.duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
+        
+        
     }
     func handlePlaybackStateChanged(notification: NSNotification){
         print("handlePlaybackStateChanged")
+        
+        let state = mediaPlayerController.playbackState
+        
+        switch state {
+            case .Playing:
+                miniPlayPauseButton.isPlaying = true
+                
+            case .Paused:
+                miniPlayPauseButton.isPlaying = false
+            
+            case .Stopped:
+                miniPlayPauseButton.isPlaying = false
+                mediaPlayerController.stop() //Saw this in an example.  Not sure why this would be needed though.
+            
+            default: break
+            
+        }
     }
     func handleVolumeChanged(notification: NSNotification){
         print("handleVolumeChanged")
