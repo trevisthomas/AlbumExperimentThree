@@ -17,7 +17,11 @@ class OverlayPlayPauseButton: UIButton {
     @IBInspectable var color : UIColor = UIColor.whiteColor()
     @IBInspectable var alphaOfTransparentArea : CGFloat = 0.6
     @IBInspectable var progressColor : UIColor = UIColor.redColor()
-    @IBInspectable var progressPercentage : CGFloat = 0.25
+    @IBInspectable var progressPercentage : CGFloat = 0.12 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     @IBInspectable var innerPadding : CGFloat = 4 //This inner padding is to make the triangle smaller than the inside of the circle.  Be careful chaning this.  If it's smaller than half of the radius bad things will happen
     @IBInspectable var isPlaying : Bool = false {
@@ -62,8 +66,17 @@ class OverlayPlayPauseButton: UIButton {
         //Progress arc
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
         
-        let startAngle: CGFloat = 3 * π / 4
-        let endAngle: CGFloat = π / 4
+//        let startAngle: CGFloat = 3 * π / 4
+//        let endAngle: CGFloat = π / 4
+        
+//        let startAngle: CGFloat = (2 * π) - ((2 * π) * progressPercentage)
+//        let endAngle: CGFloat = 0
+        
+//        let startAngle: CGFloat = (3 * π) / 2
+//        let endAngle: CGFloat = 2 *
+        
+        let startAngle: CGFloat = ((3 * π) / 2) 
+        let endAngle: CGFloat = ((3 * π) / 2) + ((2 * π) * progressPercentage)
         
         let progressPath = UIBezierPath(arcCenter: center,
             radius: radius/2, //- lineWidth/2,

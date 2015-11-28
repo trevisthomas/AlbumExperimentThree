@@ -22,7 +22,11 @@ class MiniProgressBarView: UIView {
     
     var duration : Double! {
         didSet{
-            multiplier = CGFloat(frame.width) / CGFloat(duration)
+            if duration != nil {
+                multiplier = CGFloat(frame.width) / CGFloat(duration)
+            } else {
+                multiplier = 0  //Not entirely sure why this happend.  I had a track on pause and then i hit next.  Maybe a timing issue because of the timers?
+            }
             progress = 0
             setNeedsDisplay()
         }

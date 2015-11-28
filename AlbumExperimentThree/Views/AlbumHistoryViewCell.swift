@@ -28,6 +28,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
             albumTitleLabel.textColor = albumData.colorPalette.primaryTextColor
             artistNameLabel.textColor = albumData.colorPalette.primaryTextColor
             
+            playPauseButton.progressPercentage = 0
             updatePlayState() //Scrolling the cells off of the screen was clearing their state.  This was an attempt to fix that
         }
     }
@@ -61,11 +62,10 @@ class AlbumHistoryViewCell: UICollectionViewCell {
         
         notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
         
-        notificationCenter.addObserver(self, selector: "handleVolumeChanged:", name: MPMusicPlayerControllerVolumeDidChangeNotification, object: mediaPlayerController)
-        
         //Trevis, you may want to unregister at some point?
         mediaPlayerController.beginGeneratingPlaybackNotifications()
-        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
+//        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
+        startPlayProgressTimer()
     }
     
     
@@ -82,8 +82,27 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     func onTimer( timer : NSTimer) {
         if isMyAlbumPlaying() {
             let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
+//            albumData.
+            let duration = mediaPlayerController.nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration) as! Double
             
-            print(String.convertSecondsToHHMMSS(currentPlaybackTime))
+            let percentageProgress = CGFloat(currentPlaybackTime / duration)
+            
+            
+            playPauseButton.progressPercentage = percentageProgress
+            
+            print("\(percentageProgress * 100)  \(String.convertSecondsToHHMMSS(currentPlaybackTime))")
+        }
+    }
+    
+    private func startPlayProgressTimer (){
+        endPlayProgressTimer()
+        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
+    }
+    
+    private func endPlayProgressTimer(){
+        if currentTimer != nil {
+            currentTimer.invalidate()
+            currentTimer = nil
         }
     }
     
@@ -91,11 +110,22 @@ class AlbumHistoryViewCell: UICollectionViewCell {
 
 extension AlbumHistoryViewCell {
     func handleNowPlaingItemChanged(notification: NSNotification){
-        if isMyAlbumPlaying() {
+        if isMyAlbumPlaying() && mediaPlayerController.playbackState == .Playing{
             playPauseButton.isPlaying = true
         } else {
             playPauseButton.isPlaying = false
+            playPauseButton.progressPercentage = 0
         }
+        
+//        playPauseButton.isPlaying = false
+//        if isMyAlbumPlaying() {
+//            startPlayProgressTimer()
+//            if mediaPlayerController.playbackState == .Playing {
+//                playPauseButton.isPlaying = true
+//            }
+//        } else {
+//            endPlayProgressTimer()
+//        }
     }
     func handlePlaybackStateChanged(notification: NSNotification){
         updatePlayState()
