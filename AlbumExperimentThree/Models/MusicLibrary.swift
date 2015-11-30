@@ -11,8 +11,12 @@ import MediaPlayer
 
 class MusicLibrary {
     
+    
     static let instance = MusicLibrary()
     private var artistAlbumCount : [String: Int];
+    
+//    let musicPlayer = MPMusicPlayerController.applicationMusicPlayer()
+    let musicPlayer = MPMusicPlayerController.systemMusicPlayer()
     
     init () {
         artistAlbumCount = [String: Int]()
@@ -27,6 +31,8 @@ class MusicLibrary {
                 artistAlbumCount[albumArtist] = 1
             }
         }
+        
+
     }
     
     private func getArtistNamm(fromMediaItem item : MPMediaItem) ->String{
@@ -382,16 +388,14 @@ class MusicLibrary {
 
     
     func playAlbum(albumId : NSNumber) {
-        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
-        
         let query = MPMediaQuery.genresQuery()
         query.groupingType = .Album
         
         let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
         query.filterPredicates = Set(arrayLiteral: predicate)
         
-        mediaPlayerController.setQueueWithQuery(query)
-        mediaPlayerController.play()
+        musicPlayer.setQueueWithQuery(query)
+        musicPlayer.play()
 
     }
     

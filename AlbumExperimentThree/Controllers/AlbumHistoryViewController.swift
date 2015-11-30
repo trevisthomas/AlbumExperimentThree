@@ -16,16 +16,14 @@ class AlbumHistoryViewController: UIViewController {
     @IBOutlet weak var overlayTint: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var mediaPlayerController : MPMusicPlayerController!
+    let mediaPlayerController : MPMusicPlayerController = MusicLibrary.instance.musicPlayer
     
     var snapshot : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
-        mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
         
         registerMediaPlayerNotifications()
     }
@@ -151,6 +149,10 @@ extension AlbumHistoryViewController {
     func handleNowPlaingItemChanged(notification: NSNotification){
 //        print("handleNowPlaingItemChanged")
         let mediaItem =  mediaPlayerController.nowPlayingItem
+        
+        if mediaItem == nil {
+            return //Nothing is playing
+        }
         
         let albumId = mediaItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
         

@@ -31,7 +31,7 @@ class NowPlayingViewController: UIViewController {
     
 //    var audioPlayer : AVAudioPlayer
     
-    var mediaPlayerController : MPMusicPlayerController!
+    let mediaPlayerController : MPMusicPlayerController = MusicLibrary.instance.musicPlayer
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -51,8 +51,6 @@ class NowPlayingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
         
         registerMediaPlayerNotifications()
         

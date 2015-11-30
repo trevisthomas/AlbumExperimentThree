@@ -17,7 +17,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var playPauseButton: OverlayPlayPauseButton!
     private var currentTimer : NSTimer!
     
-    let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
+    let mediaPlayerController = MusicLibrary.instance.musicPlayer
     
     var albumData : AlbumData! {
         didSet{
@@ -74,7 +74,6 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     func unregisterMediaPlayerNotifications(){
         let notificationCenter = NSNotificationCenter.defaultCenter()
         
-        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
         mediaPlayerController.endGeneratingPlaybackNotifications()
         notificationCenter.removeObserver(self)
     }
@@ -132,7 +131,6 @@ extension AlbumHistoryViewCell {
     }
     
     func isMyAlbumPlaying() -> Bool{
-        let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
         let nowPlayingItem = mediaPlayerController.nowPlayingItem
         
         if let nowPlayingAlbumId = nowPlayingItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber{
@@ -147,7 +145,6 @@ extension AlbumHistoryViewCell {
         if isMyAlbumPlaying() {
             playPauseButton.isPlaying = true
             
-            let mediaPlayerController = MPMusicPlayerController.systemMusicPlayer()
             let state = mediaPlayerController.playbackState
             
             switch state {
