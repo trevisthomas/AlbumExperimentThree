@@ -17,7 +17,6 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var playPauseButton: OverlayPlayPauseButton!
     private var currentTimer : NSTimer!
     
-    let mediaPlayerController = MusicLibrary.instance.musicPlayer
     
     var albumData : AlbumData! {
         didSet{
@@ -29,23 +28,29 @@ class AlbumHistoryViewCell: UICollectionViewCell {
             artistNameLabel.textColor = albumData.colorPalette.primaryTextColor
             
             playPauseButton.progressPercentage = 0
-            updatePlayState() //Scrolling the cells off of the screen was clearing their state.  This was an attempt to fix that
+            
+            //Scrolling the cells off of the screen was clearing their state.  Below is a fix for that
+            if MusicPlayer.instance.isMyAlbumPlaying(albumData.albumId){
+                playPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
+            } else {
+                playPauseButton.isPlaying = false
+            }
         }
     }
     
     @IBAction func playPauseAction(sender: OverlayPlayPauseButton) {
-        if isMyAlbumPlaying() {
-            if mediaPlayerController.playbackState == .Playing{
-                mediaPlayerController.pause()
+        if MusicPlayer.instance.isMyAlbumPlaying(albumData.albumId) {
+            if MusicPlayer.instance.isPlaying(){
+                MusicPlayer.instance.pause()
             } else {
-                mediaPlayerController.play()
+                MusicPlayer.instance.play()
             }
         } else {
             MusicLibrary.instance.playAlbum(albumData.albumId)
         }
-        
-        
     }
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,112 +58,53 @@ class AlbumHistoryViewCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        registerMediaPlayerNotifications()
+        registerForMusicPlayerNotifications()
     }
     
-    func registerMediaPlayerNotifications() {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+    func registerForMusicPlayerNotifications(){
+        let nc = NSNotificationCenter.defaultCenter()
         
-        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+        //Last param is optional
+        nc.addObserver(self, selector: "onMusicPlayerNowPlayingDidChange:", name: MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: MusicPlayer.instance)
+        nc.addObserver(self, selector: "onMusicPlayerStateChange:", name: MusicPlayer.MusicPlayerStateDidChange, object: MusicPlayer.instance)
+        nc.addObserver(self, selector: "onTimeElapsed:", name: MusicPlayer.MusicPlayerTimeUpdate, object: MusicPlayer.instance)
         
-        //Trevis, you may want to unregister at some point?
-        mediaPlayerController.beginGeneratingPlaybackNotifications()
-//        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
-        startPlayProgressTimer()
     }
     
-    
-    
-    //Trevis, when to call this?
-    func unregisterMediaPlayerNotifications(){
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        
-        mediaPlayerController.endGeneratingPlaybackNotifications()
-        notificationCenter.removeObserver(self)
-    }
-    
-    func onTimer( timer : NSTimer) {
-        if isMyAlbumPlaying() {
-            let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
-//            albumData.
-            let duration = mediaPlayerController.nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration) as! Double
-            
-            let percentageProgress = CGFloat(currentPlaybackTime / duration)
-            
-            
-            playPauseButton.progressPercentage = percentageProgress
-            
-            print("\(percentageProgress * 100)  \(String.convertSecondsToHHMMSS(currentPlaybackTime))")
-        }
-    }
-    
-    private func startPlayProgressTimer (){
-        endPlayProgressTimer()
-        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
-    }
-    
-    private func endPlayProgressTimer(){
-        if currentTimer != nil {
-            currentTimer.invalidate()
-            currentTimer = nil
-        }
-    }
-    
-}
-
-extension AlbumHistoryViewCell {
-    func handleNowPlaingItemChanged(notification: NSNotification){
-        if isMyAlbumPlaying() && mediaPlayerController.playbackState == .Playing{
+    func onMusicPlayerNowPlayingDidChange(notification: NSNotification){
+        if notification.isNotificationForMyAlbum(albumData.albumId) && MusicPlayer.instance.isPlaying(){
             playPauseButton.isPlaying = true
         } else {
             playPauseButton.isPlaying = false
             playPauseButton.progressPercentage = 0
         }
-        
-//        playPauseButton.isPlaying = false
-//        if isMyAlbumPlaying() {
-//            startPlayProgressTimer()
-//            if mediaPlayerController.playbackState == .Playing {
-//                playPauseButton.isPlaying = true
-//            }
-//        } else {
-//            endPlayProgressTimer()
-//        }
-    }
-    func handlePlaybackStateChanged(notification: NSNotification){
-        updatePlayState()
     }
     
-    func isMyAlbumPlaying() -> Bool{
-        let nowPlayingItem = mediaPlayerController.nowPlayingItem
-        
-        if let nowPlayingAlbumId = nowPlayingItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber{
-            if albumData.albumId == nowPlayingAlbumId {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func updatePlayState(){
-        if isMyAlbumPlaying() {
-            playPauseButton.isPlaying = true
-            
-            let state = mediaPlayerController.playbackState
-            
-            switch state {
-            case .Playing:
-                playPauseButton.isPlaying = true
-                
-            case .Paused, .Stopped:
-                playPauseButton.isPlaying = false
-                
-            default: break
-            }
-            
+    func onMusicPlayerStateChange(notification: NSNotification){
+        if notification.isNotificationForMyAlbum(albumData.albumId){
+            playPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
         } else {
             playPauseButton.isPlaying = false
         }
     }
+    
+    func onTimeElapsed(notification: NSNotification){
+        if notification.isNotificationForMyAlbum(albumData.albumId){
+            let dict = notification.userInfo!
+            let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
+            let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY]
+
+            let duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration) as! Double
+            
+            let percentageProgress = CGFloat(currentPlaybackTime / duration)
+            
+            playPauseButton.progressPercentage = percentageProgress
+            
+            print("\(percentageProgress * 100)  \(String.convertSecondsToHHMMSS(currentPlaybackTime))")
+        }
+        
+    }
+    
 }
+
+

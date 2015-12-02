@@ -60,12 +60,8 @@ class NowPlayingViewController: UIViewController {
         loadMediaItemData(nowPlayingItem)
         
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
-        
-     
-        
-     
-        
     }
+    
     
 //    override func viewDidUnload() {
 //        unregisterMediaPlayerNotifications()
@@ -250,5 +246,41 @@ extension NowPlayingViewController {
     }
     func handleVolumeChanged(notification: NSNotification){
         print("handleVolumeChanged")
+    }
+}
+
+extension NowPlayingViewController {
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.becomeFirstResponder()
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) { // *
+        let rc = event!.subtype
+        let p = MusicPlayer.instance
+        print("received remote control \(rc.rawValue)") // 101 = pause, 100 = play
+        switch rc {
+        case .RemoteControlTogglePlayPause:
+            if p.isPlaying() {
+                p.pause()
+            } else {
+                p.play()
+            }
+        case .RemoteControlPlay:
+            p.play()
+        case .RemoteControlPause:
+            p.pause()
+        case .RemoteControlNextTrack:
+            p.skipToNextItem()
+        case .RemoteControlPreviousTrack:
+            p.skipToPreviousItem()
+        default:break
+        }
+        
     }
 }

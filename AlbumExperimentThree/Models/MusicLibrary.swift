@@ -8,6 +8,7 @@
 
 import Foundation
 import MediaPlayer
+import AVFoundation
 
 class MusicLibrary {
     
@@ -17,6 +18,11 @@ class MusicLibrary {
     
 //    let musicPlayer = MPMusicPlayerController.applicationMusicPlayer()
     let musicPlayer = MPMusicPlayerController.systemMusicPlayer()
+    
+//    var avPlayer = AVQueuePlayer()
+    
+//    var avPlayer : AVQueuePlayer!
+//    let nowPlayingInfoCenter = MPNowPlayingInfoCenter.defaultCenter()
     
     init () {
         artistAlbumCount = [String: Int]()
@@ -387,6 +393,18 @@ class MusicLibrary {
 //    }
 
     
+//    func playAlbum(albumId : NSNumber) {
+//        let query = MPMediaQuery.genresQuery()
+//        query.groupingType = .Album
+//        
+//        let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
+//        query.filterPredicates = Set(arrayLiteral: predicate)
+//        
+//        musicPlayer.setQueueWithQuery(query)
+//        musicPlayer.play()
+//
+//    }
+    
     func playAlbum(albumId : NSNumber) {
         let query = MPMediaQuery.genresQuery()
         query.groupingType = .Album
@@ -394,10 +412,42 @@ class MusicLibrary {
         let predicate = MPMediaPropertyPredicate(value: albumId, forProperty: MPMediaItemPropertyAlbumPersistentID)
         query.filterPredicates = Set(arrayLiteral: predicate)
         
-        musicPlayer.setQueueWithQuery(query)
-        musicPlayer.play()
-
+        let collection = (query.collections!)[0]
+//        var avItems : [AVPlayerItem] = []
+//        for song in collection.items{
+//            let avItem = AVPlayerItem(URL: song.valueForProperty(MPMediaItemPropertyAssetURL) as! NSURL)
+//
+//            avItems.append(avItem)
+//            
+//        }
+//        
+//        avPlayer = AVQueuePlayer(items: avItems)
+//
+//        avPlayer.play()
+        
+        MusicPlayer.instance.queue(collection.items)
+        
+//        var mpic = MPNowPlayingInfoCenter.defaultCenter()
+//        nowPlayingInfoCenter.nowPlayingInfo = [
+//            MPMediaItemPropertyTitle:"This Is a Test",
+//            MPMediaItemPropertyArtist:"Matt Neuburg"
+//        ]
+        
+//        nowPlayingInfoCenter.nowPlayingInfoCenter = [
+//            MPMediaItemPropertyTitle
+//        ]
+        
+//        avPlayer.insertItem(<#T##item: AVPlayerItem##AVPlayerItem#>, afterItem: nil)
+        
+//        musicPlayer.setQueueWithQuery(query)
+//        musicPlayer.play()
+        
+//        avPlayer
+        
     }
+
+    
+    
     
     //Cool debug method for printing out the timing of a method. Found on stack over flow, modified to wrap method with return value
     static func printTimeElapsedWhenRunningCode(title:String, operation:()->(AnyObject))->AnyObject {

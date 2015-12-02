@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1EBBE31C0E68410032100D /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE21C0E68410032100D /* MusicPlayer.swift */; };
 		0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */; };
 		0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */; };
 		0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F1EBBE21C0E68410032100D /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F51DC371BEE66450073B635 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F1EBBE41C0E68530032100D /* MusicPlayerAPI */ = {
+			isa = PBXGroup;
+			children = (
+				0F1EBBE21C0E68410032100D /* MusicPlayer.swift */,
+			);
+			name = MusicPlayerAPI;
+			sourceTree = "<group>";
+		};
 		0F51DC3A1BEE665D0073B635 /* CollectionViewLeftAllignedLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +320,7 @@
 				0F51DC551BF1BD060073B635 /* Animations */,
 				0F7054B61BE27321003FA9F1 /* MyPlayground.playground */,
 				0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */,
+				0F1EBBE41C0E68530032100D /* MusicPlayerAPI */,
 			);
 			path = AlbumExperimentThree;
 			sourceTree = "<group>";
@@ -440,6 +451,7 @@
 				0FCD2E8F1BE158BD004F69F0 /* StretchingFocusLayout.swift in Sources */,
 				0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */,
 				0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */,
+				0F1EBBE31C0E68410032100D /* MusicPlayer.swift in Sources */,
 				0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */,
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,
 				0F60BFF81BF8DE9400C4166F /* SongViewController.swift in Sources */,
