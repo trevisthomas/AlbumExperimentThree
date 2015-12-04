@@ -153,14 +153,14 @@ extension GenreViewController : UICollectionViewDataSource {
         return cell
     }
     
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let layout = collectionView.collectionViewLayout as! StretchingFocusLayout
-        let offset = layout.dragOffset * CGFloat(indexPath.row)
-        if collectionView.contentOffset.y != offset {
-            collectionView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
-        }
-    }
+// This method scrolls the selected cell to the top
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        let layout = collectionView.collectionViewLayout as! StretchingFocusLayout
+//        let offset = layout.dragOffset * CGFloat(indexPath.row)
+//        if collectionView.contentOffset.y != offset {
+//            collectionView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+//        }
+//    }
 }
 
 

@@ -84,6 +84,10 @@ class MusicPlayer {
         updateNowPlayingIndex()
     }
     
+    func skipToPosition(time: CMTime){
+        avPlayer.seekToTime(time)
+    }
+    
     func skipToPreviousItem(){
         //avPlayer?.
         
@@ -102,6 +106,10 @@ class MusicPlayer {
     }
     
     func queue(mediaItems: [MPMediaItem]){
+        if mediaItems.isEmpty {
+            return
+        }
+        
         //Load the local queue
         mediaItemQueue.removeAll()
         mediaItemQueue.appendContentsOf(mediaItems)
@@ -119,12 +127,11 @@ class MusicPlayer {
         //For the sleep screen.
         loadNowPlayingInfoCenter()
         
-        
         //Start the AVPlayer
         play()
     }
     
-    private func nowPlayingMediaItem() -> MPMediaItem? {
+    func nowPlayingMediaItem() -> MPMediaItem? {
         if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX {
             return nil
         } else {
@@ -144,13 +151,28 @@ class MusicPlayer {
         return false
     }
     
+    //This is only exposed so that it can be persisted. 
+    func nowPlayingPosition() ->CMTime{
+        return avPlayer.currentTime()
+    }
+    
+//    func nowPlayingMediaItem() -> MPMediaItem?{
+//        if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX {
+//            return nil
+//        }
+//
+//        return mediaItemQueue[nowPlayingQueueIndex]
+//    }
+    
     //**************
     //TODO! Move this to NowPlayingViewController. That is where the remote control featues are.  
     //!!!!!!!!!!!!!!
     private func loadNowPlayingInfoCenter(){
         nowPlayingInfoCenter.nowPlayingInfo = [
             MPMediaItemPropertyTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyTitle)!,
-            MPMediaItemPropertyArtist:"\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
+//            MPMediaItemPropertyArtist:"\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
+            MPMediaItemPropertyAlbumArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!,
+            MPMediaItemPropertyAlbumTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!,
             MPMediaItemPropertyArtwork:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtwork)!,
             MPMediaItemPropertyPlaybackDuration:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyPlaybackDuration)!
         ]
@@ -160,6 +182,25 @@ class MusicPlayer {
     @objc func onItemDidFinishPlaying(notification: NSNotification){
         updateNowPlayingIndex()
     }
+    
+    //So wrong that this takes so much to do
+    func playItemAtIndex(index: Int){
+        avPlayer.removeAllItems()
+        
+        let avPlayerItems = mediaItemQueue.asAVPlayerItems(self, selector: "onItemDidFinishPlaying:")
+        for var i = index ; i < avPlayerItems.count ; i++ {
+            let avpItem = avPlayerItems[i]
+            if avPlayer.canInsertItem(avpItem, afterItem: nil) {
+                avpItem.seekToTime(kCMTimeZero) //May not be needed
+                avPlayer.insertItem(avpItem, afterItem: nil)
+            }
+        }
+        
+        nowPlayingQueueIndex = index
+        
+        play()
+    }
+    
     
     private func updateNowPlayingIndex(){
         if nowPlayingQueueIndex++ >= mediaItemQueue.count {
@@ -181,6 +222,7 @@ class MusicPlayer {
 
     }
     
+    
 }
 
 extension Array {
@@ -193,6 +235,15 @@ extension Array {
             avItems.append(avItem)
         }
         return avItems
+    }
+    
+    func asSongIds() -> [NSNumber] {
+        var ids : [NSNumber] = []
+        for song in self{
+            let id = (song as! MPMediaItem).valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
+            ids.append(id)
+        }
+        return ids
     }
 }
 

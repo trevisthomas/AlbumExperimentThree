@@ -31,7 +31,7 @@ class NowPlayingViewController: UIViewController {
     
 //    var audioPlayer : AVAudioPlayer
     
-    let mediaPlayerController : MPMusicPlayerController = MusicLibrary.instance.musicPlayer
+//    let mediaPlayerController : MPMusicPlayerController = MusicLibrary.instance.musicPlayer
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -56,8 +56,12 @@ class NowPlayingViewController: UIViewController {
         
         dragFromY = self.view.frame.origin.y// This saves me from a weird nil error.  
         
-        let nowPlayingItem = mediaPlayerController.nowPlayingItem
+//        let nowPlayingItem = mediaPlayerController.nowPlayingItem
+        
+        let nowPlayingItem = MusicPlayer.instance.nowPlayingMediaItem()
         loadMediaItemData(nowPlayingItem)
+        
+        miniPlayPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
         
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
     }
@@ -164,33 +168,46 @@ class NowPlayingViewController: UIViewController {
     */
     
     func registerMediaPlayerNotifications() {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+        let nc = NSNotificationCenter.defaultCenter()
         
-        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+        //Last param is optional
+        nc.addObserver(self, selector: "onMusicPlayerNowPlayingDidChange:", name: MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: MusicPlayer.instance)
+        nc.addObserver(self, selector: "onMusicPlayerStateChange:", name: MusicPlayer.MusicPlayerStateDidChange, object: MusicPlayer.instance)
+        nc.addObserver(self, selector: "onTimeElapsed:", name: MusicPlayer.MusicPlayerTimeUpdate, object: MusicPlayer.instance)
         
-        notificationCenter.addObserver(self, selector: "handleVolumeChanged:", name: MPMusicPlayerControllerVolumeDidChangeNotification, object: mediaPlayerController)
-        
-        //Trevis, you may want to unregister at some point?
-        mediaPlayerController.beginGeneratingPlaybackNotifications()
-        
-        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+//        
+//        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+//        
+//        notificationCenter.addObserver(self, selector: "handleVolumeChanged:", name: MPMusicPlayerControllerVolumeDidChangeNotification, object: mediaPlayerController)
+//        
+//        //Trevis, you may want to unregister at some point?
+//        mediaPlayerController.beginGeneratingPlaybackNotifications()
+//        
+//        currentTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "onTimer:", userInfo: nil, repeats: true)
         
 
         
     }
 
-    
-    //Trevis, when to call this?
-    func unregisterMediaPlayerNotifications(){
-        let notificationCenter = NSNotificationCenter.defaultCenter()
+//    
+//    //Trevis, when to call this?
+//    func unregisterMediaPlayerNotifications(){
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        
+//        mediaPlayerController.endGeneratingPlaybackNotifications()
+//        notificationCenter.removeObserver(self)
+//    }
+//    
+    func onTimeElapsed(notification: NSNotification) {
         
-        mediaPlayerController.endGeneratingPlaybackNotifications()
-        notificationCenter.removeObserver(self)
-    }
-    
-    func onTimer( timer : NSTimer) {
-        let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
+        let dict = notification.userInfo!
+        let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
+//        let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY]
+
+        
+//        let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
         
 //        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
         
@@ -199,54 +216,36 @@ class NowPlayingViewController: UIViewController {
     
     
     @IBAction func nextButtonAction(sender: UIButton) {
-        mediaPlayerController.skipToNextItem()
+        MusicPlayer.instance.skipToNextItem()
     }
     
     @IBAction func playPauseButtonAction(sender: UIButton) {
-        if mediaPlayerController.playbackState == .Playing {
-            mediaPlayerController.pause()
+        if MusicPlayer.instance.isPlaying() {
+            MusicPlayer.instance.pause()
         } else {
-            mediaPlayerController.play()
+            MusicPlayer.instance.play()
         }
     }
     
     @IBAction func previousButtonAction(sender: UIButton) {
-        mediaPlayerController.skipToPreviousItem()
+        MusicPlayer.instance.skipToPreviousItem()
     }
 }
 
 extension NowPlayingViewController {
-    func handleNowPlaingItemChanged(notification: NSNotification){
-        let nowPlayingItem = mediaPlayerController.nowPlayingItem
+    func onMusicPlayerNowPlayingDidChange(notification: NSNotification){
+        let nowPlayingItem = MusicPlayer.instance.nowPlayingMediaItem()
         loadMediaItemData(nowPlayingItem)
         
         progresBarView.duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
-        
-        
     }
-    func handlePlaybackStateChanged(notification: NSNotification){
-        print("handlePlaybackStateChanged")
-        
-        let state = mediaPlayerController.playbackState
-        
-        switch state {
-            case .Playing:
-                miniPlayPauseButton.isPlaying = true
-                
-            case .Paused:
-                miniPlayPauseButton.isPlaying = false
-            
-            case .Stopped:
-                miniPlayPauseButton.isPlaying = false
-                mediaPlayerController.stop() //Saw this in an example.  Not sure why this would be needed though.
-            
-            default: break
-            
-        }
+    
+    func onMusicPlayerStateChange(notification: NSNotification){
+        miniPlayPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
     }
-    func handleVolumeChanged(notification: NSNotification){
-        print("handleVolumeChanged")
-    }
+//    func handleVolumeChanged(notification: NSNotification){
+//        print("handleVolumeChanged")
+//    }
 }
 
 extension NowPlayingViewController {

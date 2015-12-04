@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0F1EBBE31C0E68410032100D /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE21C0E68410032100D /* MusicPlayer.swift */; };
+		0F1EBBE61C10FE310032100D /* SavedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE51C10FE310032100D /* SavedData.swift */; };
+		0F1EBBE81C1151150032100D /* MPMediaItem+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE71C1151150032100D /* MPMediaItem+Utils.swift */; };
 		0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */; };
 		0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */; };
 		0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		0F1EBBE21C0E68410032100D /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		0F1EBBE51C10FE310032100D /* SavedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedData.swift; sourceTree = "<group>"; };
+		0F1EBBE71C1151150032100D /* MPMediaItem+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPMediaItem+Utils.swift"; sourceTree = "<group>"; };
 		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F51DC371BEE66450073B635 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				0F60C0161BFEAEA400C4166F /* UINavigationBar+StatusColor.m */,
 				0F60C0181BFEF05C00C4166F /* UIColor+Utils.h */,
 				0F60C0191BFEF05C00C4166F /* UIColor+Utils.m */,
+				0F1EBBE71C1151150032100D /* MPMediaItem+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				0FD30A271BDD7EF50064E4F9 /* MusicLibrary.swift */,
 				0F60C0081BF9A4F100C4166F /* ImageColorPalette.swift */,
 				0F60C01B1C01185200C4166F /* SongData.swift */,
+				0F1EBBE51C10FE310032100D /* SavedData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1EBBE81C1151150032100D /* MPMediaItem+Utils.swift in Sources */,
 				0F60C0171BFEAEA400C4166F /* UINavigationBar+StatusColor.m in Sources */,
 				0F51DC5B1BF2A74B0073B635 /* UIView+Snapshot.m in Sources */,
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
@@ -428,6 +435,7 @@
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
 				0F51DC541BF130810073B635 /* GenreToAlbumAnimatedTransitioning.swift in Sources */,
+				0F1EBBE61C10FE310032100D /* SavedData.swift in Sources */,
 				0F51DC451BEE67A50073B635 /* BDKCollectionIndexView.m in Sources */,
 				0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */,
 				0F60C0001BF9178500C4166F /* UIImage+VignetteMask.swift in Sources */,

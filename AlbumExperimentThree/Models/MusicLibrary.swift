@@ -370,7 +370,7 @@ class MusicLibrary {
     private func queryAlbumsByPersistenceIDs(albumIds: [NSNumber]) ->[AlbumData] {
         var albums : [AlbumData] = []
         let query = MPMediaQuery.genresQuery()
-        query.groupingType = .Album
+        query.groupingType = .Album //Hm, is this necessary?
         
         for id in albumIds {
             let predicate = MPMediaPropertyPredicate(value: id, forProperty: MPMediaItemPropertyAlbumPersistentID)
@@ -381,6 +381,22 @@ class MusicLibrary {
             }
         }
         return albums
+    }
+    
+    func queryMediaItemsByPersistenceIDs(itemIds: [NSNumber]) -> [MPMediaItem]{
+        var items : [MPMediaItem] = []
+        let query = MPMediaQuery.genresQuery()
+        query.groupingType = .Title //Hm, here too is this necessary?
+        
+        for id in itemIds {
+            let predicate = MPMediaPropertyPredicate(value: id, forProperty: MPMediaItemPropertyPersistentID)
+            query.filterPredicates = Set(arrayLiteral: predicate)
+            
+            for itemCollection in query.collections!{ //There should only be one
+                items.append(itemCollection.items[0])
+            }
+        }
+        return items
     }
     
 //    func getMediaItemCollectionForAlbum(albumId : NSNumber) -> MPMediaItemCollection{

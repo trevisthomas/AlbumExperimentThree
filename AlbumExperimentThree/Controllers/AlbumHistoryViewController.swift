@@ -10,20 +10,24 @@ import UIKit
 import MediaPlayer
 
 class AlbumHistoryViewController: UIViewController {
-    var albums : [AlbumData]!
+    var albums : [AlbumData] = []
   
     @IBOutlet weak var overlayImageView: UIImageView!
     @IBOutlet weak var overlayTint: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    let mediaPlayerController : MPMusicPlayerController = MusicLibrary.instance.musicPlayer
     
     var snapshot : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
+//        albums = []
+        
+        for albumId in AppDelegate.getSavedData().lastPlayedAlbums {
+            albums.append(MusicLibrary.instance.queryAlbumByPersistenceID(albumId))
+        }
+        //albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
         
         registerMediaPlayerNotifications()
     }
@@ -87,14 +91,23 @@ class AlbumHistoryViewController: UIViewController {
     }
     
     func registerMediaPlayerNotifications() {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+        let nc = NSNotificationCenter.defaultCenter()
         
-        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+        //Last param is optional
+        nc.addObserver(self, selector: "onMusicPlayerNowPlayingDidChange:", name: MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: MusicPlayer.instance)
+//        nc.addObserver(self, selector: "onMusicPlayerStateChange:", name: MusicPlayer.MusicPlayerStateDidChange, object: MusicPlayer.instance)
+//        nc.addObserver(self, selector: "onTimeElapsed:", name: MusicPlayer.MusicPlayerTimeUpdate, object: MusicPlayer.instance)
         
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
         
-        //Trevis, you may want to unregister at some point?
-        mediaPlayerController.beginGeneratingPlaybackNotifications()
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.addObserver(self, selector: "handleNowPlaingItemChanged:", name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification, object: mediaPlayerController)
+//        
+//        notificationCenter.addObserver(self, selector: "handlePlaybackStateChanged:", name: MPMusicPlayerControllerPlaybackStateDidChangeNotification, object: mediaPlayerController)
+//        
+//        
+//        //Trevis, you may want to unregister at some point?
+//        mediaPlayerController.beginGeneratingPlaybackNotifications()
         
     }
 
@@ -104,10 +117,12 @@ class AlbumHistoryViewController: UIViewController {
 extension AlbumHistoryViewController : UICollectionViewDataSource {
  
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        print("albums: \(albums.count)")
         return albums.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        print(indexPath.row)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("AlbumCell", forIndexPath: indexPath) as! AlbumHistoryViewCell
         
         cell.albumData = albums[indexPath.row]
@@ -146,41 +161,115 @@ extension AlbumHistoryViewController : UIScrollViewDelegate {
 }
 
 extension AlbumHistoryViewController {
-    func handleNowPlaingItemChanged(notification: NSNotification){
+    func onMusicPlayerNowPlayingDidChange(notification: NSNotification){
 //        print("handleNowPlaingItemChanged")
-        let mediaItem =  mediaPlayerController.nowPlayingItem
+//        let mediaItem =  mediaPlayerController.nowPlayingItem
+//        
+//        if mediaItem == nil {
+//            return //Nothing is playing
+//        }
+//        
+//        let albumId = mediaItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
         
-        if mediaItem == nil {
-            return //Nothing is playing
-        }
+        let dict = notification.userInfo!
+        let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY] as! MPMediaItem
         
-        let albumId = mediaItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
+        let albumId = nowPlayingItem.getAlbumId()
+        
+//        let albumId = nowPlayingItem.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
         
         let album = MusicLibrary.instance.queryAlbumByPersistenceID(albumId)
         
-        removeAlbumIfExists(album)
+//        removeAlbumIfExists(album)
         
-        if albums.first?.albumId != album.albumId {
-            //The first album needs to be changed.
+        let indexPathZero = NSIndexPath(forItem: 0, inSection: 0)
+        
+        if albums.isEmpty || !doesAlbumExist(album){
+            //Empty, or not in the list?  just add it
             albums.insert(album, atIndex: 0)
-            collectionView.reloadData()
+            collectionView.insertItemsAtIndexPaths([indexPathZero])
+        } else { // List is not empty and the album exists already.  Move it
+            let ndx = removeAlbumIfExists(album)!
+            albums.insert(album, atIndex: 0)
+            collectionView.moveItemAtIndexPath(NSIndexPath(forItem: ndx, inSection: 0), toIndexPath: indexPathZero)
         }
+        
+        saveAlbumHistory()
+        
+//        if(doesAlbumExist(album)){
+//            print ("albumExists")
+//        }
+//        
+//        if albums.isEmpty || albums.first?.albumId != album.albumId {
+//            //The first album needs to be changed.
+//            albums.insert(album, atIndex: 0)
+//            
+//            
+//            //collectionView.reloadData()
+//            
+//            //This forcable thread jump was because it wasnt realoading for some reason. Stackoverflow suggestion
+////            dispatch_async(dispatch_get_main_queue()){
+////                self.collectionView.reloadData()
+////            }
+//            
+////            collectionView.reloadData()
+////            collectionView.reloadItemsAtIndexPaths(collectionView.indexPathsForVisibleItems())
+////            collectionView.reloadData()
+////            collectionView.invalidateIntrinsicContentSize()
+//            
+//            let ip0 = NSIndexPath(forItem: 0, inSection: 0)
+//            collectionView.insertItemsAtIndexPaths([ip0])
+//
+////            collectionView.setNeedsLayout()
+////            collectionView.reloadData()
+//            
+//        
+//            
+//            
+//            
+//            saveAlbumHistory()
+//        }
+        
+        
         
         print("\(album)")
     }
     
-    func removeAlbumIfExists(albumToRemove : AlbumData){
-        let ndx = albums.find {
-            $0.albumId == albumToRemove.albumId
+    func saveAlbumHistory(){
+        
+        AppDelegate.getSavedData().lastPlayedAlbums.removeAll()
+        for album in albums {
+            AppDelegate.getSavedData().lastPlayedAlbums.append(album.albumId)
         }
         
-        if ndx != nil && ndx > 0{
-            albums.removeAtIndex(ndx!)
-        }
+//        if(AppDelegate.getSavedData().lastPlayedAlbums.isEmpty || AppDelegate.getSavedData().lastPlayedAlbums[0] != albumId){
+//            AppDelegate.getSavedData().lastPlayedAlbums.insert(albumId, atIndex: 0)
+//        }
     }
     
-    func handlePlaybackStateChanged(notification: NSNotification){
-        print("handlePlaybackStateChanged")
+    func removeAlbumIfExists(albumToRemove : AlbumData) -> Int?{
+        let ndx = indexOfAlbum(albumToRemove)
+        if ndx != nil {
+            albums.removeAtIndex(ndx!)
+        }
+        
+        return ndx
     }
+    
+    func doesAlbumExist(albumToFind : AlbumData) -> Bool{
+        return indexOfAlbum(albumToFind) != nil
+    }
+    
+    func indexOfAlbum(albumToFind : AlbumData) -> Int?{
+        //returns nil if it's not here
+        let ndx = albums.find {
+            $0.albumId == albumToFind.albumId
+        }
+        return ndx
+    }
+    
+//    func handlePlaybackStateChanged(notification: NSNotification){
+//        print("handlePlaybackStateChanged")
+//    }
     
 }

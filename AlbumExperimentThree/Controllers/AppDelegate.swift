@@ -13,10 +13,27 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private let savedDataKey : String = "savedDataKey"
+    
+    private static var savedData : SavedData!
 
-
+    static func getSavedData() -> SavedData{
+        return savedData
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Unarchive savedData
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(savedDataKey) as? NSData {
+            AppDelegate.savedData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! SavedData
+        } else {
+            //This should only happen if the data doesnt exist. Note:  The savedData class has a failsafe internaly that should handle creating a new object even if it failes to load the file.
+            AppDelegate.savedData = SavedData()
+        }
+        
+        loadMusicPlayerState()
+        
       
         //Without this, it didnt play at all for me.
         do {
@@ -50,8 +67,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        saveMusicPlayerState()
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(AppDelegate.savedData)
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: savedDataKey)
     }
-
+    
+    func loadMusicPlayerState(){
+        
+        //Trevis: You might want to make a special method that can load the queue and play at an index.  The 'queue' method loads and starts playing.  The playItemAtIndex removes all items from the AVPlayer and re-adds them starting at the index.
+        MusicPlayer.instance.queue(MusicLibrary.instance.queryMediaItemsByPersistenceIDs(AppDelegate.getSavedData().nowPlayingQueue))
+        if AppDelegate.getSavedData().nowPlayingIndex > 0 {
+            MusicPlayer.instance.playItemAtIndex(AppDelegate.getSavedData().nowPlayingIndex)
+        }
+        
+        MusicPlayer.instance.skipToPosition(AppDelegate.savedData.playbackPosition)
+        
+        MusicPlayer.instance.pause() //Comming back paused seems classier
+    }
+    func saveMusicPlayerState(){
+        //Save MusicPlayerState
+        AppDelegate.getSavedData().nowPlayingQueue = MusicPlayer.instance.mediaItemQueue.asSongIds()
+        AppDelegate.getSavedData().nowPlayingIndex = MusicPlayer.instance.nowPlayingQueueIndex
+        AppDelegate.getSavedData().playbackPosition = MusicPlayer.instance.nowPlayingPosition()
+    }
 
 }
 
