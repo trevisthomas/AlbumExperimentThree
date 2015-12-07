@@ -27,7 +27,14 @@ class AlbumHistoryViewController: UIViewController {
         for albumId in AppDelegate.getSavedData().lastPlayedAlbums {
             albums.append(MusicLibrary.instance.queryAlbumByPersistenceID(albumId))
         }
+        
+//        MusicLibrary.instance.mostRecientlyAddedAlbums()
+        MusicLibrary.instance.recientlyAddedAlbumsFromPlaylist()
         //albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
+        
+//        MusicLibrary.instance.loadItunesXml()
+        
+//        MusicLibrary.instance.mostRecientAlbumsUsingItunes()
         
         registerMediaPlayerNotifications()
     }

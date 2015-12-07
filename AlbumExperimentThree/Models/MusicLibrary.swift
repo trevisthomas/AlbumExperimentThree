@@ -10,7 +10,7 @@ import Foundation
 import MediaPlayer
 import AVFoundation
 
-class MusicLibrary {
+class MusicLibrary{
     
     
     static let instance = MusicLibrary()
@@ -333,15 +333,19 @@ class MusicLibrary {
         
     }
     
-    func mostRecientlyAddedAlbums() -> [AlbumData] {
+    //Deprecated
+    private func mostRecientlyPlayedAlbums() -> [AlbumData] {
         let query = MPMediaQuery.songsQuery()
         let items = query.items
         
-        
-        
         //Sort the albums by the last played dtae
         let sorter = NSSortDescriptor(key: MPMediaItemPropertyLastPlayedDate, ascending: false)
+   
         let sortedItems = (items! as NSArray).sortedArrayUsingDescriptors([sorter])
+        
+//        items[0].lastPlayedDate
+        
+//        items[0].
         
         //Get the persistenec id's of those albums
         var albumIds : [NSNumber] = []
@@ -360,6 +364,195 @@ class MusicLibrary {
         
         return queryAlbumsByPersistenceIDs(albumIds)
     }
+    
+    func mostRecientAlbumsUsingItunes() -> [AlbumData]{
+        let query = MPMediaQuery.albumsQuery()
+        let items = query.items! as [MPMediaItem]
+        
+        let dict = loadDateAddedDictionaryFromiTunesLibrary() //VerySlow
+        let sortedItems = items.sort(){
+            let a = $0.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
+            let b = $1.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
+            
+            let ad = dict[a]
+            let bd = dict[b]
+            
+//            return dict[a]?.compare(dict[b]!)
+            return (dict[a]?.isGreaterThanDate(dict[b]!))!
+            
+            // == NSOrderedDescending
+            
+//            ().integerValue < ().integerValue
+            
+            //            $0.lastPlayedDate.compare( $1.lastPlayedDate)
+            
+            
+        }
+        
+        //        items[0].
+        
+        for item in sortedItems {
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+            //            let date = url.valueForKey(NSURLContentModificationDateKey)
+            
+            let date : NSDate?
+            var rsrc: AnyObject?
+            
+            
+            //            url.getResourceValue(date, forKey: NSURLContentModificationDateKey)
+            do {
+                var result = try url?.getResourceValue(&rsrc, forKey: NSURLCreationDateKey)
+                
+                //                var isFile = url?.fileURL
+                
+                let album = item.valueForProperty(MPMediaItemPropertyAlbumTitle)!
+                
+                let artist = item.valueForProperty(MPMediaItemPropertyArtist)!
+                
+                //                let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
+                
+                let id = item.valueForProperty(MPMediaItemPropertyAlbumPersistentID)
+                
+                print("Url: \(url): \(artist)-\(album) \(id)")
+                
+                date = rsrc as? NSDate
+                //                let date = rsrc as? NSDate
+                //                date = rsrc as? NSDate
+            } catch _ {
+                date = nil
+            }
+            
+            //   print(date)
+        }
+        
+        return [] //DEBUG
+
+    }
+    
+    func loadDateAddedDictionaryFromiTunesLibrary() -> [NSNumber: NSDate]{
+        // We need just to get the documents folder url
+        let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let delegate = ITunesLibraryParser()
+//        var retval : [NSNumber: NSDate] = [:]
+        // now lets get the directory contents (including folders)
+        do {
+            let directoryContents = try NSFileManager.defaultManager().contentsOfDirectoryAtURL(documentsUrl, includingPropertiesForKeys: nil, options: NSDirectoryEnumerationOptions())
+            print(directoryContents)
+            
+            //There should only be one file and it should be called "iTunes Music Library.xml"
+            
+            MusicLibrary.printTimeElapsedWhenRunningCode ("Parse the xml"){
+                let xmlParser = NSXMLParser(contentsOfURL: directoryContents[0])
+                xmlParser!.delegate = delegate
+                xmlParser!.parse()
+                
+                return ""
+            }
+            
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        return delegate.metaDataDictionary
+    }
+    
+//    private func parseTheLibrary(iTunesLibraryUrl: NSURL) {
+//        let xmlParser = NSXMLParser(contentsOfURL: iTunesLibraryUrl)
+//        let delegate = ITunesLibraryParser()
+//        xmlParser!.delegate = delegate
+//        xmlParser!.parse()
+//    }
+    
+    
+    
+    func recientlyAddedAlbumsFromPlaylist() -> [AlbumData]{
+        let query = MPMediaQuery.playlistsQuery()
+//        let items = query.items! as [MPMediaItem]
+        
+        let predicate = MPMediaPropertyPredicate(value: "Recently Added", forProperty: MPMediaPlaylistPropertyName)
+        query.filterPredicates = Set(arrayLiteral: predicate)
+        query.groupingType = .Album
+//        let albumCollections = query.collections!
+        
+        let items = query.items! as [MPMediaItem]
+        
+        for item in items {
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+            let album = item.valueForProperty(MPMediaItemPropertyAlbumTitle)!
+            
+            let artist = item.valueForProperty(MPMediaItemPropertyArtist)!
+            
+            let title = item.valueForProperty(MPMediaItemPropertyTitle)!
+            
+            //                let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
+            
+//            let id = item.valueForProperty(MPMediaItemPropertyAlbumPersistentID)
+            let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
+            
+            print("Url: \(url): \(artist)-\(album) \(title) \(id)")
+        }
+        
+        return []
+    }
+    
+    func mostRecientlyAddedAlbums() -> [AlbumData] {
+        let query = MPMediaQuery.albumsQuery()
+        let items = query.items! as [MPMediaItem]
+        
+        let sortedItems = items.sort(){
+            
+            ($0.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber).integerValue < ($1.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber).integerValue
+
+//            $0.lastPlayedDate.compare( $1.lastPlayedDate)
+            
+            
+        }
+        
+//        items[0].
+        
+        for item in sortedItems {
+            
+            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+            
+//            let date = url.valueForKey(NSURLContentModificationDateKey)
+            
+            let date : NSDate?
+            var rsrc: AnyObject?
+
+            
+//            url.getResourceValue(date, forKey: NSURLContentModificationDateKey)
+            do {
+                var result = try url?.getResourceValue(&rsrc, forKey: NSURLCreationDateKey)
+                
+//                var isFile = url?.fileURL
+                
+                let album = item.valueForProperty(MPMediaItemPropertyAlbumTitle)!
+                
+                let artist = item.valueForProperty(MPMediaItemPropertyArtist)!
+                
+//                let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
+
+                let id = item.valueForProperty(MPMediaItemPropertyAlbumPersistentID)
+                
+                print("Url: \(url): \(artist)-\(album) \(id)")
+                
+                date = rsrc as? NSDate
+//                let date = rsrc as? NSDate
+//                date = rsrc as? NSDate
+            } catch _ {
+                date = nil
+            }
+            
+         //   print(date)
+        }
+        
+        return [] //DEBUG
+        
+    }
+
     
     //This hack was added initally for AlbumHistoryView
     func queryAlbumByPersistenceID(albumId : NSNumber) -> AlbumData {
@@ -479,3 +672,4 @@ class MusicLibrary {
 
     
 }
+
