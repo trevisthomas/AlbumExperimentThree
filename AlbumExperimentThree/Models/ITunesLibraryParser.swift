@@ -11,15 +11,25 @@ import MediaPlayer
 
 class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
     
-    private var foundPersistenceId : Bool = false
-    private var loadedPersistenceId : Bool = false
-    private var foundDateAdded : Bool = false
-    private var loadedDateAdded : Bool = false
-    private var currentMeta : AdditionalTrackMetaData? = nil
+//    private var foundPersistenceId : Bool = false
+//    private var loadedPersistenceId : Bool = false
+//    private var foundDateAdded : Bool = false
+//    private var loadedDateAdded : Bool = false
+//    private var currentMeta : AdditionalTrackMetaData? = nil
     
-    var metaDataDictionary: [NSNumber: NSDate] = [:]
+    private let artistKey = "Artist"
+    private let albumKey = "Album"
+    private let dateAddedKey = "Date Added"
+    
+    var metaDataArray: [AdditionalTrackMetaData] = []
+//    var metaDataDictionary: [NSNumber: NSDate] = [:]
    
     let dateFormatter : NSDateFormatter = NSDateFormatter()
+    
+    private var foundKey : String?
+    
+    var currentNodeList : [String: AnyObject] = [:]
+    
     
     override init() {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -31,52 +41,51 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         
-        //Error if currentMeta is nil
-        if(foundPersistenceId && !loadedPersistenceId) {
-            let i = UInt(string, radix: 16)
-            currentMeta!.trackPersistenceId = NSNumber(unsignedInteger: i!)
-            loadedPersistenceId = true
-        }
-        if(foundDateAdded && !loadedDateAdded) {
+        if foundKey != nil {
+            switch (foundKey!){
+                case dateAddedKey:
+                    currentNodeList[dateAddedKey] = dateFormatter.dateFromString(string)
+                case artistKey:
+                    currentNodeList[artistKey] = string
+                case albumKey:
+                    currentNodeList[albumKey] = string
+                default :
+                    break
+                
+            }
+            foundKey = nil
+        } else {
             
-            currentMeta!.dateAdded = dateFormatter.dateFromString(string)
-            loadedDateAdded = true
-        }
-        
-        switch (string) {
-        case "Track ID":
+            foundKey = string
             
-            if currentMeta != nil && songDone() {
-                print(currentMeta?.trackPersistenceId)
-                metaDataDictionary[(currentMeta?.trackPersistenceId)!] = currentMeta?.dateAdded
+            if foundKey == "Track ID" {
+                if currentNodeList.count >= 3 {
+                    
+                    
+                    let albumTitle = currentNodeList[albumKey] as! String
+                    let artist = currentNodeList[artistKey] as! String
+                    let dateAdded = currentNodeList[dateAddedKey] as! NSDate
+                    if let albumId = lookUpAlbum(albumTitle, artist: artist) {
+//                        print("Loading \(artist) - \(albumTitle) \(albumId) \(dateAdded)")
+//                        metaDataDictionary[albumId] = dateAdded //Since these are albums, it could already exist because the xml is for tracks
+                        
+                        metaDataArray.append(AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId))
+                    } else {
+                        print("Got bad data in \(artist) - \(albumTitle)")
+                    }
+                }
+                
+                currentNodeList.removeAll() //When we see a "Track ID" we're done
             }
             
-            foundPersistenceId = false
-            foundDateAdded = false
-            loadedPersistenceId = false
-            loadedDateAdded = false
-            
-            currentMeta = AdditionalTrackMetaData()
-            
-            
-        case "Persistent ID":
-            foundPersistenceId = true
-            break
-        case "Date Added":
-            foundDateAdded = true
-            break
-        default :
-            break
-            
+
         }
+        
+
+        
     }
     
-    private func songDone() ->Bool{
-        return foundPersistenceId == true &&
-        foundDateAdded == true &&
-        loadedPersistenceId == true &&
-        loadedDateAdded == true
-    }
+
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         print("Error \(parseError)")
@@ -93,10 +102,13 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
 //        query.groupingType = .Album //Hm, is this necessary?
         var predicates : [MPMediaPropertyPredicate] = []
         predicates.append(MPMediaPropertyPredicate(value: artist, forProperty: MPMediaItemPropertyAlbumArtist))
-        predicates.append(MPMediaPropertyPredicate(value: albumTitle, forProperty: MPMediaItemPropertyTitle))
+        predicates.append(MPMediaPropertyPredicate(value: albumTitle, forProperty: MPMediaItemPropertyAlbumTitle))
         query.filterPredicates = Set(predicates)
         let albumItems = query.items! //Expected to be unique
         //Error check?
+        if albumItems.count == 0 {
+            return nil
+        }
         let album = albumItems[0]
         return album.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber
     }
