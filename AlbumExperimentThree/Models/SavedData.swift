@@ -18,10 +18,14 @@ class SavedData : NSObject, NSCoding {
     private static let playbackPositionKey = "playbackPosition"
     
     var lastPlayedAlbums: [NSNumber]
-    var newAlbums: [NSNumber]
+    private var newAlbums: [NSNumber]
     var nowPlayingQueue: [NSNumber]
     var nowPlayingIndex: Int
     var playbackPosition: CMTime
+    private var newAlbumCheckPerformed = false
+    private var newAlbumCheckInProgress = false
+    
+    private var newAlbumObservers: [([NSNumber] -> ())] = []
     
     override init(){
         lastPlayedAlbums = []
@@ -60,9 +64,105 @@ class SavedData : NSObject, NSCoding {
         print("Writing Saved Data from coder")
         coder.encodeObject(self.lastPlayedAlbums, forKey: SavedData.lastPlayedAlbumsKey)
         coder.encodeObject(self.newAlbums, forKey: SavedData.newAlbumsKey)
+//        coder.encodeObject([] as [NSNumber], forKey: SavedData.newAlbumsKey) //Saving blank for debuging
+        
         coder.encodeObject(self.nowPlayingQueue, forKey: SavedData.nowPlayingQueueKey)
         coder.encodeObject(self.nowPlayingIndex, forKey: SavedData.nowPlayingIndexKey)
         coder.encodeObject(CMTimeGetSeconds(self.playbackPosition), forKey: SavedData.playbackPositionKey)
         
     }
+    
+    func determineNewAlbums(callback:([NSNumber])->()){
+        
+        //For debugging, removing an item
+//        newAlbums.removeFirst(3)
+        
+        print(newAlbums.count)
+        
+        var removed : [NSNumber] = []
+        
+        removed.append(newAlbums.removeFirst())
+        removed.append(newAlbums.removeFirst())
+        removed.append(newAlbums.removeFirst())
+        
+        let albums = MusicLibrary.instance.queryAlbumsByPersistenceIDs(removed)
+        for a in albums {
+            print("\(a.artist) - \(a.title)")
+        }
+        
+        print("After: \(newAlbums.count)")
+        
+        //Removing the first albums so that they appear later
+        
+        callback(newAlbums) //Give the caller current state, no matter what.
+        
+//        guard newAlbumCheckPerformed else {
+//            
+//        }
+        
+        if newAlbumCheckPerformed {
+            return //Nothing to do
+        } else {
+            //wait for results
+            newAlbumObservers.append(callback)
+        }
+        
+        //If it hasn't been done, and hasn't started... start it
+        if newAlbumCheckPerformed == false && newAlbumCheckInProgress == false {
+            //If the newItems array is empty i try to load them from the xml.  If it's not, i update from MediaItems
+            if newAlbums.isEmpty {
+                //Try to load them from itunes xml
+                {self.loadNewAlbumsFromItunesXml()} ~> {self.notifyNewAlbumObservers($0)}
+            } else {
+                //Check for new albums in mediaItems
+                {self.updateNewAlbumsFromMediaItems()} ~> {self.insertNewAlbumsAndNotifyObservers($0)}
+            }
+        }
+    }
+    
+    private func insertNewAlbumsAndNotifyObservers(newAlbumsToInsert : [NSNumber]){
+        var updatedAlbums: [NSNumber] = []
+        
+        updatedAlbums.appendContentsOf(newAlbumsToInsert)
+        updatedAlbums.appendContentsOf(newAlbums)
+        
+        let albums = MusicLibrary.instance.queryAlbumsByPersistenceIDs(newAlbumsToInsert)
+            for a in albums {
+                print("\(a.artist) - \(a.title)")
+            }
+        
+        
+//        notifyNewAlbumObservers(updatedAlbums)
+        //Below only notifes of the delta.
+        for callback in newAlbumObservers {
+            callback(newAlbumsToInsert)
+        }
+    }
+    
+    private func notifyNewAlbumObservers(updatedNewAlbums : [NSNumber]){
+        newAlbums = updatedNewAlbums
+        for callback in newAlbumObservers {
+            callback(newAlbums)
+        }
+    }
+    //Not on main thread!!
+    private func loadNewAlbumsFromItunesXml() -> [NSNumber]{
+        let albumsFromXml = MusicLibrary.instance.loadSortedAlbumIdsFromiTunesLibrary()
+        let stuffNotFoundInXml = MusicLibrary.instance.findAlbumIdsNotInList(albumsFromXml)
+        
+        //This extra weird stuff is to make sure that the list we save includes every album that MPMediaItem sees before saving it
+        var albums : [NSNumber] = []
+        albums.appendContentsOf(albumsFromXml)
+        albums.appendContentsOf(stuffNotFoundInXml)
+        
+        return albums
+    }
+    
+    //Not on main thread!!
+    private func updateNewAlbumsFromMediaItems() -> [NSNumber]{
+        //Trevis... it's probably not be cool to touch newAlbums on another thread.
+        return MusicLibrary.instance.findAlbumIdsNotInList(newAlbums)
+        
+    }
+
 }

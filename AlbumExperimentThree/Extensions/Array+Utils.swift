@@ -20,6 +20,7 @@ extension Array{
         return elements
     }
     
+    //Trevis: This might be old and busted.  See indexOf on array, added with Swift 2
     func find(includedElement: Element -> Bool) -> Int? {
         for (idx, element) in enumerate() {
             if includedElement(element) {

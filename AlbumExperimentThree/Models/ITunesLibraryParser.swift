@@ -30,7 +30,10 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
     private var iTunesElementKey = ""
     
     
-    var metaDataArray: [AdditionalTrackMetaData] = []
+    //Learn how to preallocate an array in swift
+//    var metaDataArray: [AdditionalTrackMetaData] = []
+    
+    private var foundItemsDict : [AlbumTitleArtistHashKey: AdditionalTrackMetaData] = [:]
    
     let dateFormatter : NSDateFormatter = NSDateFormatter()
     
@@ -59,17 +62,41 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
                 
 //                print("Create \(artistName) - \(albumTitle) \(dateAdded)")
                 
-                if let albumId = lookUpAlbum(albumTitle, artist: artistName) {
-//                        print("Loading \(artist) - \(albumTitle) \(albumId) \(dateAdded)")
-//                        metaDataDictionary[albumId] = dateAdded //Since these are albums, it could already exist because the xml is for tracks
-
-                    metaDataArray.append(AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId))
+                let key = AlbumTitleArtistHashKey(artistName: artistName, albumTitle: albumTitle)
+                
+                if let _ = foundItemsDict[key]{
+                    //Exists
+//                    print("Exists: \(key.albumTitle)")
                 } else {
-                    print("Got bad data in \(artistName) - \(albumTitle) \(dateAdded)")
+                    //Adding
+                    print("Adding: \(key.albumTitle)")
                     
-//                    let albumId = lookUpAlbum(albumTitle, artist: artistName, albumArtist: albumArtist) //DEbug try again
-//                    print ("\(albumId)") //Debug
+                    if let albumId = lookUpAlbum(albumTitle, artist: artistName) {
+                        foundItemsDict[key] = AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId)
+                    } else {
+                        print("Got bad data in \(artistName) - \(albumTitle) \(dateAdded)")
+                        foundItemsDict[key] = AdditionalTrackMetaData(dateAdded: dateAdded, albumId: 0) //To save from looking it up again
+                    }
+                    
+                    
                 }
+                
+                
+//                if let albumId = lookUpAlbum(albumTitle, artist: artistName) {
+////                        print("Loading \(artist) - \(albumTitle) \(albumId) \(dateAdded)")
+////                        metaDataDictionary[albumId] = dateAdded //Since these are albums, it could already exist because the xml is for tracks
+//
+//                    
+//                    
+////                    if foundItemsDict.contains(<#T##predicate: ((AlbumTitleArtistHashKey, AdditionalTrackMetaData)) throws -> Bool##((AlbumTitleArtistHashKey, AdditionalTrackMetaData)) throws -> Bool#>)
+//                    foundItemsDict[key] = AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId)
+//                    metaDataArray.append(AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId))
+//                } else {
+//                    print("Got bad data in \(artistName) - \(albumTitle) \(dateAdded)")
+//                    
+////                    let albumId = lookUpAlbum(albumTitle, artist: artistName, albumArtist: albumArtist) //DEbug try again
+////                    print ("\(albumId)") //Debug
+//                }
                 
                 weAreInsideOfAnAlbum = false
                 
@@ -145,11 +172,34 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
 
     }
     
+    func getSortedAlbumIds() -> [NSNumber] {
+        let metaDataArray = foundItemsDict.values.sort(){
+            $0.dateAdded.isGreaterThanDate($1.dateAdded)
+        }
+        
+//        var set = Set<NSNumber>()
+        var albumIds: [NSNumber] = []
+        for meta in metaDataArray{
+//            set.insert(meta.albumId)
+            
+            if meta.albumId == 0 {
+                continue //This was a place holder, skip it
+            }
+            if albumIds.indexOf(meta.albumId) == nil { //Make sure that it's not alreayd here
+                albumIds.append(meta.albumId)
+            }
+        }
+//        return Array(set)
+        return albumIds
+    }
+    
     func lookUpAlbum(albumTitle: String, artist: String) -> NSNumber?{
         let query = MPMediaQuery.albumsQuery()
         var predicates : [MPMediaPropertyPredicate] = []
         query.groupingType = .Album
-        predicates.append(MPMediaPropertyPredicate(value: artist, forProperty: MPMediaItemPropertyArtist))
+        
+        //Trevis:  For some rason using both values caused some lookups to fail.  However, not using both predicates means that two artists with the same album title could have unexpected results
+//        predicates.append(MPMediaPropertyPredicate(value: artist, forProperty: MPMediaItemPropertyArtist))
         predicates.append(MPMediaPropertyPredicate(value: albumTitle, forProperty: MPMediaItemPropertyAlbumTitle))
         query.filterPredicates = Set(predicates)
         var albumItems = query.items! //Expected to be unique
@@ -158,6 +208,7 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
         if albumItems.count == 0 {
             return nil
         }
+    
         let album = albumItems[0]
         return album.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber
     }

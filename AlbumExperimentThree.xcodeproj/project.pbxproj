@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F19E3741C1736CE006BD944 /* AlbumTitleArtistHashKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19E3731C1736CE006BD944 /* AlbumTitleArtistHashKey.swift */; };
+		0F19E3761C174FB6006BD944 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19E3751C174FB6006BD944 /* Threading.swift */; };
 		0F1EBBE31C0E68410032100D /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE21C0E68410032100D /* MusicPlayer.swift */; };
 		0F1EBBE61C10FE310032100D /* SavedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE51C10FE310032100D /* SavedData.swift */; };
 		0F1EBBE81C1151150032100D /* MPMediaItem+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBE71C1151150032100D /* MPMediaItem+Utils.swift */; };
@@ -67,6 +69,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F19E3731C1736CE006BD944 /* AlbumTitleArtistHashKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTitleArtistHashKey.swift; sourceTree = "<group>"; };
+		0F19E3751C174FB6006BD944 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		0F1EBBE21C0E68410032100D /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		0F1EBBE51C10FE310032100D /* SavedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedData.swift; sourceTree = "<group>"; };
 		0F1EBBE71C1151150032100D /* MPMediaItem+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MPMediaItem+Utils.swift"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				0F1EBBE51C10FE310032100D /* SavedData.swift */,
 				0F1EBBEB1C15049B0032100D /* ITunesLibraryParser.swift */,
 				0F1EBBED1C1513C40032100D /* AdditionalTrackMetaData.swift */,
+				0F19E3731C1736CE006BD944 /* AlbumTitleArtistHashKey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				0F7054B61BE27321003FA9F1 /* MyPlayground.playground */,
 				0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */,
 				0F1EBBE41C0E68530032100D /* MusicPlayerAPI */,
+				0F19E3751C174FB6006BD944 /* Threading.swift */,
 			);
 			path = AlbumExperimentThree;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 				0F60C0171BFEAEA400C4166F /* UINavigationBar+StatusColor.m in Sources */,
 				0F51DC5B1BF2A74B0073B635 /* UIView+Snapshot.m in Sources */,
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
+				0F19E3741C1736CE006BD944 /* AlbumTitleArtistHashKey.swift in Sources */,
 				0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */,
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
@@ -457,6 +464,7 @@
 				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,
 				0FBF6A2E1BE1348D00B66AC0 /* GenreCollectionViewCell.swift in Sources */,
+				0F19E3761C174FB6006BD944 /* Threading.swift in Sources */,
 				0F60C0111BFBFEB400C4166F /* UIView+Utils.swift in Sources */,
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
 				0F60C01A1BFEF05C00C4166F /* UIColor+Utils.m in Sources */,
