@@ -10,7 +10,11 @@ import Foundation
 
 class AdditionalTrackMetaData {
     var dateAdded : NSDate!
-    var trackPersistenceId : NSNumber!
+    var albumId : NSNumber!
     
+    init(dateAdded : NSDate, albumId : NSNumber){
+        self.albumId = albumId
+        self.dateAdded = dateAdded
+    }
     
 }

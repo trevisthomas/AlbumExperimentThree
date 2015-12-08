@@ -29,12 +29,12 @@ class AlbumHistoryViewController: UIViewController {
         }
         
 //        MusicLibrary.instance.mostRecientlyAddedAlbums()
-        MusicLibrary.instance.recientlyAddedAlbumsFromPlaylist()
+//        MusicLibrary.instance.recientlyAddedAlbumsFromPlaylist()
         //albums = MusicLibrary.instance.mostRecientlyAddedAlbums()
         
 //        MusicLibrary.instance.loadItunesXml()
         
-//        MusicLibrary.instance.mostRecientAlbumsUsingItunes()
+        MusicLibrary.instance.mostRecientAlbumsUsingItunes()
         
         registerMediaPlayerNotifications()
     }

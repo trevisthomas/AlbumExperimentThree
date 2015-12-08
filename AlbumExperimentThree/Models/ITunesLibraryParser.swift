@@ -11,24 +11,29 @@ import MediaPlayer
 
 class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
     
-//    private var foundPersistenceId : Bool = false
-//    private var loadedPersistenceId : Bool = false
-//    private var foundDateAdded : Bool = false
-//    private var loadedDateAdded : Bool = false
-//    private var currentMeta : AdditionalTrackMetaData? = nil
     
     private let artistKey = "Artist"
     private let albumKey = "Album"
     private let dateAddedKey = "Date Added"
     
+    private var currentParsedElement : String = ""
+    private var weAreInsideOfAnAlbum = false
+    private var path : [String] = []
+    
+    private var artistName = ""
+    private var albumTitle = ""
+    private var albumArtist = ""
+    private var dateAdded = NSDate()
+    
+    private var nextElementIsItunesValue = false
+    private var thisElementIsItunesKey = false
+    private var iTunesElementKey = ""
+    
+    
     var metaDataArray: [AdditionalTrackMetaData] = []
-//    var metaDataDictionary: [NSNumber: NSDate] = [:]
    
     let dateFormatter : NSDateFormatter = NSDateFormatter()
     
-    private var foundKey : String?
-    
-    var currentNodeList : [String: AnyObject] = [:]
     
     
     override init() {
@@ -37,51 +42,77 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
 //        print("didEnd")
+        
+        path.removeLast()
+        
+        if weAreInsideOfAnAlbum {
+            if thisElementIsItunesKey {
+                thisElementIsItunesKey = false
+                nextElementIsItunesValue = true
+            } else if nextElementIsItunesValue {
+                nextElementIsItunesValue = false
+                iTunesElementKey = ""
+            }
+            
+            if path.count == 3 && path.last == "dict" {
+                
+                
+//                print("Create \(artistName) - \(albumTitle) \(dateAdded)")
+                
+                if let albumId = lookUpAlbum(albumTitle, artist: artistName) {
+//                        print("Loading \(artist) - \(albumTitle) \(albumId) \(dateAdded)")
+//                        metaDataDictionary[albumId] = dateAdded //Since these are albums, it could already exist because the xml is for tracks
+
+                    metaDataArray.append(AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId))
+                } else {
+                    print("Got bad data in \(artistName) - \(albumTitle) \(dateAdded)")
+                    
+//                    let albumId = lookUpAlbum(albumTitle, artist: artistName, albumArtist: albumArtist) //DEbug try again
+//                    print ("\(albumId)") //Debug
+                }
+                
+                weAreInsideOfAnAlbum = false
+                
+                artistName = ""
+                albumTitle = ""
+                albumArtist = ""
+                dateAdded = NSDate()
+            }
+        }
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         
-        if foundKey != nil {
-            switch (foundKey!){
-                case dateAddedKey:
-                    currentNodeList[dateAddedKey] = dateFormatter.dateFromString(string)
-                case artistKey:
-                    currentNodeList[artistKey] = string
-                case albumKey:
-                    currentNodeList[albumKey] = string
-                default :
-                    break
-                
-            }
-            foundKey = nil
-        } else {
-            
-            foundKey = string
-            
-            if foundKey == "Track ID" {
-                if currentNodeList.count >= 3 {
-                    
-                    
-                    let albumTitle = currentNodeList[albumKey] as! String
-                    let artist = currentNodeList[artistKey] as! String
-                    let dateAdded = currentNodeList[dateAddedKey] as! NSDate
-                    if let albumId = lookUpAlbum(albumTitle, artist: artist) {
-//                        print("Loading \(artist) - \(albumTitle) \(albumId) \(dateAdded)")
-//                        metaDataDictionary[albumId] = dateAdded //Since these are albums, it could already exist because the xml is for tracks
-                        
-                        metaDataArray.append(AdditionalTrackMetaData(dateAdded: dateAdded, albumId: albumId))
-                    } else {
-                        print("Got bad data in \(artist) - \(albumTitle)")
-                    }
-                }
-                
-                currentNodeList.removeAll() //When we see a "Track ID" we're done
-            }
-            
-
-        }
+//        print(path)
         
-
+        if weAreInsideOfAnAlbum {
+            if thisElementIsItunesKey {
+                iTunesElementKey = string
+//                switch string {
+//                    case dateAddedKey:
+//                        iTunesElementKey = string
+//                    case artistKey:
+//                        iTunesElementKey = string
+//                    case albumKey:
+//                        iTunesElementKey = string
+//                    default :
+//                        break
+//                }
+            }
+            else {
+                switch iTunesElementKey {
+                    case dateAddedKey:
+                        dateAdded = dateFormatter.dateFromString(string)!
+                    case artistKey:
+                        artistName = artistName + string  //This gets called multiple times per element if there are special characters!!
+                    case albumKey:
+                        albumTitle = albumTitle + string
+                    
+                    default :
+                        break
+                }
+            }
+        }
         
     }
     
@@ -95,16 +126,34 @@ class ITunesLibraryParser : NSObject, NSXMLParserDelegate {
 //        print("Element's name is \(elementName)")
 //        print("Element's attributes are \(attributeDict)")
 //        
+        
+        path.append(elementName)
+        
+        if path.count == 4 && path.last == "dict" {
+            weAreInsideOfAnAlbum = true
+        }
+        
+        if weAreInsideOfAnAlbum {
+            switch elementName {
+                case "key":
+                    thisElementIsItunesKey = true
+                default:
+                    break
+            }
+            
+        }
+
     }
     
     func lookUpAlbum(albumTitle: String, artist: String) -> NSNumber?{
         let query = MPMediaQuery.albumsQuery()
-//        query.groupingType = .Album //Hm, is this necessary?
         var predicates : [MPMediaPropertyPredicate] = []
-        predicates.append(MPMediaPropertyPredicate(value: artist, forProperty: MPMediaItemPropertyAlbumArtist))
+        query.groupingType = .Album
+        predicates.append(MPMediaPropertyPredicate(value: artist, forProperty: MPMediaItemPropertyArtist))
         predicates.append(MPMediaPropertyPredicate(value: albumTitle, forProperty: MPMediaItemPropertyAlbumTitle))
         query.filterPredicates = Set(predicates)
-        let albumItems = query.items! //Expected to be unique
+        var albumItems = query.items! //Expected to be unique
+        
         //Error check?
         if albumItems.count == 0 {
             return nil

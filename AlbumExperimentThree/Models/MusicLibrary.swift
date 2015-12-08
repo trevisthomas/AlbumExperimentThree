@@ -366,72 +366,81 @@ class MusicLibrary{
     }
     
     func mostRecientAlbumsUsingItunes() -> [AlbumData]{
-        let query = MPMediaQuery.albumsQuery()
-        let items = query.items! as [MPMediaItem]
+//        let query = MPMediaQuery.albumsQuery()
+//        let items = query.items! as [MPMediaItem]
         
-        let dict = loadDateAddedDictionaryFromiTunesLibrary() //VerySlow
-        let sortedItems = items.sort(){
-            let a = $0.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
-            let b = $1.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
-            
-            let ad = dict[a]
-            let bd = dict[b]
-            
-//            return dict[a]?.compare(dict[b]!)
-            return (dict[a]?.isGreaterThanDate(dict[b]!))!
-            
-            // == NSOrderedDescending
-            
-//            ().integerValue < ().integerValue
-            
-            //            $0.lastPlayedDate.compare( $1.lastPlayedDate)
-            
-            
+        let additionalMetaData = loadDateAddedDictionaryFromiTunesLibrary() //VerySlow
+        
+        for metaData in additionalMetaData {
+            let data = MusicLibrary.instance.queryAlbumByPersistenceID(metaData.albumId)
+            print("\(data.artist) - \(data.title) : \(metaData.dateAdded)")
         }
+        
+        return []
+//        
+//        
+//        let sortedItems = items.sort(){
+//            let a = $0.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
+//            let b = $1.valueForProperty(MPMediaItemPropertyPersistentID) as! NSNumber
+//            
+//            let ad = dict[a]
+//            let bd = dict[b]
+//            
+////            return dict[a]?.compare(dict[b]!)
+//            return (dict[a]?.isGreaterThanDate(dict[b]!))!
+//            
+//            // == NSOrderedDescending
+//            
+////            ().integerValue < ().integerValue
+//            
+//            //            $0.lastPlayedDate.compare( $1.lastPlayedDate)
+//            
+//            
+//        }
         
         //        items[0].
         
-        for item in sortedItems {
-            
-            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
-            
-            //            let date = url.valueForKey(NSURLContentModificationDateKey)
-            
-            let date : NSDate?
-            var rsrc: AnyObject?
-            
-            
-            //            url.getResourceValue(date, forKey: NSURLContentModificationDateKey)
-            do {
-                var result = try url?.getResourceValue(&rsrc, forKey: NSURLCreationDateKey)
-                
-                //                var isFile = url?.fileURL
-                
-                let album = item.valueForProperty(MPMediaItemPropertyAlbumTitle)!
-                
-                let artist = item.valueForProperty(MPMediaItemPropertyArtist)!
-                
-                //                let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
-                
-                let id = item.valueForProperty(MPMediaItemPropertyAlbumPersistentID)
-                
-                print("Url: \(url): \(artist)-\(album) \(id)")
-                
-                date = rsrc as? NSDate
-                //                let date = rsrc as? NSDate
-                //                date = rsrc as? NSDate
-            } catch _ {
-                date = nil
-            }
-            
-            //   print(date)
-        }
-        
-        return [] //DEBUG
+//        for item in sortedItems {
+//            
+//            let url = item.valueForProperty(MPMediaItemPropertyAssetURL) as? NSURL
+//            
+//            //            let date = url.valueForKey(NSURLContentModificationDateKey)
+//            
+//            let date : NSDate?
+//            var rsrc: AnyObject?
+//            
+//            
+//            //            url.getResourceValue(date, forKey: NSURLContentModificationDateKey)
+//            do {
+//                var result = try url?.getResourceValue(&rsrc, forKey: NSURLCreationDateKey)
+//                
+//                //                var isFile = url?.fileURL
+//                
+//                let album = item.valueForProperty(MPMediaItemPropertyAlbumTitle)!
+//                
+//                let artist = item.valueForProperty(MPMediaItemPropertyArtist)!
+//                
+//                //                let id = item.valueForProperty(MPMediaItemPropertyPersistentID)
+//                
+//                let id = item.valueForProperty(MPMediaItemPropertyAlbumPersistentID)
+//                
+//                print("Url: \(url): \(artist)-\(album) \(id)")
+//                
+//                date = rsrc as? NSDate
+//                //                let date = rsrc as? NSDate
+//                //                date = rsrc as? NSDate
+//            } catch _ {
+//                date = nil
+//            }
+//            
+//            //   print(date)
+//        }
+//        
+//        return [] //DEBUG
 
     }
     
-    func loadDateAddedDictionaryFromiTunesLibrary() -> [NSNumber: NSDate]{
+    func loadDateAddedDictionaryFromiTunesLibrary() -> [AdditionalTrackMetaData]{
         // We need just to get the documents folder url
         let documentsUrl =  NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         let delegate = ITunesLibraryParser()
@@ -454,7 +463,14 @@ class MusicLibrary{
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        return delegate.metaDataDictionary
+        
+        let metaData = delegate.metaDataArray //Was getting a weird error befe pulling this into it's own variable.
+        
+        let sorted = metaData.sort(){
+            $0.dateAdded.isGreaterThanDate($1.dateAdded)
+        }
+        return sorted
+//        return delegate.metaDataDictionary
     }
     
 //    private func parseTheLibrary(iTunesLibraryUrl: NSURL) {
