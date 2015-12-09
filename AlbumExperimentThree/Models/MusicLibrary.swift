@@ -143,6 +143,14 @@ class MusicLibrary{
     func getGenreBundle() ->[GenreData]{
         let query = MPMediaQuery.genresQuery()
         var result = [GenreData]()
+        
+        var bundle = GenreData();
+        bundle.title = "New Albums"
+        bundle.detail = "Albums most reciently added to itunes."
+        bundle.isNewAlbums = true
+        bundle.artwork = UIImage(named: "album-placeholder")!
+        result.append(bundle)
+        
         for mediaItemCollection in query.collections!{
             let bundle = GenreData()
             let mediaItem = mediaItemCollection.representativeItem
@@ -177,7 +185,7 @@ class MusicLibrary{
             result.append(bundle)
         }
         
-        let bundle = GenreData();
+        bundle = GenreData();
         bundle.title = "Podcast"
         bundle.detail = "\(getPodcasts().count) programs."
         bundle.isPodcast = true

@@ -36,9 +36,9 @@ class AlbumHistoryViewController: UIViewController {
         
 //        let albumIds = MusicLibrary.instance.loadSortedAlbumIdsFromiTunesLibrary()
         
-        AppDelegate.getSavedData().determineNewAlbums() {
-            print($0)
-        }
+//        AppDelegate.getSavedData().determineNewAlbums() {
+//            print($0)
+//        }
         
         registerMediaPlayerNotifications()
     }

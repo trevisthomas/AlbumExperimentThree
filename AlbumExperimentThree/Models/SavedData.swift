@@ -121,16 +121,16 @@ class SavedData : NSObject, NSCoding {
     }
     
     private func insertNewAlbumsAndNotifyObservers(newAlbumsToInsert : [NSNumber]){
-        var updatedAlbums: [NSNumber] = []
+//        var updatedAlbums: [NSNumber] = []
         
-        updatedAlbums.appendContentsOf(newAlbumsToInsert)
-        updatedAlbums.appendContentsOf(newAlbums)
-        
-        let albums = MusicLibrary.instance.queryAlbumsByPersistenceIDs(newAlbumsToInsert)
-            for a in albums {
-                print("\(a.artist) - \(a.title)")
-            }
-        
+//        updatedAlbums.appendContentsOf(newAlbumsToInsert)
+//        updatedAlbums.appendContentsOf(newAlbums)
+//        
+//        let albums = MusicLibrary.instance.queryAlbumsByPersistenceIDs(newAlbumsToInsert)
+//            for a in albums {
+//                print("\(a.artist) - \(a.title)")
+//            }
+//        
         
 //        notifyNewAlbumObservers(updatedAlbums)
         //Below only notifes of the delta.

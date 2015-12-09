@@ -20,6 +20,7 @@ class GenreData {
     var detail : String = ""
 //    var artwork : String? 
     var isPodcast : Bool = false
+    var isNewAlbums : Bool = false
     var art : MPMediaItemArtwork!
     var artwork : UIImage! {
         didSet{

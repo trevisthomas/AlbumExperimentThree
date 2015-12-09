@@ -29,6 +29,9 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
             sections = indexedArtistData.keys.sort()
         }
     }
+    
+    var albumIds : [NSNumber] = []  //This is for when it is new album mode
+    
     var sections : [String]!
     
     var indexView : BDKCollectionIndexView!
@@ -43,7 +46,49 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
 //        self.collectionView!.registerClass(AlbumHistoryViewCell.self, forCellWithReuseIdentifier: "AlbumCell")
 
         // Do any additional setup after loading the view.
-        indexedArtistData = MusicLibrary.instance.getArtistBundle(genreData.title)
+        
+        if genreData.isNewAlbums {
+//            indexedArtistData = ["Recient Additions": [AlbumData()]]
+            indexedArtistData = [:]
+            
+            
+//
+//            
+//            AppDelegate.getSavedData().determineNewAlbums() {
+//                if self.indexedArtistData.isEmpty {
+//                    var fauxIndex: [String : [AlbumData]] = [:]
+//                    fauxIndex["Recient Additions"] = MusicLibrary.instance.queryAlbumsByPersistenceIDs($0)
+//                    self.indexedArtistData = fauxIndex
+//                } else {
+////                    var albumsInSection = self.indexedArtistData["Recient Additions"]
+//                    let ipZero = NSIndexPath(forRow: 0, inSection: 0)
+//                    for albumId in $0 {
+//                        let albumData = MusicLibrary.instance.queryAlbumByPersistenceID(albumId)
+//                        self.indexedArtistData["Recient Additions"]!.insert(albumData, atIndex: 0)
+//                        self.collectionView?.insertItemsAtIndexPaths([ipZero])
+//                        //TREVIS! Some times the animation should be a move!
+//                    }
+//                }
+//            }
+            
+            sections.append("A")
+            AppDelegate.getSavedData().determineNewAlbums() {
+                if self.albumIds.isEmpty {
+                    self.albumIds.appendContentsOf($0)
+                    self.collectionView?.reloadData() //?
+                } else {
+                    let ipZero = NSIndexPath(forRow: 0, inSection: 0)
+                    for albumId in $0 {
+                        self.albumIds.insert(albumId, atIndex: 0)
+                        self.collectionView?.insertItemsAtIndexPaths([ipZero])
+                    }
+                }
+                    
+            }
+            
+        } else {
+            indexedArtistData = MusicLibrary.instance.getArtistBundle(genreData.title)
+        }
         
 //        artistCellWidth = self.collectionView!.bounds.size.width - cellInsets.left - cellInsets.right
 //        albumCellWidth = (calculateShortSide() - cellInsets.left - cellInsets.right) / 2.0
@@ -182,12 +227,18 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (indexedArtistData[sections[section]]?.count)!
+        if (indexedArtistData.isEmpty) {
+            return albumIds.count
+        } else {
+            return (indexedArtistData[sections[section]]?.count)!
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+        let albumData : AlbumData = getAlbumDataAtIndexPath(indexPath)
+        
+        
         if(albumData.type == AlbumData.DataType.ARTIST){
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ArtistNameCell", forIndexPath: indexPath) as! ArtistTitleCell
             cell.artistName = albumData.artist
@@ -200,6 +251,16 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
             cell.albumData = albumData
             return cell
         }
+    }
+    
+    private func getAlbumDataAtIndexPath(indexPath : NSIndexPath) -> AlbumData{
+        if (indexedArtistData.isEmpty) {
+            return MusicLibrary.instance.queryAlbumByPersistenceID(albumIds[indexPath.row])
+        } else {
+            return (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+
+        }
+
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -227,7 +288,17 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
 
         func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     
+//            let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+            
+//            let albumData : AlbumData = getAlbumDataAtIndexPath(indexPath)
+            
+            
+            if (indexedArtistData.isEmpty) {
+                return CGSize(width: 125, height: 150)
+            }
+            
             let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+            
             if(albumData.type == AlbumData.DataType.ARTIST){
                return CGSize(width: collectionView.frame.width, height: 40.0)
             }
