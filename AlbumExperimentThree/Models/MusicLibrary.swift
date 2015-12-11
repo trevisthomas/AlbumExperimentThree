@@ -15,6 +15,7 @@ class MusicLibrary{
     
     static let instance = MusicLibrary()
     private var artistAlbumCount : [String: Int];
+    private var albumDataCache : [NSNumber: AlbumData] = [:]
     
 //    let musicPlayer = MPMusicPlayerController.applicationMusicPlayer()
     let musicPlayer = MPMusicPlayerController.systemMusicPlayer()
@@ -533,11 +534,20 @@ class MusicLibrary{
         query.groupingType = .Album //Hm, is this necessary?
         
         for id in albumIds {
+            let albumData = albumDataCache[id]
+            if albumData != nil {
+                albums.append(albumData!)
+                continue; //Cache hit add it and move on.
+            }
+            
             let predicate = MPMediaPropertyPredicate(value: id, forProperty: MPMediaItemPropertyAlbumPersistentID)
             query.filterPredicates = Set(arrayLiteral: predicate)
             
             for albumCollection in query.collections!{ //There should only be one
-                albums.append(loadAlbumData(fromAlbum: albumCollection))
+                
+                let albumData = loadAlbumData(fromAlbum: albumCollection)
+                albumDataCache[id] = albumData
+                albums.append(albumData)
             }
         }
         return albums

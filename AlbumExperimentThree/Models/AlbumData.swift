@@ -54,7 +54,12 @@ class AlbumData : CustomStringConvertible{
         if self.art == nil {
             return UIImage(named: "album-placeholder")!
         } else {
-            return self.art.imageWithSize(size)!
+            if self.art.imageWithSize(size) != nil {
+                return self.art.imageWithSize(size)!
+            } else {
+                //I dont understand how this happed.  But it did.  This seems to occur if there is an image but it is too small! So weird.
+                return UIImage(named: "album-placeholder")!
+            }
         }
     }
     
