@@ -13,11 +13,15 @@ class ViewController: UIViewController {
     var blurMask : UIView!
     var blurredBgImage : UIView!
     
-    
+    var nowPlaying : NowPlayingOverlayViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nowPlaying = NowPlayingViewController()
+//        let nowPlaying = NowPlayingViewController()
+//        let nowPlaying = NowPlayingOverlayViewController()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        nowPlaying = storyboard.instantiateViewControllerWithIdentifier("nowPlayingOverlayViewController") as! NowPlayingOverlayViewController
         
 //        
 //        nowPlaying.originFull = -50 //Negative height of mini
@@ -28,7 +32,7 @@ class ViewController: UIViewController {
         addChildViewController(nowPlaying)
         
         
-        nowPlaying.adjustToFrame(self.view.frame)
+//        nowPlaying.adjustToFrame(self.view.frame)
         
 //        print("Width \(view.frame.width)")
         
@@ -40,6 +44,10 @@ class ViewController: UIViewController {
 //        blurMask = UIView(frame: CGRect(x: 0, y: self.view.frame.size.height-50, width: self.view.frame.size.width, height: 50))
 //        blurMask.backgroundColor = UIColor.whiteColor()
 //        blurredBgImage.layer.mask = blurMask.layer;
+    }
+    
+    override func viewDidLayoutSubviews() {
+        nowPlaying.adjustToFrame(self.view.frame)
     }
 
     override func didReceiveMemoryWarning() {

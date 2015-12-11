@@ -478,6 +478,288 @@
             </objects>
             <point key="canvasLocation" x="1883" y="923"/>
         </scene>
+        <!--Now Playing Overlay View Controller-->
+        <scene sceneID="fmf-fl-07v">
+            <objects>
+                <viewController storyboardIdentifier="nowPlayingOverlayViewController" id="Nh1-do-jOd" customClass="NowPlayingOverlayViewController" customModule="AlbumExperimentThree" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h1V-Kh-431"/>
+                        <viewControllerLayoutGuide type="bottom" id="tpR-S5-v0m"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rEP-Y8-XhS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diE-kO-mxO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="56A-50-ej5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYI-x4-Yb6">
+                                            <rect key="frame" x="165" y="153" width="129" height="30"/>
+                                            <animations/>
+                                            <state key="normal" title="Pink Power Ranger"/>
+                                            <connections>
+                                                <action selector="showNowPlayingQueue:" destination="Nh1-do-jOd" eventType="touchUpInside" id="Yi9-3B-YlR"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8P-uw-mmd">
+                                            <rect key="frame" x="165" y="206" width="32" height="30"/>
+                                            <animations/>
+                                            <state key="normal" title="Shut"/>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                </view>
+                                <animations/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b02-bS-4XI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTb-OD-fao" customClass="MiniProgressBarView" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="4"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="Ylu-cJ-pmU"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-Pb-87P">
+                                        <rect key="frame" x="8" y="8" width="584" height="48"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lIB-60-iOV">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBg-lL-U3r" customClass="NextPreviousButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="Hov-a8-UTW"/>
+                                                            <constraint firstAttribute="width" constant="48" id="bEK-Og-rAi"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPrevious" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                                <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="previousButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="KSH-8O-JON"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wA-5U-Kpv" customClass="PlayPauseButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                                        <rect key="frame" x="48" y="0.0" width="48" height="48"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="GnD-4H-Qbz"/>
+                                                            <constraint firstAttribute="width" constant="48" id="RBB-3l-tJD"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                                <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="playPauseButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="UgR-c7-ICr"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2j-Ze-7tM" customClass="NextPreviousButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                                        <rect key="frame" x="96" y="0.0" width="48" height="48"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="48" id="obx-ig-zfl"/>
+                                                            <constraint firstAttribute="height" constant="48" id="zYC-NY-c0o"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                                <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="nextButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="HWw-4q-5DW"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <animations/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WvK-34-pPg" userLabel="Label Stack View">
+                                                <rect key="frame" x="148" y="0.0" width="436" height="48"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usK-8e-3sE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="436" height="24"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="13"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRx-NA-hTQ">
+                                                        <rect key="frame" x="0.0" y="24" width="436" height="24"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" name="PingFangHK-Thin" family="PingFang HK" pointSize="13"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <animations/>
+                                            </stackView>
+                                        </subviews>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstItem="lIB-60-iOV" firstAttribute="bottom" secondItem="WvK-34-pPg" secondAttribute="bottom" id="7ej-9S-gs0"/>
+                                            <constraint firstItem="lIB-60-iOV" firstAttribute="centerY" secondItem="WvK-34-pPg" secondAttribute="centerY" id="euJ-pf-KEa"/>
+                                            <constraint firstItem="lIB-60-iOV" firstAttribute="top" secondItem="WvK-34-pPg" secondAttribute="top" id="f4L-bx-EwR"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dTb-OD-fao" firstAttribute="top" secondItem="b02-bS-4XI" secondAttribute="top" id="Enr-6P-Qvy"/>
+                                    <constraint firstItem="dTb-OD-fao" firstAttribute="leading" secondItem="b02-bS-4XI" secondAttribute="leading" id="OR5-nl-eHV"/>
+                                    <constraint firstItem="hi7-Pb-87P" firstAttribute="leading" secondItem="b02-bS-4XI" secondAttribute="leadingMargin" id="PLW-Gz-Oja"/>
+                                    <constraint firstItem="hi7-Pb-87P" firstAttribute="top" secondItem="b02-bS-4XI" secondAttribute="topMargin" id="ZDP-iO-SmN"/>
+                                    <constraint firstAttribute="height" constant="64" id="n9X-SB-2BA"/>
+                                    <constraint firstAttribute="trailing" secondItem="dTb-OD-fao" secondAttribute="trailing" id="pBy-2n-KxN"/>
+                                    <constraint firstItem="hi7-Pb-87P" firstAttribute="centerX" secondItem="dTb-OD-fao" secondAttribute="centerX" id="xan-iU-A6N"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="diE-kO-mxO" secondAttribute="trailing" id="9zJ-IX-Ew1"/>
+                            <constraint firstItem="b02-bS-4XI" firstAttribute="leading" secondItem="rEP-Y8-XhS" secondAttribute="leading" id="Hfd-b4-miz"/>
+                            <constraint firstItem="diE-kO-mxO" firstAttribute="leading" secondItem="rEP-Y8-XhS" secondAttribute="leading" id="fMl-0x-Xmu"/>
+                            <constraint firstItem="diE-kO-mxO" firstAttribute="top" secondItem="b02-bS-4XI" secondAttribute="top" id="nfF-Wf-0vY"/>
+                            <constraint firstAttribute="bottom" secondItem="diE-kO-mxO" secondAttribute="bottom" id="o12-o4-bWX"/>
+                            <constraint firstItem="b02-bS-4XI" firstAttribute="top" secondItem="rEP-Y8-XhS" secondAttribute="top" id="spC-OP-unv"/>
+                            <constraint firstAttribute="trailing" secondItem="b02-bS-4XI" secondAttribute="trailing" id="xHp-iU-Bun"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="miniNextButton" destination="F2j-Ze-7tM" id="qPY-Gs-pnX"/>
+                        <outlet property="miniPlayPauseButton" destination="5wA-5U-Kpv" id="p6i-ar-mhu"/>
+                        <outlet property="miniPreviousButton" destination="QBg-lL-U3r" id="PUB-HV-B4A"/>
+                        <outlet property="miniView" destination="b02-bS-4XI" id="nMP-0c-ml1"/>
+                        <outlet property="miniViewDetailLabel" destination="nRx-NA-hTQ" id="4ta-Ol-Vnv"/>
+                        <outlet property="miniViewHeightConstraint" destination="n9X-SB-2BA" id="53f-Fi-ZEl"/>
+                        <outlet property="miniViewTitleLabel" destination="usK-8e-3sE" id="K6T-hh-kIS"/>
+                        <outlet property="progresBarView" destination="dTb-OD-fao" id="0VT-mb-LfU"/>
+                        <segue destination="9Ip-B4-LUA" kind="show" identifier="presentNowPlayingQueue" id="1cY-DJ-QdJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iZ-RR-Rq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="2166"/>
+        </scene>
+        <!--Playback Queue View Controller-->
+        <scene sceneID="bFK-5d-vbM">
+            <objects>
+                <viewController id="9Ip-B4-LUA" customClass="PlaybackQueueViewController" customModule="AlbumExperimentThree" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O3u-V7-jiv"/>
+                        <viewControllerLayoutGuide type="bottom" id="fMi-Ni-8xw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XPC-9A-eL1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVt-D4-KC0">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOn-Xh-sHV">
+                                        <rect key="frame" x="551" y="17" width="37" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="closePlaybackQueue:" destination="9Ip-B4-LUA" eventType="touchUpInside" id="WrW-Bm-qQz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="iOn-Xh-sHV" secondAttribute="trailing" constant="12" id="aXu-gR-vFY"/>
+                                    <constraint firstAttribute="height" constant="64" id="cWm-U0-SEJ"/>
+                                    <constraint firstItem="iOn-Xh-sHV" firstAttribute="top" secondItem="pVt-D4-KC0" secondAttribute="top" constant="17" id="kYI-hc-sfn"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-ph-3Bq">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pUf-DI-4aO">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pUf-DI-4aO" id="Eft-A5-STY">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DSc-Gf-ago">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DSc-Gf-ago" id="Tvj-zk-LO8">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2fl-RS-719">
+                                        <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2fl-RS-719" id="BTk-XP-Xtp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pVt-D4-KC0" secondAttribute="trailing" id="079-nH-iin"/>
+                            <constraint firstItem="Ee8-ph-3Bq" firstAttribute="leading" secondItem="XPC-9A-eL1" secondAttribute="leading" id="LQo-qJ-gqk"/>
+                            <constraint firstItem="pVt-D4-KC0" firstAttribute="top" secondItem="XPC-9A-eL1" secondAttribute="top" id="dBe-7j-MFb"/>
+                            <constraint firstItem="pVt-D4-KC0" firstAttribute="leading" secondItem="XPC-9A-eL1" secondAttribute="leading" id="hcb-Kl-yTN"/>
+                            <constraint firstAttribute="trailing" secondItem="Ee8-ph-3Bq" secondAttribute="trailing" id="hgU-Mm-g2A"/>
+                            <constraint firstItem="Ee8-ph-3Bq" firstAttribute="top" secondItem="pVt-D4-KC0" secondAttribute="bottom" id="qlq-cu-0Ld"/>
+                            <constraint firstItem="fMi-Ni-8xw" firstAttribute="top" secondItem="Ee8-ph-3Bq" secondAttribute="bottom" id="wPZ-o0-WT7"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FDn-17-hE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="2166"/>
+        </scene>
         <!--Album View Controller-->
         <scene sceneID="m76-al-7Sj">
             <objects>

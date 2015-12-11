@@ -15,6 +15,8 @@
 		0F1EBBEC1C15049B0032100D /* ITunesLibraryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBEB1C15049B0032100D /* ITunesLibraryParser.swift */; };
 		0F1EBBEE1C1513C40032100D /* AdditionalTrackMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBED1C1513C40032100D /* AdditionalTrackMetaData.swift */; };
 		0F1EBBF01C1555B00032100D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBEF1C1555B00032100D /* NSDate+Util.swift */; };
+		0F4AD61D1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AD61C1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift */; };
+		0F4AD61F1C1AC2CC00D573B0 /* PlaybackQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AD61E1C1AC2CB00D573B0 /* PlaybackQueueViewController.swift */; };
 		0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */; };
 		0F51DC3F1BEE67360073B635 /* ArtistTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3C1BEE67360073B635 /* ArtistTitleCell.swift */; };
 		0F51DC401BEE67360073B635 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC3D1BEE67360073B635 /* SectionHeaderCell.swift */; };
@@ -77,6 +79,8 @@
 		0F1EBBEB1C15049B0032100D /* ITunesLibraryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITunesLibraryParser.swift; sourceTree = "<group>"; };
 		0F1EBBED1C1513C40032100D /* AdditionalTrackMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalTrackMetaData.swift; sourceTree = "<group>"; };
 		0F1EBBEF1C1555B00032100D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
+		0F4AD61C1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingOverlayViewController.swift; sourceTree = "<group>"; };
+		0F4AD61E1C1AC2CB00D573B0 /* PlaybackQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackQueueViewController.swift; sourceTree = "<group>"; };
 		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F51DC371BEE66450073B635 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICollectionViewLeftAlignedLayout.h; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICollectionViewLeftAlignedLayout.m; path = UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
 				0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */,
 				0F60BFF71BF8DE9400C4166F /* SongViewController.swift */,
+				0F4AD61C1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift */,
+				0F4AD61E1C1AC2CB00D573B0 /* PlaybackQueueViewController.swift */,
 			);
 			indentWidth = 4;
 			path = Controllers;
@@ -469,6 +475,7 @@
 				0F57C7D51BEA8BD100B32570 /* OverlayPlayPauseButton.swift in Sources */,
 				0F60C01A1BFEF05C00C4166F /* UIColor+Utils.m in Sources */,
 				0F60C0021BF99D3300C4166F /* UIImage+Mask.m in Sources */,
+				0F4AD61D1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift in Sources */,
 				0F57C7D91BEAD1F200B32570 /* NextPreviousButton.swift in Sources */,
 				0FD309F01BDA873D0064E4F9 /* ViewController.swift in Sources */,
 				0F60C01C1C01185200C4166F /* SongData.swift in Sources */,
@@ -478,6 +485,7 @@
 				0F1EBBEE1C1513C40032100D /* AdditionalTrackMetaData.swift in Sources */,
 				0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */,
 				0F60C0091BF9A4F100C4166F /* ImageColorPalette.swift in Sources */,
+				0F4AD61F1C1AC2CC00D573B0 /* PlaybackQueueViewController.swift in Sources */,
 				0F1EBBE31C0E68410032100D /* MusicPlayer.swift in Sources */,
 				0F7054B81BE27A27003FA9F1 /* Array+Utils.swift in Sources */,
 				0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */,

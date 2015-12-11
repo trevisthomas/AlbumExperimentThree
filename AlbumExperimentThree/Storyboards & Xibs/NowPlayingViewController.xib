@@ -34,6 +34,11 @@
                                 <animations/>
                                 <state key="normal" title="Shut"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6y-RL-gad">
+                                <rect key="frame" x="206" y="153" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Queue"/>
+                            </button>
                         </subviews>
                         <animations/>
                     </view>
@@ -181,6 +186,33 @@
                 <constraint firstItem="e3C-Oi-ChQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rio-Vs-5Ja"/>
                 <constraint firstAttribute="trailing" secondItem="mmz-GA-MXq" secondAttribute="trailing" id="zxZ-c0-2Kr"/>
             </constraints>
+            <point key="canvasLocation" x="406" y="-247"/>
         </view>
+        <viewController id="2FS-JM-P4h">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="zc8-Fg-NPo"/>
+                <viewControllerLayoutGuide type="bottom" id="39A-Fm-5RK"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="03h-Dv-Zi3">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ASF-Wg-BdU">
+                        <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ASF-Wg-BdU" secondAttribute="trailing" id="0y5-mP-d8w"/>
+                    <constraint firstItem="39A-Fm-5RK" firstAttribute="top" secondItem="ASF-Wg-BdU" secondAttribute="bottom" id="7bG-0Y-SUL"/>
+                    <constraint firstItem="ASF-Wg-BdU" firstAttribute="top" secondItem="zc8-Fg-NPo" secondAttribute="bottom" id="juK-dz-Mhh"/>
+                    <constraint firstItem="ASF-Wg-BdU" firstAttribute="leading" secondItem="03h-Dv-Zi3" secondAttribute="leading" id="qy8-82-oSg"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="1104" y="-247"/>
+        </viewController>
     </objects>
 </document>
