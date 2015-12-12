@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         addChildViewController(nowPlaying)
         
         
-//        nowPlaying.adjustToFrame(self.view.frame)
+        nowPlaying.adjustToFrame(self.view.frame)
         
 //        print("Width \(view.frame.width)")
         
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        nowPlaying.adjustToFrame(self.view.frame)
+//        nowPlaying.adjustToFrame(self.view.frame)
     }
 
     override func didReceiveMemoryWarning() {

@@ -15,6 +15,7 @@
 		0F1EBBEC1C15049B0032100D /* ITunesLibraryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBEB1C15049B0032100D /* ITunesLibraryParser.swift */; };
 		0F1EBBEE1C1513C40032100D /* AdditionalTrackMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBED1C1513C40032100D /* AdditionalTrackMetaData.swift */; };
 		0F1EBBF01C1555B00032100D /* NSDate+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1EBBEF1C1555B00032100D /* NSDate+Util.swift */; };
+		0F2314881C1B923E0055C7C7 /* PlayPauseProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2314871C1B923E0055C7C7 /* PlayPauseProgressButton.swift */; };
 		0F4AD61D1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AD61C1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift */; };
 		0F4AD61F1C1AC2CC00D573B0 /* PlaybackQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4AD61E1C1AC2CB00D573B0 /* PlaybackQueueViewController.swift */; };
 		0F51DC391BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51DC381BEE66450073B635 /* UICollectionViewLeftAlignedLayout.m */; };
@@ -60,8 +61,6 @@
 		0FD309F31BDA873D0064E4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD309F11BDA873D0064E4F9 /* Main.storyboard */; };
 		0FD309F51BDA873D0064E4F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FD309F41BDA873D0064E4F9 /* Assets.xcassets */; };
 		0FD309F81BDA873D0064E4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FD309F61BDA873D0064E4F9 /* LaunchScreen.storyboard */; };
-		0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */; };
-		0FD30A041BDA915A0064E4F9 /* NowPlayingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD30A021BDA915A0064E4F9 /* NowPlayingViewController.xib */; };
 		0FD30A281BDD7EF50064E4F9 /* MusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD30A271BDD7EF50064E4F9 /* MusicLibrary.swift */; };
 		0FD30A2A1BDD7F4D0064E4F9 /* AlbumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD30A291BDD7F4D0064E4F9 /* AlbumData.swift */; };
 		0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */; };
@@ -79,6 +78,7 @@
 		0F1EBBEB1C15049B0032100D /* ITunesLibraryParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITunesLibraryParser.swift; sourceTree = "<group>"; };
 		0F1EBBED1C1513C40032100D /* AdditionalTrackMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditionalTrackMetaData.swift; sourceTree = "<group>"; };
 		0F1EBBEF1C1555B00032100D /* NSDate+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Util.swift"; sourceTree = "<group>"; };
+		0F2314871C1B923E0055C7C7 /* PlayPauseProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseProgressButton.swift; sourceTree = "<group>"; };
 		0F4AD61C1C1AAD5B00D573B0 /* NowPlayingOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingOverlayViewController.swift; sourceTree = "<group>"; };
 		0F4AD61E1C1AC2CB00D573B0 /* PlaybackQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackQueueViewController.swift; sourceTree = "<group>"; };
 		0F51DC361BEE62F60073B635 /* AlbumExperimentThree-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlbumExperimentThree-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -137,8 +137,6 @@
 		0FD309F41BDA873D0064E4F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FD309F71BDA873D0064E4F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0FD309F91BDA873D0064E4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
-		0FD30A021BDA915A0064E4F9 /* NowPlayingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingViewController.xib; sourceTree = "<group>"; };
 		0FD30A271BDD7EF50064E4F9 /* MusicLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
 		0FD30A291BDD7F4D0064E4F9 /* AlbumData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumData.swift; sourceTree = "<group>"; };
 		0FD30A2B1BDD7F6E0064E4F9 /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
@@ -206,6 +204,7 @@
 				0F57C7D41BEA8BD100B32570 /* OverlayPlayPauseButton.swift */,
 				0F57C7D61BEACA7500B32570 /* PlayPauseButton.swift */,
 				0F60C0211C07D44400C4166F /* MiniProgressBarView.swift */,
+				0F2314871C1B923E0055C7C7 /* PlayPauseProgressButton.swift */,
 			);
 			name = CoreGraphics;
 			sourceTree = "<group>";
@@ -226,7 +225,6 @@
 				0F7054BF1BE2C580003FA9F1 /* AlbumHistoryViewController.swift */,
 				0FD309ED1BDA873D0064E4F9 /* AppDelegate.swift */,
 				0FBF6A2B1BE132D600B66AC0 /* GenreViewController.swift */,
-				0FD30A011BDA915A0064E4F9 /* NowPlayingViewController.swift */,
 				0FD309EF1BDA873D0064E4F9 /* ViewController.swift */,
 				0F51DC4F1BF122500073B635 /* NavigationControllerDelegate.swift */,
 				0F60BFF71BF8DE9400C4166F /* SongViewController.swift */,
@@ -288,7 +286,6 @@
 			children = (
 				0FD309F61BDA873D0064E4F9 /* LaunchScreen.storyboard */,
 				0FD309F11BDA873D0064E4F9 /* Main.storyboard */,
-				0FD30A021BDA915A0064E4F9 /* NowPlayingViewController.xib */,
 				0F60C00A1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib */,
 			);
 			path = "Storyboards & Xibs";
@@ -433,7 +430,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FD30A041BDA915A0064E4F9 /* NowPlayingViewController.xib in Resources */,
 				0FD309F81BDA873D0064E4F9 /* LaunchScreen.storyboard in Resources */,
 				0FD309F51BDA873D0064E4F9 /* Assets.xcassets in Resources */,
 				0F60C00B1BF9AC4D00C4166F /* DoubleNavigationTitleView.xib in Resources */,
@@ -453,6 +449,7 @@
 				0F51DC5B1BF2A74B0073B635 /* UIView+Snapshot.m in Sources */,
 				0F57C7D31BEA7D9400B32570 /* UIImage+ColorCube.swift in Sources */,
 				0F19E3741C1736CE006BD944 /* AlbumTitleArtistHashKey.swift in Sources */,
+				0F2314881C1B923E0055C7C7 /* PlayPauseProgressButton.swift in Sources */,
 				0F60C00D1BF9AC8F00C4166F /* DoubleNavigationTitleView.swift in Sources */,
 				0F57C7D11BEA75D400B32570 /* MoreArrowView.swift in Sources */,
 				0F7054B51BE26A61003FA9F1 /* UIImage+Utils.swift in Sources */,
@@ -465,7 +462,6 @@
 				0F60C0221C07D44400C4166F /* MiniProgressBarView.swift in Sources */,
 				0FD30A2C1BDD7F6E0064E4F9 /* String+Utils.swift in Sources */,
 				0F51DC581BF29E4B0073B635 /* UIImage+PRBoxBlur.m in Sources */,
-				0FD30A031BDA915A0064E4F9 /* NowPlayingViewController.swift in Sources */,
 				0F60C0071BF9A47700C4166F /* UIImage+Color.m in Sources */,
 				0FC7E7E91BE5094E00C0CE79 /* CGFloat+Util.swift in Sources */,
 				0FE5644C1BE4284400E065E7 /* CCColorCube.m in Sources */,

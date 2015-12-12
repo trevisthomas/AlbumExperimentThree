@@ -22,7 +22,9 @@ class PlaybackQueueViewController: UIViewController {
     }
     
     @IBAction func closePlaybackQueue(sender: UIButton) {
-        performSegueWithIdentifier("presentNowPlayingQueue", sender: self)
+      //  performSegueWithIdentifier("presentNowPlayingQueue", sender: self)
+//        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     /*
