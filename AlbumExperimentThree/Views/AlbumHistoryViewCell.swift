@@ -15,7 +15,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var outerBoxView: UIView!
     @IBOutlet weak var playPauseButton: OverlayPlayPauseButton!
-    private var currentTimer : NSTimer!
+//    private var currentTimer : NSTimer!
     
     
     var albumData : AlbumData! {
@@ -100,7 +100,7 @@ class AlbumHistoryViewCell: UICollectionViewCell {
             
             playPauseButton.progressPercentage = percentageProgress
             
-            print("\(percentageProgress * 100)  \(String.convertSecondsToHHMMSS(currentPlaybackTime))")
+//            print("\(percentageProgress * 100)  \(String.convertSecondsToHHMMSS(currentPlaybackTime))")
         }
         
     }

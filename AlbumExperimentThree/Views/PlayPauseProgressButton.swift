@@ -20,8 +20,14 @@ class PlayPauseProgressButton: UIButton {
     @IBInspectable var progressColor : UIColor = UIColor.redColor()
     @IBInspectable var color : UIColor = UIColor.whiteColor()
     
+    @IBInspectable var strokeColor : UIColor = UIColor.blackColor()
+    @IBInspectable var strokeWidth : CGFloat = 2.0
+    
     @IBInspectable var fontSize : CGFloat = 50
+//    @IBInspectable var fieldFont : UIFont = UIFont(name: "Helvetica Neue", size: 50)!
     @IBInspectable var timeInTrack : String = "0:00:01"
+    
+    @IBInspectable var usePauseButton : Bool = false  //Pause button vs time
     
     var innerPadding : CGFloat = 0 //This inner padding is to make the triangle smaller than the inside of the circle.  Be careful chaning this.  If it's smaller than half of the radius bad things will happen
 //
@@ -36,12 +42,21 @@ class PlayPauseProgressButton: UIButton {
 //    
 //    @IBInspectable var progressPathColor : UIColor = UIColor.blackColor()
     
-    @IBInspectable var progressPercentage : CGFloat = 0.52 {
-        didSet {
+    @IBInspectable var progressPercentage : CGFloat = 0.52
+    
+    var currentPlaybackTime : Double! {
+        didSet{
+            if (duration == nil) {
+                progressPercentage = 0
+                timeInTrack = "0:00:00" //Shrug?
+            } else {
+                progressPercentage = CGFloat(currentPlaybackTime / duration!)
+                timeInTrack = String.convertSecondsToHHMMSS(currentPlaybackTime)
+            }
             setNeedsDisplay()
         }
     }
-    
+    var duration : Double?
     
     @IBInspectable var isPlaying : Bool = false {
         didSet{
@@ -88,21 +103,23 @@ class PlayPauseProgressButton: UIButton {
         let edge = sqrt((pow(innerDiameter, 2.0)) / 2.0)
         
         if isPlaying {
-            let barWidth = size * 0.1
+            if usePauseButton {
+                let barWidth = size * 0.1
+                
+                let leftRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) - 2 * barWidth , y: (rect.height - edge) / 2, width: barWidth, height: edge))
+                
+                let rightRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) + barWidth, y: (rect.height - edge) / 2, width: barWidth, height: edge))
+                
+                color.setFill()
+                leftRectPath.fill()
+                rightRectPath.fill()
+            } else {
+                let fieldFont = UIFont(name: "Helvetica Neue", size: fontSize)!
+                
+                let textRect = CGRectMake(center.x - size/2, center.y - (fieldFont.lineHeight / 2), size, fieldFont.lineHeight)
+                drawText(timeInTrack, rect: textRect, font: fieldFont)
+            }
             
-//            let leftRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) - 2 * barWidth , y: insetInterior, width: barWidth, height: rect.height - (2 * insetInterior)))
-//            
-//            let rightRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) + barWidth, y: insetInterior, width: barWidth, height: rect.height - (2 * insetInterior)))
-            
-            
-            
-            let leftRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) - 2 * barWidth , y: (rect.height - edge) / 2, width: barWidth, height: edge))
-            
-            let rightRectPath = UIBezierPath(rect: CGRect(x: (rect.width / 2) + barWidth, y: (rect.height - edge) / 2, width: barWidth, height: edge))
-            
-            color.setFill()
-            leftRectPath.fill()
-            rightRectPath.fill()
         } else {
             CGContextSaveGState(context)
             
@@ -117,18 +134,21 @@ class PlayPauseProgressButton: UIButton {
             triPath.addLineToPoint(CGPoint(x: -edge/2, y: edge/2))
             triPath.closePath()
             color.setFill()
+            strokeColor.setStroke()
+            triPath.lineWidth = strokeWidth
+            
             
             //Move it into position
             CGContextTranslateCTM(context, center.x + nudge, center.y)
             triPath.fill()
+            triPath.stroke()
             
             CGContextRestoreGState(context)
             CGContextSaveGState(context)
         }
         
-        let fieldFont = UIFont(name: "Helvetica Neue", size: fontSize)!
-        let textRect = CGRectMake(center.x - edge/2, center.y - (fieldFont.pointSize / 2), edge, fieldFont.pointSize)
-        drawText(timeInTrack, rect: textRect, font: fieldFont)
+        
+        
     }
     
     func drawText(text : String, rect : CGRect, font : UIFont){

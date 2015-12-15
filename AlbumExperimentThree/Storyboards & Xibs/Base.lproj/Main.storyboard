@@ -487,17 +487,17 @@
                         <viewControllerLayoutGuide type="bottom" id="tpR-S5-v0m"/>
                     </layoutGuides>
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rEP-Y8-XhS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diE-kO-mxO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="56A-50-ej5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYI-x4-Yb6">
-                                            <rect key="frame" x="8" y="562" width="129" height="30"/>
+                                            <rect key="frame" x="8" y="693" width="129" height="30"/>
                                             <animations/>
                                             <state key="normal" title="Pink Power Ranger"/>
                                             <connections>
@@ -505,15 +505,19 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1x2-ay-rTr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                            <rect key="frame" x="0.0" y="64" width="375" height="375"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="1x2-ay-rTr" secondAttribute="height" multiplier="1:1" id="NLZ-hO-rzA"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObM-6B-uVr" customClass="PlayPauseProgressButton" customModule="AlbumExperimentThree" customModuleProvider="target">
-                                            <rect key="frame" x="94" y="331" width="203" height="200"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObM-6B-uVr" customClass="PlayPauseProgressButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                            <rect key="frame" x="112" y="503" width="150" height="150"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ObM-6B-uVr" secondAttribute="height" multiplier="1:1" id="JLd-K8-aUA"/>
+                                                <constraint firstAttribute="width" constant="150" id="laO-fB-95D"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="inset">
                                                     <real key="value" value="1"/>
@@ -527,26 +531,120 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="innerPadding">
                                                     <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="timeInTrack" value="55:31"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                    <real key="value" value="50"/>
+                                                    <real key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.20037715517241381" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="outlineColor">
+                                                    <color key="value" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="outerCircleLineWidth">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="outerCircleLineColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                                                    <color key="value" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="outlineInset">
+                                                    <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="playPauseButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="uMR-0M-yha"/>
+                                            </connections>
                                         </button>
-                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3:32" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQP-MX-1x0">
-                                            <rect key="frame" x="113" y="375" width="164" height="111"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8l-40-wBH">
+                                            <rect key="frame" x="0.0" y="447" width="375" height="30"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" name="PingFangHK-Semibold" family="PingFang HK" pointSize="47"/>
+                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="21"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIH-zB-88Q">
+                                            <rect key="frame" x="0.0" y="479" width="375" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdS-Yp-svq" customClass="NextPreviousButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                            <rect key="frame" x="270" y="554" width="48" height="48"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="fg0-Vb-5ri"/>
+                                                <constraint firstAttribute="width" constant="48" id="wa0-7a-Nf6"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="outlineColor">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.19919181034482758" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="nextButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="OeX-UF-CEr"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMF-u0-FCs" customClass="NextPreviousButton" customModule="AlbumExperimentThree" customModuleProvider="target">
+                                            <rect key="frame" x="56" y="554" width="48" height="48"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="Lpx-4m-U9u"/>
+                                                <constraint firstAttribute="height" constant="48" id="gMB-lU-Oeg"/>
+                                            </constraints>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPrevious" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="outlineColor">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                    <color key="value" white="0.0" alpha="0.20309806034482758" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="previousButtonAction:" destination="Nh1-do-jOd" eventType="touchUpInside" id="xht-sF-9VC"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="1x2-ay-rTr" firstAttribute="top" secondItem="56A-50-ej5" secondAttribute="top" id="1BI-nA-XNj"/>
+                                        <constraint firstItem="1x2-ay-rTr" firstAttribute="top" secondItem="56A-50-ej5" secondAttribute="top" constant="64" id="1BI-nA-XNj"/>
+                                        <constraint firstItem="G8l-40-wBH" firstAttribute="leading" secondItem="56A-50-ej5" secondAttribute="leading" id="2eW-mF-L8E"/>
                                         <constraint firstItem="1x2-ay-rTr" firstAttribute="leading" secondItem="56A-50-ej5" secondAttribute="leading" id="AHe-Rr-3qR"/>
+                                        <constraint firstItem="HMF-u0-FCs" firstAttribute="centerY" secondItem="ObM-6B-uVr" secondAttribute="centerY" id="BGG-lu-Iza"/>
                                         <constraint firstAttribute="trailing" secondItem="1x2-ay-rTr" secondAttribute="trailing" id="Bne-mz-TP0"/>
+                                        <constraint firstAttribute="trailing" secondItem="jIH-zB-88Q" secondAttribute="trailing" id="P3K-0N-sQt"/>
+                                        <constraint firstItem="ObM-6B-uVr" firstAttribute="top" secondItem="1x2-ay-rTr" secondAttribute="bottom" constant="64" id="Pmu-66-7da"/>
+                                        <constraint firstAttribute="trailing" secondItem="G8l-40-wBH" secondAttribute="trailing" id="TVQ-nJ-gA3"/>
+                                        <constraint firstItem="ObM-6B-uVr" firstAttribute="leading" secondItem="HMF-u0-FCs" secondAttribute="trailing" constant="8" id="U0Y-F0-5eB"/>
+                                        <constraint firstItem="CdS-Yp-svq" firstAttribute="leading" secondItem="ObM-6B-uVr" secondAttribute="trailing" constant="8" id="XKg-Hl-bYV"/>
+                                        <constraint firstItem="jIH-zB-88Q" firstAttribute="top" secondItem="G8l-40-wBH" secondAttribute="bottom" constant="2" id="Z4O-4b-0gg"/>
+                                        <constraint firstItem="jIH-zB-88Q" firstAttribute="leading" secondItem="56A-50-ej5" secondAttribute="leading" id="oCb-bi-Vif"/>
+                                        <constraint firstItem="CdS-Yp-svq" firstAttribute="centerY" secondItem="ObM-6B-uVr" secondAttribute="centerY" id="rX5-S1-n1m"/>
+                                        <constraint firstItem="ObM-6B-uVr" firstAttribute="centerX" secondItem="56A-50-ej5" secondAttribute="centerX" id="x6E-TB-ynu"/>
+                                        <constraint firstItem="G8l-40-wBH" firstAttribute="top" secondItem="1x2-ay-rTr" secondAttribute="bottom" constant="8" id="x7u-Nc-QZq"/>
                                     </constraints>
                                 </view>
                                 <animations/>
@@ -695,7 +793,7 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="600"/>
+                    <size key="freeformSize" width="375" height="731"/>
                     <connections>
                         <outlet property="miniNextButton" destination="F2j-Ze-7tM" id="qPY-Gs-pnX"/>
                         <outlet property="miniPlayPauseButton" destination="5wA-5U-Kpv" id="p6i-ar-mhu"/>
@@ -704,13 +802,17 @@
                         <outlet property="miniViewDetailLabel" destination="nRx-NA-hTQ" id="4ta-Ol-Vnv"/>
                         <outlet property="miniViewHeightConstraint" destination="n9X-SB-2BA" id="53f-Fi-ZEl"/>
                         <outlet property="miniViewTitleLabel" destination="usK-8e-3sE" id="K6T-hh-kIS"/>
+                        <outlet property="nowPlayingAlbumCoverImageView" destination="1x2-ay-rTr" id="lXD-Nf-30x"/>
+                        <outlet property="nowPlayingArtistLabel" destination="jIH-zB-88Q" id="e6W-lF-R2S"/>
+                        <outlet property="nowPlayingPlayPauseProgressButton" destination="ObM-6B-uVr" id="QD6-fM-lRv"/>
+                        <outlet property="nowPlayingSongTitleLabel" destination="G8l-40-wBH" id="04k-pm-2If"/>
                         <outlet property="progresBarView" destination="dTb-OD-fao" id="0VT-mb-LfU"/>
                         <segue destination="9Ip-B4-LUA" kind="show" identifier="presentNowPlayingQueue" id="1cY-DJ-QdJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3iZ-RR-Rq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1598.5" y="2166"/>
+            <point key="canvasLocation" x="1598.5" y="2165.5"/>
         </scene>
         <!--Playback Queue View Controller-->
         <scene sceneID="bFK-5d-vbM">
@@ -721,7 +823,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fMi-Ni-8xw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XPC-9A-eL1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="731"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVt-D4-KC0">
@@ -745,7 +847,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-ph-3Bq">
-                                <rect key="frame" x="0.0" y="64" width="375" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>

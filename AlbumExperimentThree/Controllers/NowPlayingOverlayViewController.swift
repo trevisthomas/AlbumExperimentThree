@@ -27,8 +27,14 @@ class NowPlayingOverlayViewController: UIViewController {
     
     @IBOutlet weak var miniViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var nowPlayingAlbumCoverImageView: UIImageView!
+    @IBOutlet weak var nowPlayingSongTitleLabel: UILabel!
+    @IBOutlet weak var nowPlayingArtistLabel: UILabel!
+    @IBOutlet weak var nowPlayingPlayPauseProgressButton: PlayPauseProgressButton!
+    
+    
     private let dragTranslationThreshold : CGFloat = 100.0
-    private var currentTimer : NSTimer!
+//    private var currentTimer : NSTimer!
     
     //    var audioPlayer : AVAudioPlayer
     
@@ -46,6 +52,8 @@ class NowPlayingOverlayViewController: UIViewController {
         // this implementation is called because i am creating this view from the storyboard
 //        fatalError("init(coder:) has not been implemented")
 //        performRemainingInit()
+        
+
     }
     
     func performRemainingInit(){
@@ -76,6 +84,8 @@ class NowPlayingOverlayViewController: UIViewController {
         
         miniPlayPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
         
+        nowPlayingPlayPauseProgressButton.isPlaying = MusicPlayer.instance.isPlaying()
+        
         //Oh and dont forget.  Putting your finger on a button and dragging reaps havok!
     }
     
@@ -88,9 +98,18 @@ class NowPlayingOverlayViewController: UIViewController {
         if nowPlayingItem == nil{
             miniViewTitleLabel.text = ""
             miniViewDetailLabel.text = ""
+            nowPlayingAlbumCoverImageView.image = nil
+            nowPlayingSongTitleLabel.text = ""
+            nowPlayingArtistLabel.text = ""
         } else {
             miniViewTitleLabel.text = nowPlayingItem?.title
             miniViewDetailLabel.text = nowPlayingItem?.artist
+            
+            nowPlayingAlbumCoverImageView?.image = nowPlayingItem?.artwork?.imageWithSize(nowPlayingAlbumCoverImageView.bounds.size)
+            nowPlayingSongTitleLabel.text = nowPlayingItem?.title
+            nowPlayingArtistLabel.text = nowPlayingItem?.artist
+            
+            nowPlayingPlayPauseProgressButton.duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
         }
         
     }
@@ -215,19 +234,6 @@ class NowPlayingOverlayViewController: UIViewController {
     //        notificationCenter.removeObserver(self)
     //    }
     //
-    func onTimeElapsed(notification: NSNotification) {
-        
-        let dict = notification.userInfo!
-        let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
-        //        let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY]
-        
-        
-        //        let currentPlaybackTime = mediaPlayerController.currentPlaybackTime
-        
-        //        print(String.convertSecondsToHHMMSS(currentPlaybackTime))
-        
-        progresBarView.progress = currentPlaybackTime
-    }
     
     
     @IBAction func nextButtonAction(sender: UIButton) {
@@ -256,11 +262,23 @@ extension NowPlayingOverlayViewController {
         let nowPlayingItem = MusicPlayer.instance.nowPlayingMediaItem()
         loadMediaItemData(nowPlayingItem)
         
-        progresBarView.duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
+        let duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
+        progresBarView.duration = duration
+        nowPlayingPlayPauseProgressButton.duration = duration
     }
+    
+    func onTimeElapsed(notification: NSNotification) {
+        let dict = notification.userInfo!
+        let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
+        
+        progresBarView.progress = currentPlaybackTime //MiniPlayer progress
+        nowPlayingPlayPauseProgressButton.currentPlaybackTime = currentPlaybackTime
+    }
+
     
     func onMusicPlayerStateChange(notification: NSNotification){
         miniPlayPauseButton.isPlaying = MusicPlayer.instance.isPlaying()
+        nowPlayingPlayPauseProgressButton.isPlaying = MusicPlayer.instance.isPlaying()
     }
     //    func handleVolumeChanged(notification: NSNotification){
     //        print("handleVolumeChanged")
