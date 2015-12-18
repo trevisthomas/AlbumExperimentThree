@@ -169,6 +169,7 @@ class MusicPlayer {
     //!!!!!!!!!!!!!!
     private func loadNowPlayingInfoCenter(){
         nowPlayingInfoCenter.nowPlayingInfo = [
+            MPMediaItemPropertyArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtist)!,
             MPMediaItemPropertyTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyTitle)!,
 //            MPMediaItemPropertyArtist:"\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
             MPMediaItemPropertyAlbumArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!,

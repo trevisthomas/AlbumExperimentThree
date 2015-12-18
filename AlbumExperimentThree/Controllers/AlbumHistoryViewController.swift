@@ -253,6 +253,8 @@ extension AlbumHistoryViewController {
             AppDelegate.getSavedData().lastPlayedAlbums.append(album.albumId)
         }
         
+        AppDelegate.getSavedData().saveState(MusicPlayer.instance) //Actually persist!
+        
 //        if(AppDelegate.getSavedData().lastPlayedAlbums.isEmpty || AppDelegate.getSavedData().lastPlayedAlbums[0] != albumId){
 //            AppDelegate.getSavedData().lastPlayedAlbums.insert(albumId, atIndex: 0)
 //        }

@@ -11,6 +11,8 @@ import AVFoundation
 
 class SavedData : NSObject, NSCoding {
     
+    private static let savedDataKey : String = "savedDataKey"
+    
     private static let lastPlayedAlbumsKey = "lastPlayedAlbums"
     private static let newAlbumsKey = "newAlbums"
     private static let nowPlayingQueueKey = "nowPlayingQueue"
@@ -33,6 +35,31 @@ class SavedData : NSObject, NSCoding {
         nowPlayingQueue = []
         nowPlayingIndex = -1
         playbackPosition = CMTime()
+    }
+    
+    static func loadOrCreateSavedDataInstance() -> SavedData{
+        var savedData : SavedData
+        //Unarchive savedData
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(savedDataKey) as? NSData {
+            savedData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as! SavedData
+        } else {
+            //This should only happen if the data doesnt exist. Note:  The savedData class has a failsafe internaly that should handle creating a new object even if it failes to load the file.
+            savedData = SavedData()
+        }
+        
+        return savedData
+    }
+    
+    //This still doesnt feel perfect, but at least i'm not using the singleton to do the save.
+    func saveState(musicPlayer : MusicPlayer){
+        
+        //This feels so wrong.  This class should just be the system of record for this data.
+        nowPlayingQueue = musicPlayer.mediaItemQueue.asSongIds()
+        nowPlayingIndex = musicPlayer.nowPlayingQueueIndex
+        playbackPosition = musicPlayer.nowPlayingPosition()
+        
+        let data = NSKeyedArchiver.archivedDataWithRootObject(self)
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: SavedData.savedDataKey)
     }
     
     init(lastPlayedAlbums: [NSNumber], newAlbums: [NSNumber], nowPlayingQueue: [NSNumber], nowPlayingIndex: Int, playbackPosition: CMTime){
@@ -133,6 +160,8 @@ class SavedData : NSObject, NSCoding {
 //        
         
 //        notifyNewAlbumObservers(updatedAlbums)
+        
+        newAlbums.insertContentsOf(newAlbumsToInsert, at: 0)
         //Below only notifes of the delta.
         for callback in newAlbumObservers {
             callback(newAlbumsToInsert)
