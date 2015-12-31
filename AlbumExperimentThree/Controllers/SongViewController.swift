@@ -150,6 +150,8 @@ class SongViewController: UIViewController {
     }
     
 
+    
+    
     /*
     // MARK: - Navigation
 
@@ -190,7 +192,17 @@ extension SongViewController : UITableViewDataSource{
 
 extension SongViewController : UITableViewDelegate {
 
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let songData = songs[indexPath.row]
+        
+        MusicLibrary.instance.playAlbum(albumData.albumId)
+        
+//        albumData.albumId
+        
+        MusicPlayer.instance.playItemAtIndex(indexPath.row)
+        
+//        print(songData.title)
+    }
 }
 
 extension SongViewController : UIScrollViewDelegate {
@@ -294,4 +306,6 @@ extension SongViewController : UIScrollViewDelegate {
 //        headerAlbumArtView
 
     }
+    
+   
 }

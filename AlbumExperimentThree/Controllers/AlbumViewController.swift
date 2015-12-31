@@ -195,7 +195,8 @@ class AlbumViewController: UICollectionViewController, UICollectionViewDelegateL
             let cell = sender as! AlbumHistoryViewCell
 
             let indexPath = collectionView!.indexPathForCell(sender as! AlbumHistoryViewCell)!
-            let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+//            let albumData = (indexedArtistData[sections[indexPath.section]])![indexPath.row]
+            let albumData = getAlbumDataAtIndexPath(indexPath)
 
             let songViewController = segue.destinationViewController as! SongViewController
             songViewController.albumData = albumData
