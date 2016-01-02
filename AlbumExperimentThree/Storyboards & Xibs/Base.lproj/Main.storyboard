@@ -531,8 +531,8 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="innerPadding">
                                                     <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="timeInTrack" value="55:31"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaying" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="timeInTrack" value="1:55:38"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                     <real key="value" value="40"/>
                                                 </userDefinedRuntimeAttribute>
@@ -850,38 +850,69 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="kko-BK-zEt">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="101"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pUf-DI-4aO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongHistoryTableViewCell" id="pUf-DI-4aO" customClass="SongHistoryTableViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pUf-DI-4aO" id="Eft-A5-STY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3im-fH-jWw">
+                                                    <rect key="frame" x="47" y="2" width="316" height="20"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kb8-yX-wXJ">
+                                                    <rect key="frame" x="47" y="22" width="316" height="14"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cda-cX-VbF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="cda-cX-VbF" secondAttribute="height" multiplier="1:1" id="eR3-aX-wjw"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3im-fH-jWw" secondAttribute="trailing" constant="4" id="7xs-EP-u8z"/>
+                                                <constraint firstItem="kb8-yX-wXJ" firstAttribute="leading" secondItem="3im-fH-jWw" secondAttribute="leading" id="J7e-xH-Yo1"/>
+                                                <constraint firstItem="cda-cX-VbF" firstAttribute="leading" secondItem="Eft-A5-STY" secondAttribute="leading" id="Mb8-Lw-eu2"/>
+                                                <constraint firstItem="cda-cX-VbF" firstAttribute="top" secondItem="Eft-A5-STY" secondAttribute="top" id="XgO-42-d6O"/>
+                                                <constraint firstItem="kb8-yX-wXJ" firstAttribute="top" secondItem="3im-fH-jWw" secondAttribute="bottom" id="Xpg-RQ-QHY"/>
+                                                <constraint firstAttribute="bottom" secondItem="cda-cX-VbF" secondAttribute="bottom" id="bkk-rB-Tmx"/>
+                                                <constraint firstItem="3im-fH-jWw" firstAttribute="top" secondItem="Eft-A5-STY" secondAttribute="topMargin" constant="-6" id="duT-Pq-Ded"/>
+                                                <constraint firstItem="kb8-yX-wXJ" firstAttribute="width" secondItem="3im-fH-jWw" secondAttribute="width" id="iDs-YT-Bcl"/>
+                                                <constraint firstItem="cda-cX-VbF" firstAttribute="top" secondItem="Eft-A5-STY" secondAttribute="top" id="tqg-08-Ajm"/>
+                                                <constraint firstItem="cda-cX-VbF" firstAttribute="leading" secondItem="Eft-A5-STY" secondAttribute="leading" id="wae-Rh-NXe"/>
+                                                <constraint firstItem="3im-fH-jWw" firstAttribute="leading" secondItem="cda-cX-VbF" secondAttribute="trailing" constant="4" id="zfG-J8-Hdw"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DSc-Gf-ago">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DSc-Gf-ago" id="Tvj-zk-LO8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2fl-RS-719">
-                                        <rect key="frame" x="0.0" y="116" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2fl-RS-719" id="BTk-XP-Xtp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
+                                        <connections>
+                                            <outlet property="albumArt" destination="cda-cX-VbF" id="Y3D-1u-7Ez"/>
+                                            <outlet property="songDetailLabel" destination="kb8-yX-wXJ" id="LoS-PA-OXA"/>
+                                            <outlet property="songTitleLabel" destination="3im-fH-jWw" id="W5v-rJ-w2v"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Ip-B4-LUA" id="xVN-dK-5FT"/>
+                                    <outlet property="delegate" destination="9Ip-B4-LUA" id="0DG-cL-5pd"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <animations/>
@@ -896,10 +927,14 @@
                             <constraint firstItem="fMi-Ni-8xw" firstAttribute="top" secondItem="Ee8-ph-3Bq" secondAttribute="bottom" id="wPZ-o0-WT7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableFooterView" destination="kko-BK-zEt" id="Z56-QH-Bup"/>
+                        <outlet property="tableView" destination="Ee8-ph-3Bq" id="Njs-4h-Sdb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDn-17-hE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2465" y="2166"/>
+            <point key="canvasLocation" x="2464.5" y="2165.5"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="m76-al-7Sj">

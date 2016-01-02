@@ -41,6 +41,10 @@ extension String {
         let currentHours = Int(timeInSeconds / 3600);
         let currentMinutes = Int((timeInSeconds / 60) - Double(currentHours)*60);
         let currentSeconds = Int(timeInSeconds % 60);
-        return String(format:"%i:%02d:%02d", currentHours, currentMinutes, currentSeconds)
+        if currentHours > 0 {
+            return String(format:"%i:%02d:%02d", currentHours, currentMinutes, currentSeconds)
+        } else {
+            return String(format:"%d:%02d",currentMinutes, currentSeconds)
+        }
     }
 }

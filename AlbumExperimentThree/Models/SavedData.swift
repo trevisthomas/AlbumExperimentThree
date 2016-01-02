@@ -18,6 +18,7 @@ class SavedData : NSObject, NSCoding {
     private static let nowPlayingQueueKey = "nowPlayingQueue"
     private static let nowPlayingIndexKey = "nowPlayingIndex"
     private static let playbackPositionKey = "playbackPosition"
+    private static let playbackHistoryKey = "playbackHistory"
     
     var lastPlayedAlbums: [NSNumber]
     private var newAlbums: [NSNumber]
@@ -26,6 +27,7 @@ class SavedData : NSObject, NSCoding {
     var playbackPosition: CMTime
     private var newAlbumCheckPerformed = false
     private var newAlbumCheckInProgress = false
+    var playbackHistory: [NSNumber]
     
     private var newAlbumObservers: [([NSNumber] -> ())] = []
     
@@ -35,6 +37,7 @@ class SavedData : NSObject, NSCoding {
         nowPlayingQueue = []
         nowPlayingIndex = -1
         playbackPosition = CMTime()
+        playbackHistory = []
     }
     
     static func loadOrCreateSavedDataInstance() -> SavedData{
@@ -68,6 +71,7 @@ class SavedData : NSObject, NSCoding {
         self.nowPlayingQueue = nowPlayingQueue
         self.nowPlayingIndex = nowPlayingIndex
         self.playbackPosition = playbackPosition
+        self.playbackHistory = [] //TODO
     }
     
     required convenience init?(coder decoder: NSCoder) {
@@ -88,7 +92,7 @@ class SavedData : NSObject, NSCoding {
     }
     
     func encodeWithCoder(coder: NSCoder) {
-        print("Writing Saved Data from coder")
+        print("Writing Saved Data to coder")
         coder.encodeObject(self.lastPlayedAlbums, forKey: SavedData.lastPlayedAlbumsKey)
         coder.encodeObject(self.newAlbums, forKey: SavedData.newAlbumsKey)
 //        coder.encodeObject([] as [NSNumber], forKey: SavedData.newAlbumsKey) //Saving blank for debuging

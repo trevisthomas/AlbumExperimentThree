@@ -18,4 +18,17 @@ extension MPMediaItem {
         return self.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
     }
     
+    //Trevis! These are about useless.  The attributes are exposed on this class already.
+    
+    func getTitle() -> String?{
+        return self.valueForProperty(MPMediaItemPropertyTitle) as? String
+    }
+    
+    func getAlbumTitle() -> String?{
+        return self.valueForProperty(MPMediaItemPropertyAlbumTitle) as? String
+    }
+    
+    func getAlbumArtist() -> String? {
+        return self.valueForProperty(MPMediaItemPropertyArtist) as? String
+    }
 }

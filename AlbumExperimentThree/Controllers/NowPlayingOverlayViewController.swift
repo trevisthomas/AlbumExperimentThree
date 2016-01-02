@@ -32,6 +32,9 @@ class NowPlayingOverlayViewController: UIViewController {
     @IBOutlet weak var nowPlayingArtistLabel: UILabel!
     @IBOutlet weak var nowPlayingPlayPauseProgressButton: PlayPauseProgressButton!
     
+    let playbackThresholdForHistoryInSeconds : Double = 5
+    var historyCandidateItem : MPMediaItem? = nil
+
     
     private let dragTranslationThreshold : CGFloat = 100.0
 //    private var currentTimer : NSTimer!
@@ -265,6 +268,13 @@ extension NowPlayingOverlayViewController {
         let duration = nowPlayingItem?.valueForProperty(MPMediaItemPropertyPlaybackDuration)?.doubleValue
         progresBarView.duration = duration
         nowPlayingPlayPauseProgressButton.duration = duration
+        
+        //For the history back
+        if historyCandidateItem != nil {
+            AppDelegate.getSavedData().playbackHistory.append(NSNumber(unsignedLongLong: historyCandidateItem!.persistentID))
+        }
+        
+        historyCandidateItem = nil
     }
     
     func onTimeElapsed(notification: NSNotification) {
@@ -273,6 +283,11 @@ extension NowPlayingOverlayViewController {
         
         progresBarView.progress = currentPlaybackTime //MiniPlayer progress
         nowPlayingPlayPauseProgressButton.currentPlaybackTime = currentPlaybackTime
+        
+        //For the history back
+        if currentPlaybackTime > playbackThresholdForHistoryInSeconds{
+            historyCandidateItem = MusicPlayer.instance.nowPlayingMediaItem()
+        }
     }
 
     
@@ -283,6 +298,9 @@ extension NowPlayingOverlayViewController {
     //    func handleVolumeChanged(notification: NSNotification){
     //        print("handleVolumeChanged")
     //    }
+    
+    
+    
 }
 
 extension NowPlayingOverlayViewController {

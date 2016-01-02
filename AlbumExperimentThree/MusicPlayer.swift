@@ -89,6 +89,11 @@ class MusicPlayer {
     }
     
     func skipToPreviousItem(){
+        
+        if nowPlayingQueueIndex > 0 {
+            playItemAtIndex(nowPlayingQueueIndex - 1)
+        }
+        
         //avPlayer?.
         
 //        http://stackoverflow.com/questions/12176699/skip-to-previous-avplayeritem-on-avqueueplayer-play-selected-item-from-queue
@@ -137,6 +142,15 @@ class MusicPlayer {
         } else {
            return self.mediaItemQueue[self.nowPlayingQueueIndex]
         }
+    }
+    
+    // Returns the unplayed tracks from the queue.
+    func remainingMediaItemsInQueue() -> [MPMediaItem]{
+        let nextIndex = self.nowPlayingQueueIndex + 1
+        if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX || nextIndex >= self.mediaItemQueue.count{
+            return []
+        }
+        return Array(self.mediaItemQueue[nextIndex..<self.mediaItemQueue.count])
     }
     
     //This method actually just checks if this album contains the current queued song, it could be paused!!

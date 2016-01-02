@@ -569,6 +569,26 @@ class MusicLibrary{
         return items
     }
     
+//    func querySongWithPersistenceID(songId: NSNumber) -> SongData {
+//        let query = MPMediaQuery.songsQuery()
+//        
+//        let predicate = MPMediaPropertyPredicate(value: songId, forProperty: MPMediaItemPropertyPersistentID)
+//        query.filterPredicates = Set(arrayLiteral: predicate)
+//        
+//        let item = query.items![0]
+//        
+//        let song : SongData = SongData()
+//        
+//        song.title = item.valueForProperty(MPMediaItemPropertyTitle) as! String
+//        song.trackNumber = item.valueForProperty(MPMediaItemPropertyAlbumTrackNumber) as! Int
+//        let duration = item.valueForProperty(MPMediaItemPropertyPlaybackDuration) as! Float
+//        
+//        song.duration = formatDuration(duration)
+//        
+//        return song
+//    }
+    
+    
 //    func getMediaItemCollectionForAlbum(albumId : NSNumber) -> MPMediaItemCollection{
 //        let query = MPMediaQuery.genresQuery()
 //        query.groupingType = .Album
