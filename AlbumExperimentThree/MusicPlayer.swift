@@ -182,15 +182,29 @@ class MusicPlayer {
     //TODO! Move this to NowPlayingViewController. That is where the remote control featues are.  
     //!!!!!!!!!!!!!!
     private func loadNowPlayingInfoCenter(){
-        nowPlayingInfoCenter.nowPlayingInfo = [
+        
+        if (nowPlayingQueueIndex < 0) {
+            return
+        }
+        var mutableDict : [String: AnyObject]
+        
+        
+//        nowPlayingInfoCenter.nowPlayingInfo
+        mutableDict = [
             MPMediaItemPropertyArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtist)!,
             MPMediaItemPropertyTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyTitle)!,
 //            MPMediaItemPropertyArtist:"\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
             MPMediaItemPropertyAlbumArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!,
             MPMediaItemPropertyAlbumTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!,
-            MPMediaItemPropertyArtwork:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtwork)!,
+          
             MPMediaItemPropertyPlaybackDuration:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyPlaybackDuration)!
         ]
+        //If there is no art work, you dont want to blow up.
+        if let artwork = mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtwork) {
+            mutableDict[MPMediaItemPropertyArtwork] = artwork
+        }
+
+        nowPlayingInfoCenter.nowPlayingInfo = mutableDict
     }
     
     //Note! The annotation was required because this class doesnt extend NSObject!!
@@ -218,10 +232,12 @@ class MusicPlayer {
     
     
     private func updateNowPlayingIndex(){
-        if nowPlayingQueueIndex++ >= mediaItemQueue.count {
+        if nowPlayingQueueIndex + 1 >= mediaItemQueue.count {
             nowPlayingQueueIndex = MusicPlayer.DEFAULT_INDEX
         }
-        
+        else {
+            nowPlayingQueueIndex++
+        }
         loadNowPlayingInfoCenter() //TODO: this will fail at -1 index
     }
     
@@ -230,6 +246,7 @@ class MusicPlayer {
         
         if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX {
             NSNotificationCenter.defaultCenter().postNotificationName(MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: self)
+            
         } else {
             let dict = [MusicPlayer.MEDIA_ITEM_KEY : self.mediaItemQueue[self.nowPlayingQueueIndex]]
             NSNotificationCenter.defaultCenter().postNotificationName(MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: self, userInfo: dict)
@@ -270,12 +287,13 @@ extension AVPlayerItem {
 
 extension NSNotification {
     func isNotificationForMyAlbum(albumId : NSNumber) ->Bool{
-        let dict = self.userInfo!
-        let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY]
-        
-        if let nowPlayingAlbumId = nowPlayingItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber{
-            if albumId == nowPlayingAlbumId {
-                return true
+        if let dict = self.userInfo {
+            let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY]
+            
+            if let nowPlayingAlbumId = nowPlayingItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as? NSNumber{
+                if albumId == nowPlayingAlbumId {
+                    return true
+                }
             }
         }
         return false

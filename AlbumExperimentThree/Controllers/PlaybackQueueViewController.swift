@@ -16,14 +16,29 @@ class PlaybackQueueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableFooterView.frame.size.height = 401 //To Do make a meaningful calculation.
+        tableView.contentInset = UIEdgeInsetsMake(0 ,0, determineFooterPaddingHeight(), 0)
         
         let ip = NSIndexPath(forRow: 0, inSection: 1)
-        
         tableView.scrollToRowAtIndexPath(ip, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
         
+        registerMediaPlayerNotifications()
+    }
+ 
+    //Doesnt work. No idea why
+    private func determineFooterPaddingHeight() -> CGFloat {
+        let tableHeight = tableView.frame.height
         
+        //Calculate the height of the sections that you want to be fully visable
+        let rectSect2 = tableView.rectForSection(2)
+
+        let needed = tableHeight - rectSect2.height
+        
+        if needed > 0 {
+            return needed
+        } else {
+            return 0
+        }
+//        return 401
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,30 +53,31 @@ class PlaybackQueueViewController: UIViewController {
     }
     
     
-//    func registerMediaPlayerNotifications() {
-//        let nc = NSNotificationCenter.defaultCenter()
-//        
+    func registerMediaPlayerNotifications() {
+        let nc = NSNotificationCenter.defaultCenter()
+        
 //        //Last param is optional
 //        nc.addObserver(self, selector: "onTimeElapsed:", name: MusicPlayer.MusicPlayerTimeUpdate, object: MusicPlayer.instance)
-//        
-//        nc.addObserver(self, selector: "onMusicPlayerNowPlayingDidChange:", name: MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: MusicPlayer.instance)
-//        
-//    }
-    
-    
-    func onTimeElapsed(notification: NSNotification) {
-        let dict = notification.userInfo!
-        let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
         
-        if currentPlaybackTime > playbackThresholdForHistoryInSeconds && historyCandidateItem != nil{
-            AppDelegate.getSavedData().playbackHistory.append(NSNumber(unsignedLongLong: historyCandidateItem!.persistentID))
-        }
+        nc.addObserver(self, selector: "onMusicPlayerNowPlayingDidChange:", name: MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: MusicPlayer.instance)
+        
     }
     
-    let playbackThresholdForHistoryInSeconds : Double = 5
-    var historyCandidateItem : MPMediaItem? = nil
+    
+//    func onTimeElapsed(notification: NSNotification) {
+//        let dict = notification.userInfo!
+//        let currentPlaybackTime = dict[MusicPlayer.TIME_ELAPSED_KEY] as! Double
+//        
+//        if currentPlaybackTime > playbackThresholdForHistoryInSeconds && historyCandidateItem != nil{
+//            AppDelegate.getSavedData().playbackHistory.append(NSNumber(unsignedLongLong: historyCandidateItem!.persistentID))
+//        }
+//    }
+    
+//    let playbackThresholdForHistoryInSeconds : Double = 5
+//    var historyCandidateItem : MPMediaItem? = nil
     func onMusicPlayerNowPlayingDidChange(notification: NSNotification){
-        historyCandidateItem = MusicPlayer.instance.nowPlayingMediaItem()
+//        historyCandidateItem = MusicPlayer.instance.nowPlayingMediaItem()
+        tableView.reloadData()
     }
 
 

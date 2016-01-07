@@ -182,6 +182,10 @@ extension AlbumHistoryViewController {
 //        
 //        let albumId = mediaItem?.valueForProperty(MPMediaItemPropertyAlbumPersistentID) as! NSNumber
         
+        if notification.userInfo == nil {
+            return;  //Happens at the end of an album
+        }
+        
         let dict = notification.userInfo!
         let nowPlayingItem = dict[MusicPlayer.MEDIA_ITEM_KEY] as! MPMediaItem
         

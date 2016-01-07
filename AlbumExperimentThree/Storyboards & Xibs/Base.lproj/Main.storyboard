@@ -850,12 +850,6 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="kko-BK-zEt">
-                                    <rect key="frame" x="0.0" y="72" width="375" height="101"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <animations/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SongHistoryTableViewCell" id="pUf-DI-4aO" customClass="SongHistoryTableViewCell" customModule="AlbumExperimentThree" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -928,7 +922,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableFooterView" destination="kko-BK-zEt" id="Z56-QH-Bup"/>
                         <outlet property="tableView" destination="Ee8-ph-3Bq" id="Njs-4h-Sdb"/>
                     </connections>
                 </viewController>
