@@ -24,6 +24,7 @@ class MusicPlayer {
     
     private static let DEFAULT_INDEX : Int = -1
     
+    var mediaItemNow : MPMediaItem? = nil
     var mediaItemQueue : [MPMediaItem] = []
     var nowPlayingQueueIndex : Int = DEFAULT_INDEX {
         didSet{
@@ -70,7 +71,12 @@ class MusicPlayer {
     }
     
     private func notifyStateDidChange(){
-        let dict = [MusicPlayer.MEDIA_ITEM_KEY : self.mediaItemQueue[self.nowPlayingQueueIndex]]
+        var dict : [String : MPMediaItem]
+        if mediaItemNow != nil {
+            dict = [MusicPlayer.MEDIA_ITEM_KEY : mediaItemNow!]
+        } else {
+            dict = [MusicPlayer.MEDIA_ITEM_KEY : self.mediaItemQueue[self.nowPlayingQueueIndex]]
+        }
         NSNotificationCenter.defaultCenter().postNotificationName(MusicPlayer.MusicPlayerStateDidChange, object: self, userInfo: dict)
     }
     
@@ -81,7 +87,13 @@ class MusicPlayer {
     func skipToNextItem(){
         avPlayer.advanceToNextItem()
         
-        updateNowPlayingIndex()
+        if(mediaItemNow != nil){
+            mediaItemNow = nil
+            loadNowPlayingInfoCenter() //TODO: this will fail at -1 index
+        }
+        else {
+            updateNowPlayingIndex()
+        }
     }
     
     func skipToPosition(time: CMTime){
@@ -89,7 +101,7 @@ class MusicPlayer {
     }
     
     func skipToPreviousItem(){
-        
+        mediaItemNow = nil
         if nowPlayingQueueIndex > 0 {
             playItemAtIndex(nowPlayingQueueIndex - 1)
         }
@@ -137,6 +149,10 @@ class MusicPlayer {
     }
     
     func nowPlayingMediaItem() -> MPMediaItem? {
+        if mediaItemNow != nil {
+            return mediaItemNow!
+        }
+        
         if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX {
             return nil
         } else {
@@ -188,19 +204,25 @@ class MusicPlayer {
         }
         var mutableDict : [String: AnyObject]
         
+        var mediaItemCurrentlyPlaying : MPMediaItem
+        if mediaItemNow != nil {
+            mediaItemCurrentlyPlaying = mediaItemNow!
+        } else {
+            mediaItemCurrentlyPlaying = mediaItemQueue[nowPlayingQueueIndex]
+        }
         
 //        nowPlayingInfoCenter.nowPlayingInfo
         mutableDict = [
-            MPMediaItemPropertyArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtist)!,
-            MPMediaItemPropertyTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyTitle)!,
-//            MPMediaItemPropertyArtist:"\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
-            MPMediaItemPropertyAlbumArtist:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumArtist)!,
-            MPMediaItemPropertyAlbumTitle:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyAlbumTitle)!,
+            MPMediaItemPropertyArtist:mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyArtist)!,
+            MPMediaItemPropertyTitle:mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyTitle)!,
+//            MPMediaItemPropertyArtist:"\(mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyAlbumArtist)!)-\(mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyAlbumTitle)!)",
+            MPMediaItemPropertyAlbumArtist:mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyAlbumArtist)!,
+            MPMediaItemPropertyAlbumTitle:mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyAlbumTitle)!,
           
-            MPMediaItemPropertyPlaybackDuration:mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyPlaybackDuration)!
+            MPMediaItemPropertyPlaybackDuration:mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyPlaybackDuration)!
         ]
         //If there is no art work, you dont want to blow up.
-        if let artwork = mediaItemQueue[nowPlayingQueueIndex].valueForProperty(MPMediaItemPropertyArtwork) {
+        if let artwork = mediaItemCurrentlyPlaying.valueForProperty(MPMediaItemPropertyArtwork) {
             mutableDict[MPMediaItemPropertyArtwork] = artwork
         }
 
@@ -209,7 +231,12 @@ class MusicPlayer {
     
     //Note! The annotation was required because this class doesnt extend NSObject!!
     @objc func onItemDidFinishPlaying(notification: NSNotification){
-        updateNowPlayingIndex()
+        if mediaItemNow != nil {
+            mediaItemNow = nil
+            loadNowPlayingInfoCenter() //TODO: this will fail at -1 index
+        } else {
+            updateNowPlayingIndex()
+        }
     }
     
     //So wrong that this takes so much to do
@@ -230,6 +257,49 @@ class MusicPlayer {
         play()
     }
     
+    //Play this song right now, dont add it to the queue, but keep the queue in tact
+    func playThisItemNow(mediaItem : MPMediaItem){
+        
+//        mediaItemQueue.insert(mediaItem, atIndex: nowPlayingQueueIndex)
+//        
+//        avPlayer.removeAllItems()
+//        
+//        let avPlayerItems = mediaItemQueue.asAVPlayerItems(self, selector: "onItemDidFinishPlaying:")
+//        for var i = nowPlayingQueueIndex ; i < avPlayerItems.count ; i++ {
+//            let avpItem = avPlayerItems[i]
+//            if avPlayer.canInsertItem(avpItem, afterItem: nil) {
+//                avpItem.seekToTime(kCMTimeZero) //May not be needed
+//                avPlayer.insertItem(avpItem, afterItem: nil)
+//            }
+//        }
+//        
+//        play()
+
+//        updateNowPlayingIndex()
+        
+        mediaItemNow = mediaItem
+        
+        print(mediaItem.title)
+        
+        let index = nowPlayingQueueIndex
+        avPlayer.removeAllItems()
+        
+        var tempMediaItemQueue : [MPMediaItem] = []
+        tempMediaItemQueue.append(mediaItem)
+        tempMediaItemQueue.appendContentsOf(mediaItemQueue[nowPlayingQueueIndex..<mediaItemQueue.count])
+        
+        let avPlayerItems = tempMediaItemQueue.asAVPlayerItems(self, selector: "onItemDidFinishPlaying:")
+        for var i = index ; i < avPlayerItems.count ; i++ {
+            let avpItem = avPlayerItems[i]
+            if avPlayer.canInsertItem(avpItem, afterItem: nil) {
+                avpItem.seekToTime(kCMTimeZero) //May not be needed
+                avPlayer.insertItem(avpItem, afterItem: nil)
+            }
+        }
+//        play()
+        notifyNowPlayingDidChange()
+    }
+    
     
     private func updateNowPlayingIndex(){
         if nowPlayingQueueIndex + 1 >= mediaItemQueue.count {
@@ -243,6 +313,12 @@ class MusicPlayer {
     
     private func notifyNowPlayingDidChange(){
         print("Nofity debug now playing index: \(nowPlayingQueueIndex)")
+        
+        if mediaItemNow != nil {
+//            return mediaItemNow!
+            let dict = [MusicPlayer.MEDIA_ITEM_KEY : mediaItemNow!]
+            NSNotificationCenter.defaultCenter().postNotificationName(MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: self, userInfo: dict)
+        }
         
         if nowPlayingQueueIndex == MusicPlayer.DEFAULT_INDEX {
             NSNotificationCenter.defaultCenter().postNotificationName(MusicPlayer.MusicPlayerNowPlayingItemDidChange, object: self)

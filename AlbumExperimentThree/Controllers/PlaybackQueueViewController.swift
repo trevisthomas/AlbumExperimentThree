@@ -16,12 +16,16 @@ class PlaybackQueueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        adjustTableViewInsets()
+        
+        registerMediaPlayerNotifications()
+    }
+    
+    private func adjustTableViewInsets(){
         tableView.contentInset = UIEdgeInsetsMake(0 ,0, determineFooterPaddingHeight(), 0)
         
         let ip = NSIndexPath(forRow: 0, inSection: 1)
         tableView.scrollToRowAtIndexPath(ip, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
-        
-        registerMediaPlayerNotifications()
     }
  
     //Doesnt work. No idea why
@@ -78,6 +82,7 @@ class PlaybackQueueViewController: UIViewController {
     func onMusicPlayerNowPlayingDidChange(notification: NSNotification){
 //        historyCandidateItem = MusicPlayer.instance.nowPlayingMediaItem()
         tableView.reloadData()
+        adjustTableViewInsets()
     }
 
 
@@ -131,20 +136,34 @@ extension PlaybackQueueViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("SongHistoryTableViewCell", forIndexPath: indexPath) as! SongHistoryTableViewCell
         
 //        var item : MPMediaItem!
-        switch indexPath.section {
-            case 0:
-                let historyItems = MusicLibrary.instance.queryMediaItemsByPersistenceIDs(AppDelegate.getSavedData().playbackHistory)
-                cell.mediaItem = historyItems[indexPath.row]
-            case 1:
-                cell.mediaItem = MusicPlayer.instance.nowPlayingMediaItem()
-            case 2:
-                cell.mediaItem = MusicPlayer.instance.remainingMediaItemsInQueue()[indexPath.row]
-            default: return cell; //Should never happen
-        }
+//        switch indexPath.section {
+//            case 0:
+//                let historyItems = MusicLibrary.instance.queryMediaItemsByPersistenceIDs(AppDelegate.getSavedData().playbackHistory)
+//                cell.mediaItem = historyItems[indexPath.row]
+//            case 1:
+//                cell.mediaItem = MusicPlayer.instance.nowPlayingMediaItem()
+//            case 2:
+//                cell.mediaItem = MusicPlayer.instance.remainingMediaItemsInQueue()[indexPath.row]
+//            default: return cell; //Should never happen
+//        }
         
-//        cell.mediaItem = item
+        
+        cell.mediaItem = mediaItemAtIndexPath(indexPath);
         
         return cell
+    }
+    
+    private func mediaItemAtIndexPath(indexPath: NSIndexPath) -> MPMediaItem? {
+        switch indexPath.section {
+        case 0:
+            let historyItems = MusicLibrary.instance.queryMediaItemsByPersistenceIDs(AppDelegate.getSavedData().playbackHistory)
+            return historyItems[indexPath.row]
+        case 1:
+            return MusicPlayer.instance.nowPlayingMediaItem()
+        case 2:
+            return MusicPlayer.instance.remainingMediaItemsInQueue()[indexPath.row]
+        default: return nil; //Should never happen
+        }
     }
     
     
@@ -156,4 +175,11 @@ extension PlaybackQueueViewController : UITableViewDelegate {
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        <#code#>
 //    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let mediaItem = mediaItemAtIndexPath(indexPath)
+        MusicPlayer.instance.playThisItemNow(mediaItem!)
+        //MusicPlayer.instance.playItemAtIndex(indexPath.row)
+    }
 }
